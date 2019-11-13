@@ -53,6 +53,7 @@ namespace TTCBDD.GeneralHook
             var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
             if (ScenarioContext.Current.TestError == null && PublicVar.StepStatus== "Pass")
             {
+                //Test
                 if (stepType == "Given")
                     scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
                 else if(stepType == "When")
