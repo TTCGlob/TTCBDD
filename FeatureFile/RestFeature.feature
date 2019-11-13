@@ -5,6 +5,7 @@ Test Rest Feature
 Background: 
 Given I have a Base URL "http://dummy.restapiexample.com/api/v1"
 
+@smoke
 Scenario: 1-PostValue Request
 	And I Pass request to server "/create"
 	Then Verify Post method "name" tag is present in message for Body "MessageBody"
@@ -20,4 +21,3 @@ Scenario: 3-Put Value Request
 Scenario: 4-Delete Value  Request
 	And I Pass request to server "/delete/"
 	Then Verify Del method "success" tag is present in message
-

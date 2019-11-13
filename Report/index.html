@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>12/11/2019 3:06:29 PM New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>13/11/2019 2:52:17 PM New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -123,7 +123,7 @@
                     <canvas id='parent-analysis' width='100' height='80'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span><span class='strong'>0</span> test(s) passed</span>
+                    <span><span class='strong'>1</span> test(s) passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong'>1</span> test(s) failed, <span class='strong'>0</span> others
@@ -138,7 +138,7 @@
                         <canvas id='child-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>3</span> step(s) passed</span>
+                        <span><span class='strong'>7</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
                         <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
@@ -153,7 +153,7 @@
                         <canvas id='grandchild-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>11</span> step(s) passed</span>
+                        <span><span class='strong'>23</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
                         <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
@@ -170,15 +170,15 @@
             <ul id='test-collection' class='test-collection'>
 
 
-                    <li class='test displayed active has-leaf fail' status='fail' bdd='bdd' test-id='1'>
+                    <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>RestFeature</span>
-                            <span class='test-time'>12/11/2019 3:06:29 PM</span>
-                            <span class='test-status right fail'>Fail</span>
+                            <span class='test-name'>Feature2</span>
+                            <span class='test-time'>13/11/2019 2:52:17 PM</span>
+                            <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                     <div class='scenario node' test-id='2' status='pass'>
-                                        <span class='scenario-duration right label'>00:01:43.7997284</span>
+                                        <span class='scenario-duration right label'>00:00:01.7131226</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             1-PostValue Request
@@ -201,7 +201,7 @@
                                             </ul>
                                     </div>
                                     <div class='scenario node' test-id='6' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:05.4681760</span>
+                                        <span class='scenario-duration right label'>00:00:00.6875058</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             2-GetValue Request
@@ -223,8 +223,8 @@
                                                                                                                                                                     </li>
                                             </ul>
                                     </div>
-                                    <div class='scenario node' test-id='10' status='fail'>
-                                        <span class='scenario-duration right label'>00:00:08.4717736</span>
+                                    <div class='scenario node' test-id='10' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.7185618</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             3-Put Value Request
@@ -240,15 +240,14 @@
                                                         <b>Given</b>
                                                         I Pass request to server "/update/"
                                                                                                                                                                     </li>
-                                                    <li test-id='13' class='node then fail' status='then fail'>
+                                                    <li test-id='13' class='node then pass' status='then pass'>
                                                         <b>Then</b>
-                                                        Verify Put method "name1" tag is present in message for Body "MessageBody"
-                                                                                                                                                                            <div class='pre'>Put Failed {"name":"test30404","salary":"322","age":"23"}</div>
-                                                    </li>
+                                                        Verify Put method "name" tag is present in message for Body "MessageBody"
+                                                                                                                                                                    </li>
                                             </ul>
                                     </div>
                                     <div class='scenario node' test-id='14' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:00.6498271</span>
+                                        <span class='scenario-duration right label'>00:00:00.7087258</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             4-Delete Value  Request
@@ -265,6 +264,109 @@
                                                         I Pass request to server "/delete/"
                                                                                                                                                                     </li>
                                                     <li test-id='17' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Del method "success" tag is present in message
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+
+                        </div>
+                    </li>
+                    <li class='test displayed active has-leaf fail' status='fail' bdd='bdd' test-id='18'>
+                        <div class='test-heading'>
+                            <span class='test-name'>RestFeature</span>
+                            <span class='test-time'>13/11/2019 2:52:21 PM</span>
+                            <span class='test-status right fail'>Fail</span>
+                        </div>
+                        <div class='test-content hide'>
+                                    <div class='scenario node' test-id='19' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6271179</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            1-PostValue Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='20' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='21' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/create"
+                                                                                                                                                                    </li>
+                                                    <li test-id='22' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Post method "name" tag is present in message for Body "MessageBody"
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='23' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6163329</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            2-GetValue Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='24' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='25' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/employee/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='26' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Get method "employee_name" tag is present in message
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='27' status='fail'>
+                                        <span class='scenario-duration right label'>00:00:00.6959850</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            3-Put Value Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='28' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='29' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/update/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='30' class='node then fail' status='then fail'>
+                                                        <b>Then</b>
+                                                        Verify Put method "name1" tag is present in message for Body "MessageBody"
+                                                                                                                                                                            <div class='pre'>Put Failed {"name":"test12147","salary":"973","age":"23"}</div>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='31' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6058156</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            4-Delete Value  Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='32' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='33' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/delete/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='34' class='node then pass' status='then pass'>
                                                         <b>Then</b>
                                                         Verify Del method "success" tag is present in message
                                                                                                                                                                     </li>
@@ -337,36 +439,36 @@
         <div class='row'>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Features</span>                     <div class='panel-lead'>1</div>
+ <span>Features</span>                     <div class='panel-lead'>2</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Scenarios</span>                     <div class='panel-lead'>4</div>
+ <span>Scenarios</span>                     <div class='panel-lead'>8</div>
                 </div>
             </div>
                 <div class='col s2'>
                     <div class='card-panel r'>
                         Steps
-                        <div class='panel-lead'>12</div>
+                        <div class='panel-lead'>24</div>
                     </div>
                 </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>12/11/2019 3:06:29 PM</div>
+                    <div class='panel-lead'>13/11/2019 2:52:17 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>12/11/2019 3:08:29 PM</div>
+                    <div class='panel-lead'>13/11/2019 2:52:26 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:02:00.1754175</div>
+                    <div class='panel-lead'>00:00:08.7604555</div>
                 </div>
             </div>
 
@@ -385,14 +487,14 @@
 
 		<script>
 			var statusGroup = {
-			    passParent: 0,
+			    passParent: 1,
 			    failParent: 1,
 			    fatalParent: 0,
 			    errorParent: 0,
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 3,
+			    passChild: 7,
 			    failChild: 1,
 			    fatalChild: 0,
 			    errorChild: 0,
@@ -400,7 +502,7 @@
 			    skipChild: 0,
 			    infoChild: 0,
 				
-			    passGrandChild: 11,
+			    passGrandChild: 23,
 			    failGrandChild: 1,
 			    fatalGrandChild: 0,
 			    errorGrandChild: 0,
