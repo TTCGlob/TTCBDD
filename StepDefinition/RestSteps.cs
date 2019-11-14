@@ -65,10 +65,10 @@ namespace TTCBDD.StepDefinition
 
         #region And
         [Given(@"I Pass request to server ""(.*)""")]
-            public void GivenIPassRequestToServer(string RequestType)
-            {
-                 PublicVar.RequestType = RequestType;
-            }
+        public void GivenIPassRequestToServer(string RequestType)
+        {
+                PublicVar.RequestType = RequestType;
+        }
 
 
         #endregion

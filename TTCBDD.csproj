@@ -172,6 +172,7 @@
     <None Include="App.config" />
     <None Include="FeatureFile\Feature2.feature" />
     <None Include="FeatureFile\RestFeature.feature" />
+    <None Include="FeatureFile\SpecFlowFeature1.feature" />
     <None Include="license" />
     <None Include="packages.config" />
     <None Include="Resources\ReadData.xls" />
