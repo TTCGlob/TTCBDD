@@ -7,6 +7,9 @@ using TTCBDD.ComponentHelper;
 using TTCBDD.Settings;
 using NUnit.Framework;
 using AventStack.ExtentReports.Reporter;
+using TTCBDD.ComponentHelper;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TTCBDD
 {
@@ -16,6 +19,33 @@ namespace TTCBDD
         //private object quot;
 
         //public string JsonHelper { get; private set; }
+
+        [Test]
+        
+        public void TestRestGet()
+        {
+            var call = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddHeader("Accept", "application/json")
+                .AddUrlParameter("id", "2")
+                .Execute();
+            Console.WriteLine($"{call.Content}");
+            var employees = call.Data;
+            Console.WriteLine(employees.id);
+            Assert.IsTrue(call.StatusDescription.Equals("OK"));
+        }
+        [Test]
+        public void TestRestPost()
+        {
+            var employee = new Employee("jasonnnnnn", "2333", "33");
+            var call = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/{resource}")
+                .AddHeader("Accept", "application/json")
+                .AddUrlParameter("resource", "create")
+                .AddPayload(employee);
+            var response = call.Execute();
+            var data = response.Data;
+            Assert.IsNotNull(data);
+            Console.WriteLine($"{data.id}");
+        }
 
         //[Test]
         [Obsolete]

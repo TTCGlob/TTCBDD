@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 using TTCBDD.ComponentHelper;
-using TTCBDD.PageObject;
+using TTCBDD.ComponentHelper;
 using TTCBDD.Public_Var;
 
 namespace TTCBDD.StepDefinition
