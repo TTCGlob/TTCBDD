@@ -164,6 +164,7 @@
     <Compile Include="Settings\AppConfigKeys.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
     <Compile Include="StepDefinition\RestSteps.cs" />
+    <Compile Include="StepDefinition\SpecFlowFeature1Steps.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
