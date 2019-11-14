@@ -163,6 +163,7 @@
     <Compile Include="PublicVar\PublicVar.cs" />
     <Compile Include="Settings\AppConfigKeys.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
+    <Compile Include="SpecFlowFeature1Steps.cs" />
     <Compile Include="StepDefinition\RestSteps.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
