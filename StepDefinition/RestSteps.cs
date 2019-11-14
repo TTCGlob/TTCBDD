@@ -26,10 +26,16 @@ namespace TTCBDD.StepDefinition
         #endregion
 
         #region When
+        [When(@"I Pass request to server ""(.*)""")]
+        public void WhenIPassRequestToServer(string RequestType)
+        {
+            PublicVar.RequestType = RequestType;
+        }
+
         #endregion
 
         #region Then
-            [Then(@"Verify Get method ""(.*)"" tag is present in message")]
+        [Then(@"Verify Get method ""(.*)"" tag is present in message")]
             public void ThenVerifyGetMethodTagIsPresentInMessage(string TagToVerify)
             {
                 RestActions.GetRestMethod(TagToVerify);
@@ -59,10 +65,10 @@ namespace TTCBDD.StepDefinition
 
         #region And
         [Given(@"I Pass request to server ""(.*)""")]
-            public void GivenIPassRequestToServer(string RequestType)
-            {
-                 PublicVar.RequestType = RequestType;
-            }
+        public void GivenIPassRequestToServer(string RequestType)
+        {
+                PublicVar.RequestType = RequestType;
+        }
 
 
         #endregion
