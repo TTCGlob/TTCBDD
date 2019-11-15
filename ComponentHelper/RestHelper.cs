@@ -44,14 +44,13 @@ namespace TTCBDD.ComponentHelper
             //Creating request to post data to server
             RestRequest restRequest = new RestRequest(request, Method.POST);
 
-
             //Adding Body
             restRequest.Parameters.Clear();
             restRequest.AddParameter("application/json", BodyMsg, ParameterType.RequestBody);
 
             // Executing request to server and checking server response to the it
             IRestResponse restResponse = restClient.Execute(restRequest);
-
+ 
             string response = restResponse.Content;
 
             // Checking Response on highlevel

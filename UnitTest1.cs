@@ -26,7 +26,7 @@ namespace TTCBDD
         {
             var call = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
                 .AddHeader("Accept", "application/json")
-                .AddUrlParameter("id", "2")
+                .AddUrlParameter("id", "1")
                 .Execute();
             Console.WriteLine($"{call.Content}");
             var employees = call.Data;
@@ -47,7 +47,7 @@ namespace TTCBDD
             Console.WriteLine($"{data.id}");
         }
 
-        //[Test]
+        [Test]
         [Obsolete]
         public void TestRestFlow()
         {
@@ -65,7 +65,7 @@ namespace TTCBDD
 
             //Send Post
             response = RestHelper.RestPost(BaseUrl, requestPost, "name", poststr);
-
+            
 
             //Parse response to get Id
             //RestHelper.ParseJasonObj(response, ""); //Code in progress
