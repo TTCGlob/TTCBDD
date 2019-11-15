@@ -171,6 +171,7 @@
     <Compile Include="PageObject\RestActions.cs" />
     <Compile Include="ComponentHelper\RestCall.cs" />
     <Compile Include="PublicVar\PublicVar.cs" />
+    <Compile Include="StepDefinition\RestCallClassTestSteps.cs" />
     <Compile Include="Settings\AppConfigKeys.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
     <Compile Include="StepDefinition\RestSteps.cs" />
@@ -180,6 +181,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="FeatureFile\Feature2.feature" />
+    <None Include="FeatureFile\RestCallFeature.feature" />
     <None Include="FeatureFile\RestFeature.feature" />
     <None Include="license" />
     <None Include="packages.config" />

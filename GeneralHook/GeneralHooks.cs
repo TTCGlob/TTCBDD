@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using TTCBDD.ComponentHelper;
+using TTCBDD.PageObject;
 using TTCBDD.Public_Var;
 
 namespace TTCBDD.GeneralHook
@@ -106,13 +108,15 @@ namespace TTCBDD.GeneralHook
         [AfterScenario]
         public void AfterScenario()
         {
-            //Console.WriteLine("AfterScenario");
+            Console.WriteLine("AfterScenario");
+            
             //implement logic that has to run after executing each scenario
         }
         [AfterTestRun]
         public static void AfterTestRun()
         {
             extent.Flush();
+            
         }
 
         public void UnHandleError()
