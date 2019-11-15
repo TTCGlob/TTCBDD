@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace TTCBDD.ComponentHelper
+namespace TTCBDD.PageObject
 {
     public class Employee
     {
@@ -22,6 +22,17 @@ namespace TTCBDD.ComponentHelper
             name = employee_name;
             salary = employee_salary;
             age = employee_age;
+        }
+        public bool Equals(Employee other)
+        {
+            return this.id.Equals(other.id)
+                && this.name.Equals(other.name)
+                && this.salary.Equals(other.salary)
+                && this.age.Equals(other.age);
+        }
+        public override string ToString()
+        {
+            return $"ID: {id} Name: {name} Age: {age} Salary: {salary}";
         }
     }
 }

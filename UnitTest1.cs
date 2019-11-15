@@ -10,6 +10,7 @@ using AventStack.ExtentReports.Reporter;
 using TTCBDD.ComponentHelper;
 using System.Collections.Generic;
 using System.Linq;
+using TTCBDD.PageObject;
 
 namespace TTCBDD
 {
@@ -48,6 +49,22 @@ namespace TTCBDD
         }
 
         [Test]
+        public void TestPostThenGet()
+        {
+            var employee = new Employee("dsdsd", "2333", "33");
+            var post = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/create")
+               .AddHeader("Accept", "application/json")
+               .AddPayload(employee).Execute();
+            var id = post.Data.id;
+            var get = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddHeader("Accept", "application/json")
+                .AddUrlParameter("id", id)
+                .Execute();
+            var returnedEmployee = get.Data;
+            AssertHelper.Equals(employee.name, returnedEmployee.name);
+        }
+
+        //[Test]
         [Obsolete]
         public void TestRestFlow()
         {

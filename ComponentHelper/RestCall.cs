@@ -16,6 +16,11 @@ namespace TTCBDD.ComponentHelper
         private IRestClient client;
         private IRestRequest request;
         private IRestResponse<T> response;
+        private Func<IRestResponse<T>, bool> successCondition;
+        public bool Success
+        {
+            get => successCondition(response);
+        }
         private T data;
 
         public RestCall(Method method, string url, string resource, DataFormat dataFormat = DataFormat.Json)
@@ -47,6 +52,11 @@ namespace TTCBDD.ComponentHelper
         {
             response = client.Execute<T>(request);
             return response;
+        }
+        public RestCall<T> AddSuccessCondition(Func<IRestResponse, bool> condition)
+        {
+            successCondition = condition;
+            return this;
         }
     }
     public class JsonNetSerializer : IRestSerializer
