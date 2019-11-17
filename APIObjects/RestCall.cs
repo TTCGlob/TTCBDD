@@ -16,6 +16,7 @@ namespace TTCBDD.APIObjects
         private IRestClient client;
         private IRestRequest request;
         private IRestResponse<T> response;
+        private DataFormat dataformat;
         private Func<IRestResponse<T>, bool> successCondition;
         public bool Success
         {
@@ -26,6 +27,7 @@ namespace TTCBDD.APIObjects
         public RestCall(Method method, string url, string resource, DataFormat dataFormat = DataFormat.Json)
         {
             this.method = method;
+            this.dataformat = dataFormat;
             client = new RestClient(url);
             request = new RestRequest(resource, method, dataFormat);
             client.AddHandler("text/html", () => new JsonNetSerializer());
@@ -49,6 +51,8 @@ namespace TTCBDD.APIObjects
         public RestCall<T> AddPayload(T payload)
         {
             request.AddBody(payload);
+            if (this.dataformat == DataFormat.Json)
+                AddHeader("Content-Type", "application/json");
             return this;
         }
         public RestCall<T> Where(string field, string value)

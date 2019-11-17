@@ -14,18 +14,21 @@ namespace TTCBDD.StepDefinition
     [Binding]
     public class RestCallClassTestSteps
     {
+        #region Given
         [Given(@"User accesses employees API at ""(.*)""")]
         public void GivenUserAccessesEmployeesAPIAt(string url)
         {
             PublicVar.BaseUrl = url;
         }
 
+        #endregion
+        #region When
+
         [When(@"User accesses employee ""(.*)""")]
         public void WhenUserAccessesEmployee(string id)
         {
             var get = new RestCall<Employee>(Method.GET, PublicVar.BaseUrl, "/employee/{id}")
                 .AddUrlParameter("id", id)
-                .AddHeader("Accept", "application/json")
                 .Execute();
             var employee = get.Data;
             PublicVar.employee = employee;
@@ -36,12 +39,25 @@ namespace TTCBDD.StepDefinition
         {
             PublicVar.employee = new Employee(name, salary, age);
             var employee = new RestCall<Employee>(Method.POST, PublicVar.BaseUrl, "/create")
-                .AddHeader("Content-Type", "application/json")
                 .AddHeader("Accept", "application/json")
                 .AddPayload(PublicVar.employee)
                 .Execute(res => PublicVar.employee.id = res.Data.id)
                 .Data;
         }
+        [When(@"User updates employee ""(.*)"" with new salary ""(.*)""")]
+        public void WhenUserUpdatesEmployeeWithNewSalary(string id, string salary)
+        {
+            PublicVar.employee.salary = salary;
+            PublicVar.employee = new RestCall<Employee>(Method.PUT, PublicVar.BaseUrl, "update/{id}")
+                .AddUrlParameter("id", id)
+                .AddPayload(PublicVar.employee)
+                .Execute()
+                .Data;
+        }
+
+        #endregion
+        #region Then
+
         [Then(@"The employee record is displayed")]
         public void ThenTheEmployeeRecordIsDisplayed()
         {
@@ -72,5 +88,12 @@ namespace TTCBDD.StepDefinition
                 .ContentContains("success");
             AssertHelper.IsTrue(deleted);
         }
+        [Then(@"The new salary ""(.*)"" is reflected in the database")]
+        public void ThenTheNewSalaryIsReflectedInTheDatabase(string salary)
+        {
+            AssertHelper.Equals(PublicVar.employee.salary, salary);
+        }
+
+        #endregion
     }
 }
