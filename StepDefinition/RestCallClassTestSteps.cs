@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using RestSharp;
 using TechTalk.SpecFlow;
+using TTCBDD.APIObjects;
 using TTCBDD.ComponentHelper;
 using TTCBDD.PageObject;
 using TTCBDD.Public_Var;
+using TTCBDD.APIObjects;
 
 namespace TTCBDD.StepDefinition
 {
@@ -37,9 +39,8 @@ namespace TTCBDD.StepDefinition
                 .AddHeader("Content-Type", "application/json")
                 .AddHeader("Accept", "application/json")
                 .AddPayload(PublicVar.employee)
-                .Execute()
+                .Execute(res => PublicVar.employee.id = res.Data.id)
                 .Data;
-            PublicVar.employee = employee;
         }
         [Then(@"The employee record is displayed")]
         public void ThenTheEmployeeRecordIsDisplayed()
@@ -65,12 +66,11 @@ namespace TTCBDD.StepDefinition
         [Then(@"The new employee is successfully deleted from the database")]
         public void ThenTheNewEmployeeIsSuccessfullyDeletedFromTheDatabase()
         {
-            var delete = new RestCall<object>(Method.DELETE, PublicVar.BaseUrl, "/delete/{id}")
+            var deleted = new RestCall<object>(Method.DELETE, PublicVar.BaseUrl, "/delete/{id}")
                 .AddUrlParameter("id", PublicVar.employee.id)
-                .AddSuccessCondition((res) => res.Content.Contains("success"));
-            delete.Execute();
-            AssertHelper.IsTrue(delete.Success);
+                .Execute()
+                .ContentContains("success");
+            AssertHelper.IsTrue(deleted);
         }
-
     }
 }

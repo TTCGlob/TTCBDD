@@ -11,6 +11,7 @@ using TTCBDD.ComponentHelper;
 using System.Collections.Generic;
 using System.Linq;
 using TTCBDD.PageObject;
+using TTCBDD.APIObjects;
 
 namespace TTCBDD
 {
@@ -26,14 +27,22 @@ namespace TTCBDD
         public void TestRestGet()
         {
             var call = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
-                .AddHeader("Accept", "application/json")
-                .AddUrlParameter("id", "2")
+                .AddUrlParameter("id", "1")
                 .Execute();
             Console.WriteLine($"{call.Content}");
             var employees = call.Data;
             Console.WriteLine(employees.id);
             Assert.IsTrue(call.StatusDescription.Equals("OK"));
         }
+        [Test]
+        public void TestCheck()
+        {
+            var success = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddUrlParameter("id", "1")
+                .Check(res => res.Data != null);
+            AssertHelper.IsTrue(success);
+        }
+
         [Test]
         public void TestRestPost()
         {
@@ -53,7 +62,6 @@ namespace TTCBDD
         {
             var employee = new Employee("dsdsd", "2333", "33");
             var post = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/create")
-               .AddHeader("Accept", "application/json")
                .AddPayload(employee).Execute();
             var id = post.Data.id;
             var get = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
@@ -62,6 +70,34 @@ namespace TTCBDD
                 .Execute();
             var returnedEmployee = get.Data;
             AssertHelper.Equals(employee.name, returnedEmployee.name);
+        }
+        [Test]
+        public void TestWhere()
+        {
+            var products = new RestCall<List<Product>>(Method.GET, "http://192.168.2.73:3000", "/products")
+                .Where("stock_level", 0)
+                .Execute().Data;
+            foreach (var product in products)
+            {
+                Console.WriteLine($"Name: {product.product_name} Last Restocked: {product.last_restocked}");
+            }
+        }
+        [Test]
+        public void TestProductPost()
+        {
+            Product braeburn = new Product()
+            {
+                product_name = "Apple - Braeburn",
+                last_restocked = DateTime.Now,
+                stock_level = 500
+            };
+            var post = new RestCall<Product>(Method.POST, "http://192.168.2.73:3000", "/products")
+                .AddPayload(braeburn)
+                .Execute(res =>
+                {
+                    braeburn.id = res.Data.id;
+                });
+            Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
         }
 
         //[Test]

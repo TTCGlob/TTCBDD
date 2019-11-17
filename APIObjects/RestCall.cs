@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serialization;
 
-namespace TTCBDD.ComponentHelper
+namespace TTCBDD.APIObjects
 {
     public class RestCall<T> where T : new()
     {
@@ -29,6 +29,10 @@ namespace TTCBDD.ComponentHelper
             client = new RestClient(url);
             request = new RestRequest(resource, method, dataFormat);
             client.AddHandler("text/html", () => new JsonNetSerializer());
+            if (dataFormat == DataFormat.Json)
+            {
+                AddHeader("Accept", "application/json");
+            }
         }
 
         public RestCall<T> AddHeader(string header, string value)
@@ -47,16 +51,32 @@ namespace TTCBDD.ComponentHelper
             request.AddBody(payload);
             return this;
         }
+        public RestCall<T> Where(string field, string value)
+        {
+            request.AddQueryParameter(field, value);
+            return this;
+        }
+        public RestCall<T> Where(string field, int value)
+        {
+            request.AddQueryParameter(field, value.ToString());
+            return this;
+        }
 
         public IRestResponse<T> Execute()
         {
             response = client.Execute<T>(request);
             return response;
         }
-        public RestCall<T> AddSuccessCondition(Func<IRestResponse, bool> condition)
+        public IRestResponse<T> Execute(Action<IRestResponse<T>> action)
         {
-            successCondition = condition;
-            return this;
+            response = client.Execute<T>(request);
+            action(response);
+            return response;
+        }
+        public bool Check(Func<IRestResponse<T>, bool> success)
+        {
+            if (response == null) Execute();
+            return success(response);
         }
     }
     public class JsonNetSerializer : IRestSerializer
