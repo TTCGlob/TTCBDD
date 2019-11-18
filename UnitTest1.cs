@@ -16,8 +16,9 @@ namespace TTCBDD
         //private object quot;
 
         //public string JsonHelper { get; private set; }
-
-        //[Test]
+        
+        [Ignore("WIP")]
+        [Test]
         [Obsolete]
         public void TestRestFlow()
         {
@@ -57,10 +58,10 @@ namespace TTCBDD
 
             //Delete Latest User
             response = RestHelper.RestDel(BaseUrl, requestdel, "success");
-
         }
 
-       // [Test]
+        [Ignore("WIP")]
+        [Test]
         public void TestGet()
         {
             string response = "";
@@ -69,12 +70,11 @@ namespace TTCBDD
             response = RestHelper.RestGet(Url, request, "employee_name");
         }
 
-        //[Test]
+        [Ignore("WIP")]
+        [Test]
         [Obsolete]
         public void TestPost()
         {
-
-
             RestClient restClient = new RestClient("http://dummy.restapiexample.com/api/v1/");
             string poststr = "{\"name\":\"test122311\",\"salary\":\"123\",\"age\":\"23\"}";
             Console.WriteLine("Message {0}", poststr);
@@ -89,12 +89,11 @@ namespace TTCBDD
             Console.WriteLine("Post Response is " + response);
         }
 
-       // [Test]
+        [Ignore("WIP")]
+        [Test]
         [Obsolete]
         public void TestPut()
         {
-
-
             RestClient restClient = new RestClient("http://dummy.restapiexample.com/api/v1/");
             //string poststr= "{\"name\":\"test\",\"salary\":\"123\",\"age\":\"23\"}";
             //Console.WriteLine("Message {0}", poststr);
@@ -106,12 +105,11 @@ namespace TTCBDD
             Console.WriteLine("Put Response is " + response);
         }
 
-        //[Test]
+        [Ignore("WIP")]
+        [Test]
         [Obsolete]
         public void TestDel()
         {
-
-
             RestClient restClient = new RestClient("http://dummy.restapiexample.com/api/v1/");
             //string poststr= "{\"name\":\"test\",\"salary\":\"123\",\"age\":\"23\"}";
             //Console.WriteLine("Message {0}", poststr);
@@ -122,6 +120,5 @@ namespace TTCBDD
             string response = restResponse.Content;
             Console.WriteLine("Del Response is " + response);
         }
-
     }
 }

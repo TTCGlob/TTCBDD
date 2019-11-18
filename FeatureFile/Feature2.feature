@@ -5,6 +5,7 @@ Test Rest Feature
 Background: 
 Given I have a Base URL "http://dummy.restapiexample.com/api/v1"
 
+@RandoTag
 Scenario: 1-PostValue Request
 	And I Pass request to server "/create"
 	Then Verify Post method "name" tag is present in message for Body "MessageBody"

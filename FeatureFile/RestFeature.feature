@@ -1,7 +1,6 @@
 ﻿Feature: RestFeature
 Test Rest Feature
 
-
 Background: 
 Given I have a Base URL "http://dummy.restapiexample.com/api/v1"
 

@@ -24,8 +24,6 @@ namespace TTCBDD.ComponentHelper
             }
             catch (Exception e)
             {
-                //Assert.Fail(e.Message);
-                //ObjectRepository.ErrMsg.Add(e.Message.ToString());
                 AssertFailMsg("Assert Fail " + e.Message);
                 Console.WriteLine("Assert Fail " + e.Message);
                 Console.WriteLine(ScenarioContext.Current.ScenarioInfo.Title);
@@ -44,7 +42,6 @@ namespace TTCBDD.ComponentHelper
             }
             catch (Exception e)
             {
-                //ObjectRepository.ErrMsg.Add(e.Message.ToString());
                 AssertFailMsg("Assert Fail " + e.Message);
                 Console.WriteLine("Assert Fail " + e.Message);
                 Console.WriteLine(ScenarioContext.Current.ScenarioInfo.Title);

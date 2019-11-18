@@ -16,6 +16,7 @@ namespace TTCBDD.StepDefinition
     public sealed class RestSteps 
     {
         #region Given
+        
         [Given(@"I have a Base URL ""(.*)""")]
         public void GivenIHaveABaseURL(string URL)
         {
@@ -29,22 +30,22 @@ namespace TTCBDD.StepDefinition
         #endregion
 
         #region Then
-            [Then(@"Verify Get method ""(.*)"" tag is present in message")]
-            public void ThenVerifyGetMethodTagIsPresentInMessage(string TagToVerify)
-            {
-                RestActions.GetRestMethod(TagToVerify);
-            }
+        
+        [Then(@"Verify Get method ""(.*)"" tag is present in message")]
+        public void ThenVerifyGetMethodTagIsPresentInMessage(string TagToVerify)
+        {
+            RestActions.GetRestMethod(TagToVerify);
+        }
 
-            [Then(@"Verify Post method ""(.*)"" tag is present in message for Body ""(.*)""")]
-            public void ThenVerifyPostMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
-            {
-                RestActions.PostRestMethod(TagToVerify, body);
+        [Then(@"Verify Post method ""(.*)"" tag is present in message for Body ""(.*)""")]
+        public void ThenVerifyPostMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
+        {
+            RestActions.PostRestMethod(TagToVerify, body);
+        }
 
-
-            }
-
-            [Then(@"Verify Put method ""(.*)"" tag is present in message for Body ""(.*)""")]
-            public void ThenVerifyPutMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
+        [Obsolete]
+        [Then(@"Verify Put method ""(.*)"" tag is present in message for Body ""(.*)""")]
+        public void ThenVerifyPutMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
             {
                 RestActions.PutRestMethod(TagToVerify, body);
             }
@@ -58,18 +59,13 @@ namespace TTCBDD.StepDefinition
         #endregion
 
         #region And
+
         [Given(@"I Pass request to server ""(.*)""")]
             public void GivenIPassRequestToServer(string RequestType)
             {
                  PublicVar.RequestType = RequestType;
             }
-
-
+        
         #endregion
-
-
-
-
-
     }
 }

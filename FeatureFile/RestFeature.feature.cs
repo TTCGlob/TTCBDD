@@ -71,21 +71,23 @@ namespace TTCBDD.FeatureFile
         
         public virtual void FeatureBackground()
         {
+#line 4
 #line 5
-#line 6
 testRunner.Given("I have a Base URL \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("1-PostValue Request")]
+        [NUnit.Framework.CategoryAttribute("smoke")]
         public virtual void _1_PostValueRequest()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1-PostValue Request", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1-PostValue Request", null, new string[] {
+                        "smoke"});
 #line 8
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
+#line 4
 this.FeatureBackground();
 #line 9
  testRunner.And("I Pass request to server \"/create\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -103,7 +105,7 @@ this.FeatureBackground();
 #line 12
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
+#line 4
 this.FeatureBackground();
 #line 13
  testRunner.And("I Pass request to server \"/employee/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -121,7 +123,7 @@ this.FeatureBackground();
 #line 16
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
+#line 4
 this.FeatureBackground();
 #line 17
  testRunner.And("I Pass request to server \"/update/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -139,7 +141,7 @@ this.FeatureBackground();
 #line 20
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
+#line 4
 this.FeatureBackground();
 #line 21
  testRunner.And("I Pass request to server \"/delete/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

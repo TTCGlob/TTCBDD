@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using TTCBDD.ComponentHelper;
 using TTCBDD.Public_Var;
 
 namespace TTCBDD.GeneralHook
@@ -15,6 +16,7 @@ namespace TTCBDD.GeneralHook
     [Binding]
     public sealed class GeneralHooks
     {
+
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
@@ -31,6 +33,7 @@ namespace TTCBDD.GeneralHook
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
         }
+
         [BeforeFeature]
         public static void BeforeFeature()
         {
@@ -38,6 +41,7 @@ namespace TTCBDD.GeneralHook
             featureName = extent.CreateTest<Feature>(FeatureContext.Current.FeatureInfo.Title);
             //Console.WriteLine("BeforeFeature");
         }
+
         [BeforeScenario]
         public void BeforeScenario()
         {
@@ -46,7 +50,9 @@ namespace TTCBDD.GeneralHook
             //Console.WriteLine("BeforeScenario");
             scenario = featureName.CreateNode<Scenario>(ScenarioContext.Current.ScenarioInfo.Title);
         }
+
         [AfterStep]
+        [Obsolete]
         public void InsertReportingSteps()
         {
             
@@ -103,12 +109,23 @@ namespace TTCBDD.GeneralHook
         done:
             UnHandleError();
         }
+
         [AfterScenario]
+        [Obsolete]
         public void AfterScenario()
         {
-            //Console.WriteLine("AfterScenario");
-            //implement logic that has to run after executing each scenario
+            var scenario = ScenarioContext.Current;
+            string name = scenario.ScenarioInfo.Title + "_after_scenario.jpg";
+
+            if (scenario.TestError != null)
+            {
+                ScreenshotHelper.TakeScreenshot(name);
+                var error = scenario.TestError;
+                Console.WriteLine("An error ocurred:" + error.Message);
+                Console.WriteLine("It was of type:" + error.GetType().Name);
+            }
         }
+
         [AfterTestRun]
         public static void AfterTestRun()
         {
