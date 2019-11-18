@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TTCBDD.ComponentHelper;
 using TTCBDD.Public_Var;
 
-namespace TTCBDD.PageObject
+namespace TTCBDD.ComponentHelper
 {
     public class RestActions
     {

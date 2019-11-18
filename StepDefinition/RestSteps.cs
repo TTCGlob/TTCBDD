@@ -1,13 +1,14 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
 using TTCBDD.ComponentHelper;
-using TTCBDD.PageObject;
+using TTCBDD.ComponentHelper;
 using TTCBDD.Public_Var;
 
 namespace TTCBDD.StepDefinition
@@ -16,7 +17,6 @@ namespace TTCBDD.StepDefinition
     public sealed class RestSteps 
     {
         #region Given
-        
         [Given(@"I have a Base URL ""(.*)""")]
         public void GivenIHaveABaseURL(string URL)
         {
@@ -27,25 +27,31 @@ namespace TTCBDD.StepDefinition
         #endregion
 
         #region When
+        [When(@"I Pass request to server ""(.*)""")]
+        public void WhenIPassRequestToServer(string RequestType)
+        {
+            PublicVar.RequestType = RequestType;
+        }
+
         #endregion
 
         #region Then
-        
         [Then(@"Verify Get method ""(.*)"" tag is present in message")]
-        public void ThenVerifyGetMethodTagIsPresentInMessage(string TagToVerify)
-        {
-            RestActions.GetRestMethod(TagToVerify);
-        }
+            public void ThenVerifyGetMethodTagIsPresentInMessage(string TagToVerify)
+            {
+                RestActions.GetRestMethod(TagToVerify);
+            }
 
-        [Then(@"Verify Post method ""(.*)"" tag is present in message for Body ""(.*)""")]
-        public void ThenVerifyPostMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
-        {
-            RestActions.PostRestMethod(TagToVerify, body);
-        }
+            [Then(@"Verify Post method ""(.*)"" tag is present in message for Body ""(.*)""")]
+            public void ThenVerifyPostMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
+            {
+                RestActions.PostRestMethod(TagToVerify, body);
 
-        [Obsolete]
-        [Then(@"Verify Put method ""(.*)"" tag is present in message for Body ""(.*)""")]
-        public void ThenVerifyPutMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
+
+            }
+
+            [Then(@"Verify Put method ""(.*)"" tag is present in message for Body ""(.*)""")]
+            public void ThenVerifyPutMethodTagIsPresentInMessageForBody(string TagToVerify, string body)
             {
                 RestActions.PutRestMethod(TagToVerify, body);
             }
@@ -59,13 +65,18 @@ namespace TTCBDD.StepDefinition
         #endregion
 
         #region And
-
         [Given(@"I Pass request to server ""(.*)""")]
-            public void GivenIPassRequestToServer(string RequestType)
-            {
-                 PublicVar.RequestType = RequestType;
-            }
-        
+        public void GivenIPassRequestToServer(string RequestType)
+        {
+                PublicVar.RequestType = RequestType;
+        }
+
+
         #endregion
+
+
+
+
+
     }
 }

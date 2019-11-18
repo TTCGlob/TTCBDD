@@ -7,6 +7,12 @@ using TTCBDD.ComponentHelper;
 using TTCBDD.Settings;
 using NUnit.Framework;
 using AventStack.ExtentReports.Reporter;
+using TTCBDD.ComponentHelper;
+using System.Collections.Generic;
+using System.Linq;
+using TTCBDD.PageObject;
+using TTCBDD.APIObjects;
+using TTCBDD.Public_Var;
 
 namespace TTCBDD
 {
@@ -16,9 +22,86 @@ namespace TTCBDD
         //private object quot;
 
         //public string JsonHelper { get; private set; }
-        
-        [Ignore("WIP")]
+
         [Test]
+        
+        public void TestRestGet()
+        {
+            var call = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddUrlParameter("id", "1")
+                .Execute();
+            Console.WriteLine($"{call.Content}");
+            var employees = call.Data;
+            Console.WriteLine(employees.id);
+            Assert.IsTrue(call.StatusDescription.Equals("OK"));
+        }
+        [Test]
+        public void TestCheck()
+        {
+            var success = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddUrlParameter("id", "1")
+                .Check(res => res.Data != null);
+            AssertHelper.IsTrue(success);
+        }
+
+        [Test]
+        public void TestRestPost()
+        {
+            var employee = new Employee("jasonnnnnn", "2333", "33");
+            var call = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/{resource}")
+                .AddHeader("Accept", "application/json")
+                .AddUrlParameter("resource", "create")
+                .AddPayload(employee);
+            var response = call.Execute();
+            var data = response.Data;
+            Assert.IsNotNull(data);
+            Console.WriteLine($"{data.id}");
+        }
+
+        [Test]
+        public void TestPostThenGet()
+        {
+            var employee = new Employee("dsdsd", "2333", "33");
+            var post = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/create")
+               .AddPayload(employee).Execute();
+            var id = post.Data.id;
+            var get = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddHeader("Accept", "application/json")
+                .AddUrlParameter("id", id)
+                .Execute();
+            var returnedEmployee = get.Data;
+            AssertHelper.Equals(employee.name, returnedEmployee.name);
+        }
+        [Test]
+        public void TestWhere()
+        {
+            var products = new RestCall<List<Product>>(Method.GET, "http://192.168.2.73:3000", "/products")
+                .Where("stock_level", 0)
+                .Execute().Data;
+            foreach (var product in products)
+            {
+                Console.WriteLine($"Name: {product.product_name} Last Restocked: {product.last_restocked}");
+            }
+        }
+        [Test]
+        public void TestProductPost()
+        {
+            Product braeburn = new Product()
+            {
+                product_name = "Apple - Braeburn",
+                last_restocked = DateTime.Now,
+                stock_level = 500
+            };
+            var post = new RestCall<Product>(Method.POST, "http://192.168.2.73:3000", "/products")
+                .AddPayload(braeburn)
+                .Execute(res =>
+                {
+                    braeburn.id = res.Data.id;
+                });
+            Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
+        }
+        
+        //[Test]
         [Obsolete]
         public void TestRestFlow()
         {
@@ -58,10 +141,10 @@ namespace TTCBDD
 
             //Delete Latest User
             response = RestHelper.RestDel(BaseUrl, requestdel, "success");
+
         }
 
-        [Ignore("WIP")]
-        [Test]
+       // [Test]
         public void TestGet()
         {
             string response = "";
@@ -70,11 +153,12 @@ namespace TTCBDD
             response = RestHelper.RestGet(Url, request, "employee_name");
         }
 
-        [Ignore("WIP")]
-        [Test]
+        //[Test]
         [Obsolete]
         public void TestPost()
         {
+
+
             RestClient restClient = new RestClient("http://dummy.restapiexample.com/api/v1/");
             string poststr = "{\"name\":\"test122311\",\"salary\":\"123\",\"age\":\"23\"}";
             Console.WriteLine("Message {0}", poststr);
@@ -89,11 +173,12 @@ namespace TTCBDD
             Console.WriteLine("Post Response is " + response);
         }
 
-        [Ignore("WIP")]
-        [Test]
+       // [Test]
         [Obsolete]
         public void TestPut()
         {
+
+
             RestClient restClient = new RestClient("http://dummy.restapiexample.com/api/v1/");
             //string poststr= "{\"name\":\"test\",\"salary\":\"123\",\"age\":\"23\"}";
             //Console.WriteLine("Message {0}", poststr);
@@ -105,11 +190,12 @@ namespace TTCBDD
             Console.WriteLine("Put Response is " + response);
         }
 
-        [Ignore("WIP")]
-        [Test]
+        //[Test]
         [Obsolete]
         public void TestDel()
         {
+
+
             RestClient restClient = new RestClient("http://dummy.restapiexample.com/api/v1/");
             //string poststr= "{\"name\":\"test\",\"salary\":\"123\",\"age\":\"23\"}";
             //Console.WriteLine("Message {0}", poststr);
@@ -120,5 +206,6 @@ namespace TTCBDD
             string response = restResponse.Content;
             Console.WriteLine("Del Response is " + response);
         }
+
     }
 }
