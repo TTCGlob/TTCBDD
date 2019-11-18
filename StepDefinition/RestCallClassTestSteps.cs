@@ -7,7 +7,6 @@ using TTCBDD.APIObjects;
 using TTCBDD.ComponentHelper;
 using TTCBDD.PageObject;
 using TTCBDD.Public_Var;
-using TTCBDD.APIObjects;
 
 namespace TTCBDD.StepDefinition
 {
@@ -53,10 +52,9 @@ namespace TTCBDD.StepDefinition
         public void WhenUserCreatesNewEmployeeWithNameAgeAndSalary(string name, string age, string salary)
         {
             PublicVar.employee = new Employee(name, salary, age);
-            var employee = new RestCall<Employee>(Method.POST, PublicVar.BaseUrl, "/create")
+            new RestCall<Employee>(Method.POST, PublicVar.BaseUrl, "/create")
                 .AddPayload(PublicVar.employee)
-                .Execute(res => PublicVar.employee.id = res.Data.id)
-                .Data;
+                .Execute(res => PublicVar.employee.id = res.Data.id);
         }
         [When(@"User updates employee ""(.*)"" with new salary ""(.*)""")]
         public void WhenUserUpdatesEmployeeWithNewSalary(string id, string salary)
