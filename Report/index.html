@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>18/11/2019 1:50:32 PM New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>19/11/2019 9:32:35 AM New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -126,7 +126,7 @@
                     <span><span class='strong'>1</span> test(s) passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong'>0</span> test(s) failed, <span class='strong'>0</span> others
+                    <span class='strong'>2</span> test(s) failed, <span class='strong'>0</span> others
                 </div>
             </div>
         </div>
@@ -138,10 +138,10 @@
                         <canvas id='child-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>1</span> step(s) passed</span>
+                        <span><span class='strong'>13</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
-                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
+                        <span class='strong'>2</span> step(s) failed, <span class='strong'>0</span> others
                     </div>
                 </div>
             </div>
@@ -153,10 +153,10 @@
                         <canvas id='grandchild-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>4</span> step(s) passed</span>
+                        <span><span class='strong'>48</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
-                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
+                        <span class='strong'>2</span> step(s) failed, <span class='strong'>0</span> others
                     </div>
                 </div>
             </div>
@@ -172,13 +172,219 @@
 
                     <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>Rest Call Class Test</span>
-                            <span class='test-time'>18/11/2019 1:50:32 PM</span>
+                            <span class='test-name'>Feature2</span>
+                            <span class='test-time'>19/11/2019 9:32:35 AM</span>
                             <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                     <div class='scenario node' test-id='2' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:22.5101640</span>
+                                        <span class='scenario-duration right label'>00:00:01.6780437</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            1-PostValue Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='3' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='4' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/create"
+                                                                                                                                                                    </li>
+                                                    <li test-id='5' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Post method "name" tag is present in message for Body "MessageBody"
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='6' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.5989727</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            2-GetValue Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='7' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='8' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/employee/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='9' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Get method "employee_name" tag is present in message
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='10' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6709885</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            3-Put Value Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='11' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='12' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/update/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='13' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Put method "name" tag is present in message for Body "MessageBody"
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='14' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6204256</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            4-Delete Value  Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='15' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='16' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I Pass request to server "/delete/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='17' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Del method "success" tag is present in message
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+
+                        </div>
+                    </li>
+                    <li class='test displayed active has-leaf fail' status='fail' bdd='bdd' test-id='18'>
+                        <div class='test-heading'>
+                            <span class='test-name'>Rest Call Class Test</span>
+                            <span class='test-time'>19/11/2019 9:32:38 AM</span>
+                            <span class='test-status right fail'>Fail</span>
+                        </div>
+                        <div class='test-content hide'>
+                                    <div class='scenario node' test-id='19' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:02.0176076</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Add a new random employee
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='20' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='21' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User creates a new employee
+                                                                                                                                                                    </li>
+                                                    <li test-id='22' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User adds the employee to the database
+                                                                                                                                                                    </li>
+                                                    <li test-id='23' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The employee is present in the employees list
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='24' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:02.4752653</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Add new employee and then delete them
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='25' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='26' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User creates new employee with name: "stovetop", age: "69", and salary "300"
+                                                                                                                                                                    </li>
+                                                    <li test-id='27' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The employee is present in the employees list
+                                                                                                                                                                    </li>
+                                                    <li test-id='28' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The new employee is successfully deleted from the database
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='29' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:02.5484918</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Add new employee and then delete them
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='30' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='31' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User creates new employee with name: "stovetop", age: "12", and salary "500000"
+                                                                                                                                                                    </li>
+                                                    <li test-id='32' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The employee is present in the employees list
+                                                                                                                                                                    </li>
+                                                    <li test-id='33' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The new employee is successfully deleted from the database
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='34' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.9187912</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Get an employee
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='35' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='36' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User accesses employee "1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='37' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The employee record is displayed
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='38' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:24.5523898</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             Giving employees a percentage raise
@@ -186,21 +392,175 @@
                                             
                                         </div>
                                             <ul class='steps'>
-                                                    <li test-id='3' class='node given pass' status='given pass'>
+                                                    <li test-id='39' class='node given pass' status='given pass'>
                                                         <b>Given</b>
                                                         User accesses employees API at "http://dummy.restapiexample.com/api/v1"
                                                                                                                                                                     </li>
-                                                    <li test-id='4' class='node when pass' status='when pass'>
+                                                    <li test-id='40' class='node when pass' status='when pass'>
                                                         <b>When</b>
                                                         User retrieves 15 employees
                                                                                                                                                                     </li>
-                                                    <li test-id='5' class='node when pass' status='when pass'>
+                                                    <li test-id='41' class='node when pass' status='when pass'>
                                                         <b>When</b>
                                                         User raises all their salaries by 15%
                                                                                                                                                                     </li>
-                                                    <li test-id='6' class='node then pass' status='then pass'>
+                                                    <li test-id='42' class='node then pass' status='then pass'>
                                                         <b>Then</b>
                                                         This change is reflected in the database
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='43' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:01.2228799</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Updating employee salary
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='44' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='45' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User accesses employee "1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='46' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User updates employee "1" with new salary "300000"
+                                                                                                                                                                    </li>
+                                                    <li test-id='47' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The new salary "300000" is reflected in the database
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='48' status='fail'>
+                                        <span class='scenario-duration right label'>00:00:00.7708478</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Updating employee salary
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='49' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='50' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User accesses employee "97469"
+                                                                                                                                                                    </li>
+                                                    <li test-id='51' class='node when fail' status='when fail'>
+                                                        <b>When</b>
+                                                        User updates employee "97469" with new salary "202020"
+                                                                                                                                                                            <div class='pre'>Object reference not set to an instance of an object.</div>
+                                                    </li>
+                                            </ul>
+                                    </div>
+
+                        </div>
+                    </li>
+                    <li class='test displayed active has-leaf fail' status='fail' bdd='bdd' test-id='52'>
+                        <div class='test-heading'>
+                            <span class='test-name'>RestFeature</span>
+                            <span class='test-time'>19/11/2019 9:33:13 AM</span>
+                            <span class='test-status right fail'>Fail</span>
+                        </div>
+                        <div class='test-content hide'>
+                                    <div class='scenario node' test-id='53' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6348351</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            1-PostValue Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='54' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='55' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        I Pass request to server "/create"
+                                                                                                                                                                    </li>
+                                                    <li test-id='56' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Post method "name" tag is present in message for Body "MessageBody"
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='57' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6574295</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            2-GetValue Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='58' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='59' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        I Pass request to server "/employee/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='60' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Get method "employee_name" tag is present in message
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='61' status='fail'>
+                                        <span class='scenario-duration right label'>00:00:00.6748958</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            3-Put Value Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='62' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='63' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        I Pass request to server "/update/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='64' class='node then fail' status='then fail'>
+                                                        <b>Then</b>
+                                                        Verify Put method "name1" tag is present in message for Body "MessageBody"
+                                                                                                                                                                            <div class='pre'>Put Failed {"name":"test16852","salary":"430","age":"23"}</div>
+                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='65' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.6365091</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            4-Delete Value  Request
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='66' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        I have a Base URL "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='67' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        I Pass request to server "/delete/"
+                                                                                                                                                                    </li>
+                                                    <li test-id='68' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        Verify Del method "success" tag is present in message
                                                                                                                                                                     </li>
                                             </ul>
                                     </div>
@@ -271,36 +631,36 @@
         <div class='row'>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Features</span>                     <div class='panel-lead'>1</div>
+ <span>Features</span>                     <div class='panel-lead'>3</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Scenarios</span>                     <div class='panel-lead'>1</div>
+ <span>Scenarios</span>                     <div class='panel-lead'>15</div>
                 </div>
             </div>
                 <div class='col s2'>
                     <div class='card-panel r'>
                         Steps
-                        <div class='panel-lead'>4</div>
+                        <div class='panel-lead'>50</div>
                     </div>
                 </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>18/11/2019 1:50:32 PM</div>
+                    <div class='panel-lead'>19/11/2019 9:32:35 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>18/11/2019 1:50:56 PM</div>
+                    <div class='panel-lead'>19/11/2019 9:33:21 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:24.4549648</div>
+                    <div class='panel-lead'>00:00:46.3081070</div>
                 </div>
             </div>
 
@@ -320,22 +680,22 @@
 		<script>
 			var statusGroup = {
 			    passParent: 1,
-			    failParent: 0,
+			    failParent: 2,
 			    fatalParent: 0,
 			    errorParent: 0,
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 1,
-			    failChild: 0,
+			    passChild: 13,
+			    failChild: 2,
 			    fatalChild: 0,
 			    errorChild: 0,
 			    warningChild: 0,
 			    skipChild: 0,
 			    infoChild: 0,
 				
-			    passGrandChild: 4,
-			    failGrandChild: 0,
+			    passGrandChild: 48,
+			    failGrandChild: 2,
 			    fatalGrandChild: 0,
 			    errorGrandChild: 0,
 			    warningGrandChild: 0,

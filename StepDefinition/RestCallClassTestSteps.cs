@@ -23,14 +23,9 @@ namespace TTCBDD.StepDefinition
         public void GivenUserCreatesANewEmployee()
         {
             var rand = new Random();
-            string randomString(int length)
-            {
-                var character = ((char)rand.Next(32, 127)).ToString();
-                return character + (length == 1 ? "" : randomString(length - 1));
-            }
             PublicVar.employee = new Employee()
             {
-                name = randomString(rand.Next(5, 12)),
+                name = BasicHelperMethods.RandomString(5, 12),
                 salary = rand.Next(500, 500000).ToString(),
                 age = rand.Next(20, 100).ToString()
             };
@@ -85,13 +80,15 @@ namespace TTCBDD.StepDefinition
                 Console.WriteLine($"Old salary: {salary} New salary: {e.salary}");
                 return e;
             });
-            foreach (var employee in PublicVar.employees)
+
+            PublicVar.employees
+                .ForEach(employee =>
             {
-                new RestCall<Employee>(Method.PUT, PublicVar.BaseUrl, "/update/{id}")
+                _ = new RestCall<Employee>(Method.PUT, PublicVar.BaseUrl, "/update/{id}")
                     .AddUrlParameter("id", employee.id)
                     .AddPayload(employee)
                     .Execute();
-            }
+            });
         }
         [When(@"User adds the employee to the database")]
         public void WhenUserAddsTheEmployeeToTheDatabase()

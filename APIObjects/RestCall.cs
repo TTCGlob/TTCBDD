@@ -26,6 +26,7 @@ namespace TTCBDD.APIObjects
             client = new RestClient(url);
             request = new RestRequest(resource, method, dataFormat);
             client.AddHandler("text/html", () => new JsonNetSerializer());
+            client.UseSerializer(new JsonNetSerializer());
             if (dataFormat == DataFormat.Json)
             {
                 AddHeader("Accept", "application/json");
