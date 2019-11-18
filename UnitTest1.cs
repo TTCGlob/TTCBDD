@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TTCBDD.PageObject;
 using TTCBDD.APIObjects;
+using TTCBDD.Public_Var;
 
 namespace TTCBDD
 {
@@ -99,7 +100,7 @@ namespace TTCBDD
                 });
             Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
         }
-
+        
         //[Test]
         [Obsolete]
         public void TestRestFlow()

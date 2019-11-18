@@ -71,11 +71,11 @@ namespace TTCBDD.FeatureFile
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get an employee")]
-        [NUnit.Framework.CategoryAttribute("Retrieve")]
+        [NUnit.Framework.CategoryAttribute("Read")]
         public virtual void GetAnEmployee()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an employee", null, new string[] {
-                        "Retrieve"});
+                        "Read"});
 #line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -90,9 +90,31 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add a new random employee")]
+        [NUnit.Framework.CategoryAttribute("Create")]
+        public virtual void AddANewRandomEmployee()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a new random employee", null, new string[] {
+                        "Create"});
+#line 9
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 10
+ testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+  testRunner.And("User creates a new employee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.When("User adds the employee to the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 13
+ testRunner.Then("The employee is present in the employees list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add new employee and then delete them")]
         [NUnit.Framework.CategoryAttribute("Create")]
-        [NUnit.Framework.CategoryAttribute("Retrieve")]
+        [NUnit.Framework.CategoryAttribute("Read")]
         [NUnit.Framework.CategoryAttribute("Delete")]
         [NUnit.Framework.TestCaseAttribute("stovetop", "69", "300", null)]
         [NUnit.Framework.TestCaseAttribute("stovetop", "12", "500000", null)]
@@ -100,23 +122,23 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] @__tags = new string[] {
                     "Create",
-                    "Retrieve",
+                    "Read",
                     "Delete"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new employee and then delete them", null, @__tags);
-#line 11
+#line 18
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 12
+#line 19
  testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
+#line 20
  testRunner.When(string.Format("User creates new employee with name: \"{0}\", age: \"{1}\", and salary \"{2}\"", name, age, salary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 14
+#line 21
  testRunner.Then("The employee is present in the employees list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 15
+#line 22
   testRunner.And("The new employee is successfully deleted from the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -124,31 +146,55 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Updating employee salary")]
-        [NUnit.Framework.CategoryAttribute("Retrieve")]
+        [NUnit.Framework.CategoryAttribute("Read")]
         [NUnit.Framework.CategoryAttribute("Update")]
         [NUnit.Framework.TestCaseAttribute("1", "300000", null)]
         [NUnit.Framework.TestCaseAttribute("97469", "202020", null)]
         public virtual void UpdatingEmployeeSalary(string id, string salary, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Retrieve",
+                    "Read",
                     "Update"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating employee salary", null, @__tags);
-#line 22
+#line 29
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 23
+#line 30
  testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 24
+#line 31
  testRunner.When(string.Format("User accesses employee \"{0}\"", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 32
   testRunner.And(string.Format("User updates employee \"{0}\" with new salary \"{1}\"", id, salary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 33
  testRunner.Then(string.Format("The new salary \"{0}\" is reflected in the database", salary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Giving employees a percentage raise")]
+        [NUnit.Framework.CategoryAttribute("Read")]
+        [NUnit.Framework.CategoryAttribute("Update")]
+        public virtual void GivingEmployeesAPercentageRaise()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Giving employees a percentage raise", null, new string[] {
+                        "Read",
+                        "Update"});
+#line 40
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 42
+ testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 43
+ testRunner.When("User retrieves 15 employees", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 44
+  testRunner.And("User raises all their salaries by 15%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.Then("This change is reflected in the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

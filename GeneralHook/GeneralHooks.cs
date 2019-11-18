@@ -109,12 +109,17 @@ namespace TTCBDD.GeneralHook
         public void AfterScenario()
         {
             Console.WriteLine("AfterScenario");
-            
+            foreach (var employee in (PublicVar.createdEmployees ?? new List<Employee>()))
+            {
+                Console.WriteLine($"Employee: {employee}");
+            }
             //implement logic that has to run after executing each scenario
         }
         [AfterTestRun]
         public static void AfterTestRun()
         {
+            Console.WriteLine("After test run");
+            
             extent.Flush();
             
         }

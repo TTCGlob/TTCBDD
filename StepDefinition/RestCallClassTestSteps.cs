@@ -20,6 +20,22 @@ namespace TTCBDD.StepDefinition
         {
             PublicVar.BaseUrl = url;
         }
+        [Given(@"User creates a new employee")]
+        public void GivenUserCreatesANewEmployee()
+        {
+            var rand = new Random();
+            string randomString(int length)
+            {
+                var character = ((char)rand.Next(32, 127)).ToString();
+                return character + (length == 1 ? "" : randomString(length - 1));
+            }
+            PublicVar.employee = new Employee()
+            {
+                name = randomString(rand.Next(5, 12)),
+                salary = rand.Next(500, 500000).ToString(),
+                age = rand.Next(20, 100).ToString()
+            };
+        }
 
         #endregion
         #region When
@@ -27,11 +43,10 @@ namespace TTCBDD.StepDefinition
         [When(@"User accesses employee ""(.*)""")]
         public void WhenUserAccessesEmployee(string id)
         {
-            var get = new RestCall<Employee>(Method.GET, PublicVar.BaseUrl, "/employee/{id}")
+            PublicVar.employee = new RestCall<Employee>(Method.GET, PublicVar.BaseUrl, "/employee/{id}")
                 .AddUrlParameter("id", id)
-                .Execute();
-            var employee = get.Data;
-            PublicVar.employee = employee;
+                .Execute()
+                .Data;
         }
 
         [When(@"User creates new employee with name: ""(.*)"", age: ""(.*)"", and salary ""(.*)""")]
@@ -39,7 +54,6 @@ namespace TTCBDD.StepDefinition
         {
             PublicVar.employee = new Employee(name, salary, age);
             var employee = new RestCall<Employee>(Method.POST, PublicVar.BaseUrl, "/create")
-                .AddHeader("Accept", "application/json")
                 .AddPayload(PublicVar.employee)
                 .Execute(res => PublicVar.employee.id = res.Data.id)
                 .Data;
@@ -53,6 +67,40 @@ namespace TTCBDD.StepDefinition
                 .AddPayload(PublicVar.employee)
                 .Execute()
                 .Data;
+        }
+        [When(@"User retrieves (.*) employees")]
+        public void WhenUserRetrievesEmployees(int numEmployees)
+        {
+            PublicVar.employees = new RestCall<List<Employee>>(Method.GET, PublicVar.BaseUrl, "/employees")
+                .Execute()
+                .Data
+                .Take(numEmployees);
+        }
+        [When(@"User raises all their salaries by (.*)%")]
+        public void WhenUserRaisesAllTheirSalariesBy(int raise)
+        {
+            PublicVar.employees = PublicVar.employees.Select(e =>
+            {
+                var salary = int.Parse(e.salary);
+                var newSalary = (int)(salary * (1 + raise / 100));
+                e.salary = newSalary.ToString();
+                Console.WriteLine($"Old salary: {salary} New salary: {e.salary}");
+                return e;
+            });
+            foreach (var employee in PublicVar.employees)
+            {
+                new RestCall<Employee>(Method.PUT, PublicVar.BaseUrl, "/update/{id}")
+                    .AddUrlParameter("id", employee.id)
+                    .AddPayload(employee)
+                    .Execute();
+            }
+        }
+        [When(@"User adds the employee to the database")]
+        public void WhenUserAddsTheEmployeeToTheDatabase()
+        {
+            new RestCall<Employee>(Method.POST, PublicVar.BaseUrl, "/create")
+                .AddPayload(PublicVar.employee)
+                .Execute(res => PublicVar.employee.id = res.Data.id);
         }
 
         #endregion
@@ -92,6 +140,17 @@ namespace TTCBDD.StepDefinition
         public void ThenTheNewSalaryIsReflectedInTheDatabase(string salary)
         {
             AssertHelper.Equals(PublicVar.employee.salary, salary);
+        }
+        [Then(@"This change is reflected in the database")]
+        public void ThenThisChangeIsReflectedInTheDatabase()
+        {
+            var success = PublicVar.employees.All(e =>
+                {
+                    return new RestCall<Employee>(Method.GET, PublicVar.BaseUrl, "/employee/{id}")
+                        .AddUrlParameter("id", e.id)
+                        .Check(res => res.Data.salary.Equals(e.salary));
+                });
+            AssertHelper.IsTrue(success);
         }
 
         #endregion

@@ -11,23 +11,18 @@ namespace TTCBDD.APIObjects
 {
     public class RestCall<T> where T : new()
     {
-        private Method method;
+        private readonly Method method;
         private T payload;
         private IRestClient client;
         private IRestRequest request;
         private IRestResponse<T> response;
-        private DataFormat dataformat;
-        private Func<IRestResponse<T>, bool> successCondition;
-        public bool Success
-        {
-            get => successCondition(response);
-        }
+        private DataFormat dataFormat;
         private T data;
 
         public RestCall(Method method, string url, string resource, DataFormat dataFormat = DataFormat.Json)
         {
             this.method = method;
-            this.dataformat = dataFormat;
+            this.dataFormat = dataFormat;
             client = new RestClient(url);
             request = new RestRequest(resource, method, dataFormat);
             client.AddHandler("text/html", () => new JsonNetSerializer());
@@ -50,8 +45,9 @@ namespace TTCBDD.APIObjects
 
         public RestCall<T> AddPayload(T payload)
         {
+            this.payload = payload;
             request.AddBody(payload);
-            if (this.dataformat == DataFormat.Json)
+            if (this.dataFormat == DataFormat.Json)
                 AddHeader("Content-Type", "application/json");
             return this;
         }
