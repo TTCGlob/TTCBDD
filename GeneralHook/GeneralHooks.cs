@@ -1,12 +1,8 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
-using NUnit.Framework;
+using log4net;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 using TTCBDD.ComponentHelper;
 using TTCBDD.Public_Var;
@@ -16,6 +12,8 @@ namespace TTCBDD.GeneralHook
     [Binding]
     public sealed class GeneralHooks
     {
+
+        private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
 
         private static ExtentTest featureName;
         private static ExtentTest scenario;
@@ -115,14 +113,15 @@ namespace TTCBDD.GeneralHook
         public void AfterScenario()
         {
             var scenario = ScenarioContext.Current;
-            string name = scenario.ScenarioInfo.Title + "_after_scenario.jpg";
+            string name = scenario.ScenarioInfo.Title;
+            Logger.Info("Finished scenario:" + name);
 
             if (scenario.TestError != null)
             {
-                ScreenshotHelper.TakeScreenshot(name);
+                ScreenshotHelper.TakeScreenshot(name + "_after_scenario.jpg");
                 var error = scenario.TestError;
-                Console.WriteLine("An error ocurred:" + error.Message);
-                Console.WriteLine("It was of type:" + error.GetType().Name);
+                Logger.Error("An error ocurred:" + error.Message);
+                Logger.Error("It was of type:" + error.GetType().Name);
             }
         }
 

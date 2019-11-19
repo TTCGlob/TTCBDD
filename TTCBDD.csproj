@@ -176,7 +176,6 @@
     <Compile Include="FeatureFile\LoggingExample.feature.cs" />
     <Compile Include="FeatureFile\RestCallFeature.feature.cs" />
     <Compile Include="FeatureFile\RestFeature.feature.cs" />
-    <Compile Include="FeatureFile\SpecFlowFeature1.feature.cs" />
     <Compile Include="GeneralHook\GeneralHooks.cs" />
     <Compile Include="InterFaces\IConfig.cs" />
     <Compile Include="PageObject\Employee.cs" />
@@ -202,8 +201,8 @@
     <None Include="packages.config" />
     <None Include="Resources\ReadData.xls" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="extent-config.xml" />
     <Content Include="Resources\chromedriver.exe" />
     <Content Include="Resources\FileUpload.exe" />
