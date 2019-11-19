@@ -18,7 +18,6 @@ namespace TTCBDD.GeneralHook
         private static ILog staticLogger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks)); // For static methods
 
         private static ExtentTest featureName;
-        private static ExtentTest scenario;
         private static ExtentReports extent;
         public static string ReportPath;
 
@@ -71,7 +70,8 @@ namespace TTCBDD.GeneralHook
             // Colin's alternative method
             // TODO: Discuss: IGherkinFormatterModel does not have the concept of 'And'
             ScenarioBlock scenarioBlock = ScenarioContext.Current.CurrentScenarioBlock;
-            if (ScenarioContext.Current.TestError == null && PublicVar.StepStatus == "Pass")
+            if (ScenarioContext.Current.TestError == null && PublicVar.StepStatus == 
+                "Pass")
             {
                 switch (scenarioBlock)
                 {
