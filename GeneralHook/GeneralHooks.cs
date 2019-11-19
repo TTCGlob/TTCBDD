@@ -1,6 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports.Reporter.Configuration;
 using log4net;
 using System;
 using TechTalk.SpecFlow;
@@ -30,8 +31,13 @@ namespace TTCBDD.GeneralHook
             
             // Create the HTML Reporter
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
-            htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             
+            //These don't actually seem to work
+            htmlReporter.Configuration().Theme = Theme.Dark;
+            htmlReporter.Configuration().DocumentTitle = "TTC Automation Report";
+            htmlReporter.Configuration().ReportName = "TTC Automation Report";
+            htmlReporter.Configuration().ChartVisibilityOnOpen = true;
+
             // Create the Extent Report
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
@@ -129,6 +135,8 @@ namespace TTCBDD.GeneralHook
                 }
             }
             
+            // CJ[20/11/2019]: ketan, delete this if you thihnk the above refactor is acceptable
+
             //var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
             //if (ScenarioContext.Current.TestError == null && PublicVar.StepStatus== "Pass")
             //{
