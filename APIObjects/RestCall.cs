@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serialization;
+using TTCBDD.ComponentHelper;
 
 namespace TTCBDD.APIObjects
 {
@@ -57,9 +59,29 @@ namespace TTCBDD.APIObjects
             request.AddQueryParameter(field, value);
             return this;
         }
-        public RestCall<T> Where(string field, int value)
+        public RestCall<T> Where(string constraint)
         {
-            request.AddQueryParameter(field, value.ToString());
+            var strings = constraint.Split(' ');
+            Console.WriteLine(strings);
+            (string property, string _relation, string value) = strings;
+            switch (_relation)
+            {
+                case "==":
+                    property += "";
+                    break;
+                case "<=":
+                    property += "_lte";
+                    break;
+                case ">=":
+                    property += "_gte";
+                    break;
+                case "like":
+                    property += "_like";
+                    break;
+                default:
+                    throw new Exception("Invalid relation");
+            }
+            request.AddQueryParameter(property, value);
             return this;
         }
 

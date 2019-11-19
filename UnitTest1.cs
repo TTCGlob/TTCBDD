@@ -48,11 +48,11 @@ namespace TTCBDD
         public void TestRestPost()
         {
             var employee = new Employee(BasicHelperMethods.RandomString(5, 12), "2333", "33");
-            var call = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/{resource}")
+            var data = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/{resource}")
                 .AddUrlParameter("resource", "create")
-                .AddPayload(employee);
-            var response = call.Execute();
-            var data = response.Data;
+                .AddPayload(employee)
+                .Execute(e => employee.id = e.Data.id)
+                .Data;
             Assert.IsNotNull(data);
             Console.WriteLine($"{data.id}");
         }
@@ -74,13 +74,13 @@ namespace TTCBDD
         [Test]
         public void TestWhere()
         {
-            var products = new RestCall<List<Product>>(Method.GET, "http://192.168.2.73:3000", "/products")
-                .Where("stock_level", 0)
-                .Execute().Data;
-            foreach (var product in products)
-            {
-                Console.WriteLine($"Name: {product.product_name} Last Restocked: {product.last_restocked}");
-            }
+            //uses query strings to only return fresh produce that has no stock
+            new RestCall<List<Product>>(Method.GET, "http://192.168.2.73:3000", "/products")
+                .Where("product_name like Fresh")
+                .Where("stock_level == 0")
+                .Execute()
+                .Data
+                .ForEach(product => Console.WriteLine($"Name: {product.product_name} - Stock level: {product.stock_level}"));
         }
         [Test]
         public void TestProductPost()
@@ -96,8 +96,6 @@ namespace TTCBDD
                 .Execute(res => braeburn.id = res.Data.id);
             Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
         }
-        
-        
         //[Test]
         [Obsolete]
         public void TestRestFlow()

@@ -172,6 +172,11 @@
     <Compile Include="CustomException\NoSuitableDriverFound.cs" />
     <Compile Include="ExcelReader\ExcelReaderHelper.cs" />
     <Compile Include="ExcelReader\TestExcelData.cs" />
+    <Compile Include="FeatureFile\Feature2.feature.cs" />
+    <Compile Include="FeatureFile\LoggingExample.feature.cs" />
+    <Compile Include="FeatureFile\RestCallFeature.feature.cs" />
+    <Compile Include="FeatureFile\RestFeature.feature.cs" />
+    <Compile Include="FeatureFile\SpecFlowFeature1.feature.cs" />
     <Compile Include="GeneralHook\GeneralHooks.cs" />
     <Compile Include="InterFaces\IConfig.cs" />
     <Compile Include="PageObject\Employee.cs" />
@@ -179,6 +184,7 @@
     <Compile Include="PageObject\RestActions.cs" />
     <Compile Include="APIObjects\RestCall.cs" />
     <Compile Include="PublicVar\PublicVar.cs" />
+    <Compile Include="StepDefinition\LoggingExampleSteps.cs" />
     <Compile Include="StepDefinition\RestCallClassTestSteps.cs" />
     <Compile Include="Settings\AppConfigKeys.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
@@ -189,6 +195,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="FeatureFile\Feature2.feature" />
+    <None Include="FeatureFile\LoggingExample.feature" />
     <None Include="FeatureFile\RestCallFeature.feature" />
     <None Include="FeatureFile\RestFeature.feature" />
     <None Include="license" />
