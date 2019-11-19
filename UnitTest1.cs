@@ -7,10 +7,12 @@ using TTCBDD.ComponentHelper;
 using TTCBDD.Settings;
 using NUnit.Framework;
 using AventStack.ExtentReports.Reporter;
-using TTCBDD.ComponentHelper;
 using System.Collections.Generic;
 using System.Linq;
 using TTCBDD.PageObject;
+using TTCBDD.APIObjects;
+using TTCBDD.Public_Var;
+using System.Linq.Expressions;
 
 namespace TTCBDD
 {
@@ -26,24 +28,31 @@ namespace TTCBDD
         public void TestRestGet()
         {
             var call = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
-                .AddHeader("Accept", "application/json")
                 .AddUrlParameter("id", "1")
                 .Execute();
             Console.WriteLine($"{call.Content}");
             var employees = call.Data;
             Console.WriteLine(employees.id);
-            Assert.IsTrue(call.StatusDescription.Equals("OK"));
+            Assert.IsTrue(call.ResponseOK());
         }
+        [Test]
+        public void TestCheck()
+        {
+            var success = new RestCall<Employee>(Method.HEAD, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddUrlParameter("id", "1")
+                .Check(res => res.ResponseOK());
+            AssertHelper.IsTrue(success);
+        }
+
         [Test]
         public void TestRestPost()
         {
-            var employee = new Employee("jasonnnnnn", "2333", "33");
-            var call = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/{resource}")
-                .AddHeader("Accept", "application/json")
+            var employee = new Employee(BasicHelperMethods.RandomString(5, 12), "2333", "33");
+            var data = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/{resource}")
                 .AddUrlParameter("resource", "create")
-                .AddPayload(employee);
-            var response = call.Execute();
-            var data = response.Data;
+                .AddPayload(employee)
+                .Execute(e => employee.id = e.Data.id)
+                .Data;
             Assert.IsNotNull(data);
             Console.WriteLine($"{data.id}");
         }
@@ -51,19 +60,42 @@ namespace TTCBDD
         [Test]
         public void TestPostThenGet()
         {
-            var employee = new Employee("dsdsd", "2333", "33");
+            var employee = new Employee(BasicHelperMethods.RandomString(5, 12), "2333", "33");
             var post = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/create")
-               .AddHeader("Accept", "application/json")
-               .AddPayload(employee).Execute();
-            var id = post.Data.id;
+               .AddPayload(employee)
+               .Execute(res => employee.id = res.Data.id);
             var get = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
                 .AddHeader("Accept", "application/json")
-                .AddUrlParameter("id", id)
+                .AddUrlParameter("id", employee.id)
                 .Execute();
             var returnedEmployee = get.Data;
             AssertHelper.Equals(employee.name, returnedEmployee.name);
         }
-
+        [Test]
+        public void TestWhere()
+        {
+            //uses query strings to only return fresh produce that has no stock
+            new RestCall<List<Product>>(Method.GET, "http://192.168.2.73:3000", "/products")
+                .Where("product_name like Fresh")
+                .Where("stock_level == 0")
+                .Execute()
+                .Data
+                .ForEach(product => Console.WriteLine($"Name: {product.product_name} - Stock level: {product.stock_level}"));
+        }
+        [Test]
+        public void TestProductPost()
+        {
+            Product braeburn = new Product()
+            {
+                product_name = "Apple - Braeburn",
+                last_restocked = DateTime.Now,
+                stock_level = 500
+            };
+            var post = new RestCall<Product>(Method.POST, "http://192.168.2.73:3000", "/products")
+                .AddPayload(braeburn)
+                .Execute(res => braeburn.id = res.Data.id);
+            Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
+        }
         //[Test]
         [Obsolete]
         public void TestRestFlow()
@@ -82,7 +114,7 @@ namespace TTCBDD
 
             //Send Post
             response = RestHelper.RestPost(BaseUrl, requestPost, "name", poststr);
-            
+
 
             //Parse response to get Id
             //RestHelper.ParseJasonObj(response, ""); //Code in progress

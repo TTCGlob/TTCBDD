@@ -1,34 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serialization;
+using TTCBDD.ComponentHelper;
 
-namespace TTCBDD.ComponentHelper
+namespace TTCBDD.APIObjects
 {
     public class RestCall<T> where T : new()
     {
-        private Method method;
+        private readonly Method method;
         private T payload;
         private IRestClient client;
         private IRestRequest request;
         private IRestResponse<T> response;
-        private Func<IRestResponse<T>, bool> successCondition;
-        public bool Success
-        {
-            get => successCondition(response);
-        }
+        private DataFormat dataFormat;
         private T data;
 
         public RestCall(Method method, string url, string resource, DataFormat dataFormat = DataFormat.Json)
         {
             this.method = method;
+            this.dataFormat = dataFormat;
             client = new RestClient(url);
             request = new RestRequest(resource, method, dataFormat);
             client.AddHandler("text/html", () => new JsonNetSerializer());
+            client.UseSerializer(new JsonNetSerializer());
+            if (dataFormat == DataFormat.Json)
+            {
+                AddHeader("Accept", "application/json");
+            }
         }
 
         public RestCall<T> AddHeader(string header, string value)
@@ -44,7 +48,40 @@ namespace TTCBDD.ComponentHelper
 
         public RestCall<T> AddPayload(T payload)
         {
+            this.payload = payload;
             request.AddBody(payload);
+            if (this.dataFormat == DataFormat.Json)
+                AddHeader("Content-Type", "application/json");
+            return this;
+        }
+        public RestCall<T> Where(string field, string value)
+        {
+            request.AddQueryParameter(field, value);
+            return this;
+        }
+        public RestCall<T> Where(string constraint)
+        {
+            var strings = constraint.Split(' ');
+            Console.WriteLine(strings);
+            (string property, string _relation, string value) = strings;
+            switch (_relation)
+            {
+                case "==":
+                    property += "";
+                    break;
+                case "<=":
+                    property += "_lte";
+                    break;
+                case ">=":
+                    property += "_gte";
+                    break;
+                case "like":
+                    property += "_like";
+                    break;
+                default:
+                    throw new Exception("Invalid relation");
+            }
+            request.AddQueryParameter(property, value);
             return this;
         }
 
@@ -53,10 +90,16 @@ namespace TTCBDD.ComponentHelper
             response = client.Execute<T>(request);
             return response;
         }
-        public RestCall<T> AddSuccessCondition(Func<IRestResponse, bool> condition)
+        public IRestResponse<T> Execute(Action<IRestResponse<T>> action)
         {
-            successCondition = condition;
-            return this;
+            response = client.Execute<T>(request);
+            action(response);
+            return response;
+        }
+        public bool Check(Func<IRestResponse<T>, bool> success)
+        {
+            if (response == null) Execute();
+            return success(response);
         }
     }
     public class JsonNetSerializer : IRestSerializer
