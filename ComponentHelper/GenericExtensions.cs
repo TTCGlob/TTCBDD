@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 using RestSharp;
 
-namespace TTCBDD.APIObjects
+namespace TTCBDD.ComponentHelper
 {
-    public static class RestExtensions
+    public static class GenericExtensions
     {
         public static bool ContentContains<T>(this IRestResponse<T> response, string text)
         {
@@ -21,6 +16,6 @@ namespace TTCBDD.APIObjects
         public static bool HasData<T>(this IRestResponse<T> response)
         {
             return response.Data != null;
-        }
+        } 
     }
 }

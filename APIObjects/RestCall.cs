@@ -61,10 +61,8 @@ namespace TTCBDD.APIObjects
         }
         public RestCall<T> Where(string constraint)
         {
-            var strings = constraint.Split(' ');
-            Console.WriteLine(strings);
-            (string property, string _relation, string value) = strings;
-            switch (_relation)
+            (string property, string relation, string value) = constraint.Split(' ');
+            switch (relation)
             {
                 case "==":
                     property += "";
