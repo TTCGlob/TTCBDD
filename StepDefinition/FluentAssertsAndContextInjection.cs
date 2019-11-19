@@ -26,20 +26,24 @@ namespace TTCBDD.StepDefinition
             {
                 context.Add("words", new List<string>(2));
             }
-            ((List<string>)context["words"]).Add(word);
+            ((List<string>)context["words"])
+                .Add(word);
         }
 
         [When(@"I join the words with a space")]
         public void WhenIJoinTheWordsWithASpace()
         {
-            var joinedWords = ((List<string>)context["words"])[0] + " " + ((List<string>)context["words"])[1];
+            var words = (List<string>)context["words"];
+            var joinedWords = words[0] + " " + words[1];
             context.Add("joinedWords", joinedWords);
         }
 
         [Then(@"I get the string ""(.*)""")]
         public void ThenIGetTheString(string result)
         {
-            ((string)context["joinedWords"]).Should().Be(result, "the first string is {0} and the second string is {1}", ((List<string>)context["words"])[0], ((List<string>)context["words"])[1]);
+            var words = context["words"] as string;
+            var joinedWord = context["joinedWords"] as string;
+            joinedWord.Should().Be(result, "the first string is {0} and the second string is {1}", words[0], words[1]);
         }
     }
 }
