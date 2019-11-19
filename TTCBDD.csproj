@@ -169,7 +169,7 @@
     <Compile Include="ComponentHelper\NavigationHelper.cs" />
     <Compile Include="ComponentHelper\RadioButtonHelper.cs" />
     <Compile Include="ComponentHelper\RestHelper.cs" />
-    <Compile Include="ComponentHelper\ScreenshotHelper.cs" />
+    <Compile Include="ComponentHelper\SeleniumScreenshotHelper.cs" />
     <Compile Include="ComponentHelper\TextBoxHelper.cs" />
     <Compile Include="ComponentHelper\WindowHelper.cs" />
     <Compile Include="Configuration\AppConfigReader.cs" />
@@ -191,6 +191,7 @@
     <Compile Include="PublicVar\PublicVar.cs" />
     <Compile Include="StepDefinition\FluentAssertsAndContextInjection.cs" />
     <Compile Include="StepDefinition\LoggingExampleSteps.cs" />
+    <Compile Include="StepDefinition\ReportingExampleSteps.cs" />
     <Compile Include="StepDefinition\RestCallClassTestSteps.cs" />
     <Compile Include="Settings\AppConfigKeys.cs" />
     <Compile Include="Settings\ObjectRepository.cs" />
@@ -203,6 +204,7 @@
     <None Include="FeatureFile\Feature2.feature" />
     <None Include="FeatureFile\FluentAssertsAndContextInjection.feature" />
     <None Include="FeatureFile\LoggingExample.feature" />
+    <None Include="FeatureFile\ReportingExample.feature" />
     <None Include="FeatureFile\RestCallFeature.feature" />
     <None Include="FeatureFile\RestFeature.feature" />
     <None Include="license" />
