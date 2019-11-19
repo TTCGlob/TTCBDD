@@ -28,9 +28,9 @@
         <!-- custom javascript -->
         <scripts>
             <![CDATA[
-                $(document).ready(function() {
-                    
-                });
+            $(document).ready(function() {
+            $('.brand-logo.blue.darken-3').css('display','none');
+            });
             ]]>
         </scripts>
         
