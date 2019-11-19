@@ -27,10 +27,14 @@ namespace TTCBDD.ComponentHelper
 
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
-            foreach (var item in enumerable)
-            {
-                action(item);
-            }
+            foreach (var item in enumerable) action(item);
+        }
+
+        public static void Deconstruct(this string[] strings, out string s0, out string s1, out string s2)
+        {
+            s0 = strings[0];
+            s1 = strings[1];
+            s2 = strings[2];
         }
     }
 }

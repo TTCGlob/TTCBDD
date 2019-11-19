@@ -37,7 +37,7 @@ Scenario Outline: Updating employee salary
 Examples:
 	| id    | salary |
 	| 1     | 300000 |
-	| 97469 | 202020 |
+	| 98370 | 202020 |
 
 @Read
 @Update

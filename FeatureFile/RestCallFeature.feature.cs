@@ -151,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("Read")]
         [NUnit.Framework.CategoryAttribute("Update")]
         [NUnit.Framework.TestCaseAttribute("1", "300000", null)]
-        [NUnit.Framework.TestCaseAttribute("97469", "202020", null)]
+        [NUnit.Framework.TestCaseAttribute("98370", "202020", null)]
         public virtual void UpdatingEmployeeSalary(string id, string salary, string[] exampleTags)
         {
             string[] @__tags = new string[] {
