@@ -1,8 +1,10 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using HtmlAgilityPack;
 using log4net;
 using System;
+using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TTCBDD.ComponentHelper;
@@ -123,6 +125,18 @@ namespace TTCBDD.GeneralHook
         public static void AfterTestRun()
         {
             extent.Flush();
+            var ReportDir = Path.GetDirectoryName(ReportPath);
+            var ScriptPath = Path.Combine(ReportDir, "script.js");
+            var jsString = File.ReadAllText(ScriptPath);
+            var doc = new HtmlDocument();
+            doc.Load(ReportPath);
+            var body = doc.DocumentNode.SelectSingleNode("//body");
+            var script = doc.CreateElement("script");
+            var js = doc.CreateTextNode(jsString);
+            script.AppendChild(js);
+            //script.SetAttributeValue("src", "./script.js");
+            body.AppendChild(script);
+            doc.Save(ReportPath);
         }
 
         public void UnHandleError()
