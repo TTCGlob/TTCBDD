@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using RestSharp;
 using TechTalk.SpecFlow;
 using TTCBDD.APIObjects;
@@ -130,11 +131,10 @@ namespace TTCBDD.StepDefinition
         [Then(@"The new employee is successfully deleted from the database")]
         public void ThenTheNewEmployeeIsSuccessfullyDeletedFromTheDatabase()
         {
-            var deleted = new RestCall<object>(Method.DELETE, PublicVar.BaseUrl, "/delete/{id}")
+            new RestCall<object>(Method.DELETE, PublicVar.BaseUrl, "/delete/{id}")
                 .AddUrlParameter("id", PublicVar.employee.id)
                 .Execute()
-                .ContentContains("success");
-            AssertHelper.IsTrue(deleted);
+                .Content.Should().Contain("success");
         }
         [Then(@"The new salary ""(.*)"" is reflected in the database")]
         public void ThenTheNewSalaryIsReflectedInTheDatabase(string salary)
