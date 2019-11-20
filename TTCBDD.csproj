@@ -154,7 +154,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComponentHelper\GenericExtensions.cs" />
     <Compile Include="BaseClasses\BaseClass.cs" />
     <Compile Include="BaseClasses\PageBase.cs" />
     <Compile Include="ComponentHelper\AssertHelper.cs" />
@@ -202,7 +201,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="FeatureFile\Feature2.feature" />
-    <None Include="FeatureFile\FluentAssertsAndContextInjection.feature" />
     <None Include="FeatureFile\LoggingExample.feature" />
     <None Include="FeatureFile\productsdb.feature" />
     <None Include="FeatureFile\ReportingExample.feature" />
