@@ -13,6 +13,7 @@ using TTCBDD.PageObject;
 using TTCBDD.APIObjects;
 using TTCBDD.Public_Var;
 using System.Linq.Expressions;
+using FluentAssertions;
 
 namespace TTCBDD
 {
@@ -33,15 +34,16 @@ namespace TTCBDD
             Console.WriteLine($"{call.Content}");
             var employees = call.Data;
             Console.WriteLine(employees.id);
-            Assert.IsTrue(call.ResponseOK());
+            call.StatusCode.Should().Be(HttpStatusCode.OK);
         }
         [Test]
         public void TestCheck()
         {
-            var success = new RestCall<Employee>(Method.HEAD, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+            new RestCall<Employee>(Method.HEAD, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
                 .AddUrlParameter("id", "1")
-                .Check(res => res.ResponseOK());
-            AssertHelper.IsTrue(success);
+                //.Check(res => res.ResponseOK());
+                .Execute()
+                .StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         [Test]
@@ -52,9 +54,8 @@ namespace TTCBDD
                 .AddUrlParameter("resource", "create")
                 .AddPayload(employee)
                 .Execute(e => employee.id = e.Data.id)
-                .Data;
-            Assert.IsNotNull(data);
-            Console.WriteLine($"{data.id}");
+                .Data
+                .Should().NotBeNull();
         }
 
         [Test]
@@ -69,18 +70,19 @@ namespace TTCBDD
                 .AddUrlParameter("id", employee.id)
                 .Execute();
             var returnedEmployee = get.Data;
-            AssertHelper.Equals(employee.name, returnedEmployee.name);
+            returnedEmployee.name.Should().Be(employee.name);
         }
         [Test]
         public void TestWhere()
         {
             //uses query strings to only return fresh produce that has no stock
-            new RestCall<List<Product>>(Method.GET, "http://192.168.2.73:3000", "/products")
+            var products = new RestCall<List<Product>>(Method.GET, "http://192.168.2.73:3000", "/products")
                 .Where("product_name like Fresh")
                 .Where("stock_level == 0")
                 .Execute()
-                .Data
-                .ForEach(product => Console.WriteLine($"Name: {product.product_name} - Stock level: {product.stock_level}"));
+                .Data;
+            products.ForEach(product => Console.WriteLine($"Name: {product.product_name} - Stock level: {product.stock_level}"));
+            products.ForEach(p => p.Should());
         }
         [Test]
         public void TestProductPost()

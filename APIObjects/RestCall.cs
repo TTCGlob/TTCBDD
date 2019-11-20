@@ -19,7 +19,6 @@ namespace TTCBDD.APIObjects
         private IRestRequest request;
         private IRestResponse<T> response;
         private DataFormat dataFormat;
-        private T data;
 
         public RestCall(Method method, string url, string resource, DataFormat dataFormat = DataFormat.Json)
         {
@@ -100,6 +99,11 @@ namespace TTCBDD.APIObjects
         {
             if (response == null) Execute();
             return success(response);
+        }
+        public T Data()
+        {
+            response = client.Execute<T>(request);
+            return response.Data;
         }
     }
     public class JsonNetSerializer : IRestSerializer

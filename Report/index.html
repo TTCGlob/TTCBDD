@@ -3,22 +3,22 @@
 <html>
 
     <head>
-    <meta charset='utf-8' />
-    <meta name='description' content='' />
-    <meta name='robots' content='noodp, noydir' />
-    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta charset='utf-8'>
+    <meta name='description' content=''>
+    <meta name='robots' content='noodp, noydir'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href='https://cdn.rawgit.com/anshooarora/extentreports-csharp/3b6cc04fd241b9782606e57fc5e84f0e42172c08/dist/css/extent.css' type='text/css' rel='stylesheet' />
+    <link href='https://cdn.rawgit.com/anshooarora/extentreports-csharp/3b6cc04fd241b9782606e57fc5e84f0e42172c08/dist/css/extent.css' type='text/css' rel='stylesheet'>
 
-    <title>ExtentReports</title>
+    <title>TTC Test Automation</title>
 
 </head>
     
 
 
-	<body class='extent standard default hide-overflow '>
+	<body class='extent dark default hide-overflow bdd'>
 		<div id='theme-selector' alt='Click to toggle theme. To enable by default, use theme configuration.' title='Click to toggle theme. To enable by default, use theme configuration.'>
 			<span><i class='material-icons'>desktop_windows</i></span>
 		</div>
@@ -30,11 +30,11 @@
         <!-- slideout menu -->
         <ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
             <li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
-                        <li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></i></a></li>
+                        <li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
         </ul>
 
         <!-- report name -->
-        <span class='report-name'>ExtentReports</span>
+        <span class='report-name'>TTC Test Automation</span>
 
         <!-- report headline -->
         <span class='report-headline'></span>
@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>20/11/2019 12:45:59 PM New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>21/11/2019 8:44:27 AM New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -116,9 +116,9 @@
 
 <div id='test-view-charts' class='subview-full'>
     <div id='charts-row' class='row nm-v nm-h'>
-        <div class='col s12 m6 l6 np-h'>
+        <div class='col s12 m4 l4 np-h'>
             <div class='card-panel nm-v'>
-                <div class='left panel-name'>Tests</div>
+                <div class='left panel-name'>Features</div>
                 <div class='chart-box'>
                     <canvas id='parent-analysis' width='100' height='80'></canvas>
                 </div>
@@ -131,7 +131,35 @@
             </div>
         </div>
 
+            <div class='col s12 m4 l4 np-h'>
+                <div class='card-panel nm-v'>
+                    <div class='left panel-name'>Scenarios</div>
+                    <div class='chart-box'>
+                        <canvas id='child-analysis' width='100' height='80'></canvas>
+                    </div>
+                    <div class='block text-small'>
+                        <span><span class='strong'>1</span> step(s) passed</span>
+                    </div>
+                    <div class='block text-small'>
+                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
+                    </div>
+                </div>
+            </div>
 
+            <div class='col s12 m4 l4 np-h'>
+                <div class='card-panel nm-v'>
+                    <div class='left panel-name'>Steps</div>
+                    <div class='chart-box'>
+                        <canvas id='grandchild-analysis' width='100' height='80'></canvas>
+                    </div>
+                    <div class='block text-small'>
+                        <span><span class='strong'>4</span> step(s) passed</span>
+                    </div>
+                    <div class='block text-small'>
+                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
     <div class='subview-left left'>
@@ -142,19 +170,40 @@
             <ul id='test-collection' class='test-collection'>
 
 
-                    <li class='test displayed active  pass' status='pass' bdd='bdd' test-id='1'>
+                    <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>RestFeature</span>
-                            <span class='test-time'>20/11/2019 12:45:59 PM</span>
+                            <span class='test-name'>Scenarios for tesing the products database</span>
+                            <span class='test-time'>21/11/2019 8:44:27 AM</span>
                             <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
-                                <div class='test-time-info'>
-                                    <span class='label start-time'>20/11/2019 12:45:59 PM</span>
-                                    <span class='label end-time'>20/11/2019 12:45:59 PM</span>
-                                    <span class='label time-taken grey lighten-1 white-text'>00:00:00</span>
-                                </div>
-                                    <div class='test-desc'>Test Rest Feature</div>
+                                    <div class='scenario node' test-id='2' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:00.4188803</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Find all fresh produce
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='3' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses API at "http://192.168.2.73:3000"
+                                                                                                                                                                    </li>
+                                                    <li test-id='4' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User accesses products labeled fresh
+                                                                                                                                                                    </li>
+                                                    <li test-id='5' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        Selects product names
+                                                                                                                                                                    </li>
+                                                    <li test-id='6' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        All the fresh products are displayed
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
 
                         </div>
                     </li>
@@ -167,16 +216,6 @@
         <div class='view-summary'>
             <h5 class='test-name'></h5>
 
-            <div id='step-filters' class="right">
-                <span class="blue-text" status="info" alt="info" title="info"><i class="material-icons">info_outline</i></span>
-                <span class="green-text" status="pass" alt="pass" title="pass"><i class="material-icons">check_circle</i></span>
-                <span class="red-text" status="fail" alt="fail" title="fail"><i class="material-icons">cancel</i></span>
-                <span class="red-text text-darken-4" status="fatal" alt="fatal" title="fatal"><i class="material-icons">cancel</i></span>
-                <span class="pink-text text-lighten-1" status="error" alt="error" title="error"><i class="material-icons">error</i></span>
-                <span class="orange-text" alt="warning" status="warning" title="warning"><i class="material-icons">warning</i></span>
-                <span class="teal-text" status="skip" alt="skip" title="skip"><i class="material-icons">redo</i></span>
-                <span status="clear" alt="Clear filters" title="Clear filters"><i class="material-icons">clear</i></span>
-            </div>
         </div>
     </div>
     <!-- subview right -->
@@ -232,30 +271,36 @@
         <div class='row'>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Tests</span>                     <div class='panel-lead'>1</div>
+ <span>Features</span>                     <div class='panel-lead'>1</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Steps</span>                     <div class='panel-lead'>0</div>
+ <span>Scenarios</span>                     <div class='panel-lead'>1</div>
                 </div>
             </div>
+                <div class='col s2'>
+                    <div class='card-panel r'>
+                        Steps
+                        <div class='panel-lead'>4</div>
+                    </div>
+                </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>20/11/2019 12:45:59 PM</div>
+                    <div class='panel-lead'>21/11/2019 8:44:27 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>20/11/2019 12:46:01 PM</div>
+                    <div class='panel-lead'>21/11/2019 8:44:29 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:02.0200052</div>
+                    <div class='panel-lead'>00:00:02.3098271</div>
                 </div>
             </div>
 
@@ -281,7 +326,7 @@
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 0,
+			    passChild: 1,
 			    failChild: 0,
 			    fatalChild: 0,
 			    errorChild: 0,
@@ -289,7 +334,7 @@
 			    skipChild: 0,
 			    infoChild: 0,
 				
-			    passGrandChild: 0,
+			    passGrandChild: 4,
 			    failGrandChild: 0,
 			    fatalGrandChild: 0,
 			    errorGrandChild: 0,
@@ -302,6 +347,18 @@
 		<script src='https://cdn.rawgit.com/anshooarora/extentreports-csharp/e468054d67d93c2fd9c8f0f60e31a7ea09fa3bf6/dist/js/extent.js' type='text/javascript'></script>
 		
 		
-			</body>
+	<script>window.onload = function () {
+    const navBar = document.getElementsByClassName("nav-wrapper")[0]
+    document.getElementsByClassName("brand-logo blue darken-3")[0].remove()
+
+    const imageNode = document.createElement("img")
+    imageNode.setAttribute("src", "https://pbs.twimg.com/profile_images/973012399363014656/lUZD5ZKJ_400x400.jpg")
+    imageNode.classList += " brand-logo";
+    imageNode.style.height = "50px";
+    imageNode.style.width = "50px";
+    imageNode.style.padding = "0px";
+    imageNode.style.borderRadius = "25px";
+    navBar.insertBefore(imageNode, navBar.childNodes[0])
+}</script></body>
 	
 </html>

@@ -1,11 +1,13 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using HtmlAgilityPack;
 using log4net;
 using System;
+using System.IO;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Bindings;
 using TTCBDD.ComponentHelper;
-using TTCBDD.Public_Var;
 
 namespace TTCBDD.GeneralHook
 {
@@ -14,200 +16,128 @@ namespace TTCBDD.GeneralHook
     {
 
         private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
-        private static ILog staticLogger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks)); // For static methods
+        private static ILog StaticLogger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
 
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
         public static string ReportPath;
 
+        public FeatureContext featureContext;
+
+        public GeneralHooks(FeatureContext featureContext)
+        {
+            this.featureContext = featureContext;
+        }
+
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            // Set the target folders
             string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
             string path = path1 + "Report\\index.html";
-            
-            // Create the HTML Reporter
+            ReportPath = path;
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
-            htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
-            
-            // Create the Extent Report
+            StaticLogger.Info(string.Format("Extent Report written to {0}", path));
+
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
+            htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
+            htmlReporter.Configuration().DocumentTitle = "TTC Test Automation";
+            htmlReporter.Configuration().ReportName = "TTC Test Automation";
+
+            htmlReporter.Configuration().ChartVisibilityOnOpen = true;
+            StaticLogger.Info($"Before test run");
         }
 
         [BeforeFeature]
-        public static void BeforeFeature()
+        public static void BeforeFeature(FeatureContext featureContext)
         {
             //Create dynamic feature name
-            featureName = extent.CreateTest<Feature>(FeatureContext.Current.FeatureInfo.Title, 
-                FeatureContext.Current.FeatureInfo.Description.Replace("\t", ""));
-            staticLogger.Info("Starting Feature: " + FeatureContext.Current.FeatureInfo.Title);
+            featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title, featureContext.FeatureInfo.Description);
+            StaticLogger.Info($"Before Feature {featureContext.FeatureInfo.Title}");
         }
 
         [BeforeScenario]
-        public void BeforeScenario()
+        public void BeforeScenario(ScenarioContext scenarioContext)
         {
-            PublicVar.StepStatus = "Pass";
-            PublicVar.StepMsg = "";
-            scenario = featureName.
-                CreateNode<Scenario>(ScenarioContext.Current.ScenarioInfo.Title, 
-                ScenarioContext.Current.ScenarioInfo.Description.Replace("\t", ""));
-
-            Logger.Info("Starting scenario: " + ScenarioContext.Current.ScenarioInfo.Title);
+            scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
+            Logger.Info($"Currently running scenario {scenarioContext.ScenarioInfo.Title} which {scenarioContext.ScenarioInfo.Description}");
         }
-
-        [AfterStep]
-        [Obsolete]
-        public void InsertReportingSteps()
+        [BeforeStep]
+        public void BeforeStep(ScenarioContext scenarioContext)
         {
-            // Colin's alternative method
-            // TODO: Discuss: IGherkinFormatterModel does not have the concept of 'And'
-            ScenarioBlock scenarioBlock = ScenarioContext.Current.CurrentScenarioBlock;
-            if (ScenarioContext.Current.TestError == null && PublicVar.StepStatus == "Pass")
-            {
-                switch (scenarioBlock)
-                {
-                    case ScenarioBlock.Given:
-                        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Pass("Passed");
-                        break;
-                    case ScenarioBlock.When:
-                        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Pass("Passed");
-                        break;
-                    case ScenarioBlock.Then:
-                        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Pass("Passed");
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if(ScenarioContext.Current.TestError != null)
-            {
-                switch (scenarioBlock)
-                {
-                    case ScenarioBlock.Given:
-                        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).
-                            Fail(string.Format("Error from: {0}\nMessage: {1}\nStack Trace: {2}",
-                            ScenarioContext.Current.TestError.Source,
-                            ScenarioContext.Current.TestError.Message,
-                            ScenarioContext.Current.TestError.StackTrace));
-                        break;
-                    case ScenarioBlock.When:
-                        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).
-                            Fail(string.Format("Error from: {0}\nMessage: {1}\nStack Trace: {2}",
-                            ScenarioContext.Current.TestError.Source,
-                            ScenarioContext.Current.TestError.Message,
-                            ScenarioContext.Current.TestError.StackTrace));
-                        break;
-                    case ScenarioBlock.Then:
-                        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).
-                            Fail(string.Format("Error from: {0}\nMessage: {1}\nStack Trace: {2}",
-                            ScenarioContext.Current.TestError.Source, 
-                            ScenarioContext.Current.TestError.Message,
-                            ScenarioContext.Current.TestError.StackTrace));
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else if (PublicVar.StepStatus == "Fail")
-            {
-                switch (scenarioBlock)
-                {
-                    case ScenarioBlock.Given:
-                        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(PublicVar.StepMsg);
-                        break;
-                    case ScenarioBlock.When:
-                        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(PublicVar.StepMsg);
-                        break;
-                    case ScenarioBlock.Then:
-                        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(PublicVar.StepMsg);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            
-            //var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
-            //if (ScenarioContext.Current.TestError == null && PublicVar.StepStatus== "Pass")
-            //{
-            //    if (stepType == "Given")
-            //        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
-            //    else if(stepType == "When")
-            //                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
-            //    else if(stepType == "Then")
-            //                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
-            //    else if(stepType == "And")
-            //                    scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
-            //}
-            //else if(ScenarioContext.Current.TestError != null)
-            //{
-            //    if (stepType == "Given")
-            //    {
-            //        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
-            //    }
-            //    else if(stepType == "When")
-            //    {
-            //        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
-            //    }
-            //    else if(stepType == "Then") {
-            //        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
-            //    }
-            //    else if(stepType == "And")
-            //    {
-            //        scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
-            //    }
-            //    goto done;
-            //}
-            //else if (PublicVar.StepStatus == "Fail")
-            //{
-            //    if (stepType == "Given")
-            //    {
-            //        scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(PublicVar.StepMsg);
-            //    }
-            //    else if (stepType == "When")
-            //    {
-            //        scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(PublicVar.StepMsg);
-            //    }
-            //    else if (stepType == "Then")
-            //    {
-            //        scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(PublicVar.StepMsg);
-            //    }
-            //    else if (stepType == "And")
-            //    {
-            //        scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(PublicVar.StepMsg);
-            //    }
-            //}
+            Logger.Info($"Before running test {scenarioContext.StepContext.StepInfo.Text}");
+        }
+        [AfterStep]
+        public void InsertReportingSteps(ScenarioContext scenarioContext)
+        {
 
-            UnHandleError();
+            Console.WriteLine($"This step has error: {scenarioContext.TestError}");
+            //    //var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
+            var stepInfo = scenarioContext.StepContext.StepInfo;
+            var stepStatus = scenarioContext.ScenarioExecutionStatus;
+            ExtentTest test;
+            switch (stepInfo.StepDefinitionType)
+            {
+                case StepDefinitionType.Given:
+                    test = scenario.CreateNode<Given>(scenarioContext.StepContext.StepInfo.Text);
+                    break;
+                case StepDefinitionType.When:
+                    test = scenario.CreateNode<When>(scenarioContext.StepContext.StepInfo.Text);
+                    break;
+                case StepDefinitionType.Then:
+                    test = scenario.CreateNode<Then>(scenarioContext.StepContext.StepInfo.Text);
+                    break;
+                default:
+                    test = scenario.CreateNode("default");
+                    break;
+            }
+
+            if (stepStatus != ScenarioExecutionStatus.OK)
+            {
+                test.Fail(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
+                    scenarioContext.TestError.Source, scenarioContext.TestError,
+                    scenarioContext.TestError.StackTrace));
+                Logger.Error(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
+                    scenarioContext.TestError.Source, scenarioContext.TestError,
+                    scenarioContext.TestError.StackTrace));
+            }
         }
 
         [AfterScenario]
-        [Obsolete]
-        public void AfterScenario()
+        public void AfterScenario(ScenarioContext scenarioContext)
         {
-            var scenario = ScenarioContext.Current;
-            string name = scenario.ScenarioInfo.Title;
-            Logger.Info(string.Format("Finished scenario: {0}", name));
+            //var scenario = ScenarioContext.Current;
+            //string name = scenario.ScenarioInfo.Title;
+            //Logger.Info("Finished scenario:" + name);
 
-            if (scenario.TestError != null)
-            {
-                var error = scenario.TestError;
-                Logger.Error(string.Format("An error ocurred: {0}", error.Message));
-                Logger.Error(string.Format("It was of type: {0}", error.GetType().Name));
-            }
+            //if (scenario.TestError != null)
+            //{
+            //    ScreenshotHelper.TakeScreenshot(name + "_after_scenario.jpg");
+            //    var error = scenario.TestError;
+            //    Logger.Error("An error ocurred:" + error.Message);
+            //    Logger.Error("It was of type:" + error.GetType().Name);
+            //}
+
+            Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error: {scenarioContext.TestError}");
         }
 
         [AfterTestRun]
         public static void AfterTestRun()
         {
             extent.Flush();
-        }
-
-        public void UnHandleError()
-        {
-
+            var ReportDir = Path.GetDirectoryName(ReportPath);
+            var ScriptPath = Path.Combine(ReportDir, "script.js");
+            var jsString = File.ReadAllText(ScriptPath);
+            var doc = new HtmlDocument();
+            doc.Load(ReportPath);
+            var body = doc.DocumentNode.SelectSingleNode("//body");
+            var script = doc.CreateElement("script");
+            var js = doc.CreateTextNode(jsString);
+            script.AppendChild(js);
+            //script.SetAttributeValue("src", "./script.js");
+            body.AppendChild(script);
+            doc.Save(ReportPath);
         }
     }
 }
