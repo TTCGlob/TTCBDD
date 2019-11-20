@@ -13,6 +13,12 @@ namespace TTCBDD.StepDefinition
     [Binding]
     public class RestCallClassTestSteps
     {
+        ScenarioContext context;
+        public RestCallClassTestSteps(ScenarioContext _context)
+        {
+            context = _context;
+        }
+
         #region Given
         [Given(@"User accesses employees API at ""(.*)""")]
         public void GivenUserAccessesEmployeesAPIAt(string url)
@@ -70,25 +76,25 @@ namespace TTCBDD.StepDefinition
                 .Take(numEmployees);
         }
         [When(@"User raises all their salaries by (.*)%")]
-        public void WhenUserRaisesAllTheirSalariesBy(int raise)
+        public void WhenUserRaisesAllTheirSalariesBy(int raiseBy)
         {
             PublicVar.employees = PublicVar.employees.Select(e =>
             {
                 var salary = int.Parse(e.salary);
-                var newSalary = (int)(salary * (1 + raise / 100));
+                var newSalary = (int)(salary * (1 + raiseBy / 100));
                 e.salary = newSalary.ToString();
                 Console.WriteLine($"Old salary: {salary} New salary: {e.salary}");
                 return e;
             });
-
-            PublicVar.employees
+            var raise = BasicHelperMethods.IncreaseSalary(15);
+            PublicVar.employees.Select(e => new Employee() { id = e.id, name = e.name, salary = raise(e.salary) })
                 .ForEach(employee =>
-            {
-                _ = new RestCall<Employee>(Method.PUT, PublicVar.BaseUrl, "/update/{id}")
-                    .AddUrlParameter("id", employee.id)
-                    .AddPayload(employee)
-                    .Execute();
-            });
+                    {
+                        _ = new RestCall<Employee>(Method.PUT, PublicVar.BaseUrl, "/update/{id}")
+                            .AddUrlParameter("id", employee.id)
+                            .AddPayload(employee)
+                            .Execute();
+                    });
         }
         [When(@"User adds the employee to the database")]
         public void WhenUserAddsTheEmployeeToTheDatabase()
@@ -105,7 +111,6 @@ namespace TTCBDD.StepDefinition
         public void ThenTheEmployeeRecordIsDisplayed()
         {
             Console.WriteLine(PublicVar.employee.ToString());
-            AssertHelper.IsTrue(PublicVar.employee != null);
         }
 
 
