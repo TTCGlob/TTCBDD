@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>21/11/2019 8:44:27 AM New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>21/11/2019 11:55:27 AM New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -138,7 +138,7 @@
                         <canvas id='child-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>1</span> step(s) passed</span>
+                        <span><span class='strong'>2</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
                         <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
@@ -153,7 +153,7 @@
                         <canvas id='grandchild-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>4</span> step(s) passed</span>
+                        <span><span class='strong'>8</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
                         <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
@@ -172,35 +172,62 @@
 
                     <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>Scenarios for tesing the products database</span>
-                            <span class='test-time'>21/11/2019 8:44:27 AM</span>
+                            <span class='test-name'>Rest Call Class Test</span>
+                            <span class='test-time'>21/11/2019 11:55:27 AM</span>
                             <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                     <div class='scenario node' test-id='2' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:00.4188803</span>
+                                        <span class='scenario-duration right label'>00:00:02.2244315</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
-                                            Find all fresh produce
+                                            Updating employee salary
 
                                             
                                         </div>
                                             <ul class='steps'>
                                                     <li test-id='3' class='node given pass' status='given pass'>
                                                         <b>Given</b>
-                                                        User accesses API at "http://192.168.2.73:3000"
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
                                                                                                                                                                     </li>
                                                     <li test-id='4' class='node when pass' status='when pass'>
                                                         <b>When</b>
-                                                        User accesses products labeled fresh
+                                                        User accesses employee "1"
                                                                                                                                                                     </li>
                                                     <li test-id='5' class='node when pass' status='when pass'>
                                                         <b>When</b>
-                                                        Selects product names
+                                                        User updates employee "1" with new salary "420"
                                                                                                                                                                     </li>
                                                     <li test-id='6' class='node then pass' status='then pass'>
                                                         <b>Then</b>
-                                                        All the fresh products are displayed
+                                                        The new salary "420" is reflected in the database
+                                                                                                                                                                    </li>
+                                            </ul>
+                                    </div>
+                                    <div class='scenario node' test-id='7' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:01.3052048</span>
+                                        <div class='scenario-desc'>
+                                            <b>Scenario</b>
+                                            Updating employee salary
+
+                                            
+                                        </div>
+                                            <ul class='steps'>
+                                                    <li test-id='8' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                                                                                                                                    </li>
+                                                    <li test-id='9' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User accesses employee "98370"
+                                                                                                                                                                    </li>
+                                                    <li test-id='10' class='node when pass' status='when pass'>
+                                                        <b>When</b>
+                                                        User updates employee "98370" with new salary "420"
+                                                                                                                                                                    </li>
+                                                    <li test-id='11' class='node then pass' status='then pass'>
+                                                        <b>Then</b>
+                                                        The new salary "420" is reflected in the database
                                                                                                                                                                     </li>
                                             </ul>
                                     </div>
@@ -276,31 +303,31 @@
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Scenarios</span>                     <div class='panel-lead'>1</div>
+ <span>Scenarios</span>                     <div class='panel-lead'>2</div>
                 </div>
             </div>
                 <div class='col s2'>
                     <div class='card-panel r'>
                         Steps
-                        <div class='panel-lead'>4</div>
+                        <div class='panel-lead'>8</div>
                     </div>
                 </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>21/11/2019 8:44:27 AM</div>
+                    <div class='panel-lead'>21/11/2019 11:55:27 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>21/11/2019 8:44:29 AM</div>
+                    <div class='panel-lead'>21/11/2019 11:55:32 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:02.3098271</div>
+                    <div class='panel-lead'>00:00:05.4298550</div>
                 </div>
             </div>
 
@@ -326,7 +353,7 @@
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 1,
+			    passChild: 2,
 			    failChild: 0,
 			    fatalChild: 0,
 			    errorChild: 0,
@@ -334,7 +361,7 @@
 			    skipChild: 0,
 			    infoChild: 0,
 				
-			    passGrandChild: 4,
+			    passGrandChild: 8,
 			    failGrandChild: 0,
 			    fatalGrandChild: 0,
 			    errorGrandChild: 0,

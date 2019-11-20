@@ -69,6 +69,14 @@ namespace TTCBDD.FeatureFile
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 3
+#line 4
+ testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get an employee")]
         [NUnit.Framework.CategoryAttribute("Read")]
@@ -76,14 +84,14 @@ namespace TTCBDD.FeatureFile
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an employee", null, new string[] {
                         "Read"});
-#line 4
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
+#line 3
+this.FeatureBackground();
+#line 8
  testRunner.When("User accesses employee \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 7
+#line 9
  testRunner.Then("The employee record is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -98,16 +106,16 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a new random employee", null, new string[] {
                         "Create",
                         "Read"});
-#line 11
+#line 13
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 12
- testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
-  testRunner.And("User creates a new employee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 3
+this.FeatureBackground();
 #line 14
- testRunner.When("User adds the employee to the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("User creates a new employee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
+ testRunner.When("User adds the employee to the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
  testRunner.Then("The employee is present in the employees list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -131,11 +139,11 @@ this.ScenarioInitialize(scenarioInfo);
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new employee and then delete them", null, @__tags);
-#line 20
+#line 21
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 21
- testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 3
+this.FeatureBackground();
 #line 22
  testRunner.When(string.Format("User creates new employee with name: \"{0}\", age: \"{1}\", and salary \"{2}\"", name, age, salary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
@@ -150,8 +158,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Updating employee salary")]
         [NUnit.Framework.CategoryAttribute("Read")]
         [NUnit.Framework.CategoryAttribute("Update")]
-        [NUnit.Framework.TestCaseAttribute("1", "300000", null)]
-        [NUnit.Framework.TestCaseAttribute("98370", "202020", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "420", null)]
+        [NUnit.Framework.TestCaseAttribute("98370", "420", null)]
         public virtual void UpdatingEmployeeSalary(string id, string salary, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -165,13 +173,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line 3
+this.FeatureBackground();
 #line 33
- testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 34
  testRunner.When(string.Format("User accesses employee \"{0}\"", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
+#line 34
   testRunner.And(string.Format("User updates employee \"{0}\" with new salary \"{1}\"", id, salary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 35
  testRunner.Then(string.Format("The new salary \"{0}\" is reflected in the database", salary), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -186,16 +194,16 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Giving employees a percentage raise", null, new string[] {
                         "Read",
                         "Update"});
-#line 44
+#line 43
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 46
- testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 47
+#line 3
+this.FeatureBackground();
+#line 45
  testRunner.When("User retrieves 15 employees", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 48
+#line 46
   testRunner.And("User raises all their salaries by 15%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 47
  testRunner.Then("This change is reflected in the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
