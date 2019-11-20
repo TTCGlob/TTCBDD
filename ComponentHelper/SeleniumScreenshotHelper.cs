@@ -8,12 +8,12 @@ using TTCBDD.Settings;
 
 namespace TTCBDD.ComponentHelper
 {
-    class ScreenshotHelper
+    class SeleniumScreenshotHelper
     {
         public static void TakeScreenshot(String filename = "Screen")
         {
-            Screenshot ss = ((ITakesScreenshot)ObjectRepository.Driver).GetScreenshot();
-
+            Screenshot ss = ((ITakesScreenshot) ObjectRepository.Driver).GetScreenshot();
+            
             if (filename.Equals("Screen"))
             {
                 filename = filename + DateTime.UtcNow.ToString("yyyy-MM-dd-mm-ss") + ".jpg";

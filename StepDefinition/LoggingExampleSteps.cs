@@ -10,7 +10,7 @@ namespace TTCBDD.StepDefinition
     {
         // The configuration for logging is taken from app.config
         // The 'typeof' is always the name of 'this' class
-        // Declare this as private for the class and use it in any stepp def in this class
+        // Declare this as private for the class and use it in any step def in this class
         private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(LoggingExampleSteps));
 
         [Given(@"I have entered (.*) into the calculator")]

@@ -3,7 +3,7 @@
     <configuration>
         <!-- report theme -->
         <!-- standard, dark -->
-        <theme>standard</theme>
+        <theme>dark</theme>
     
         <!-- document encoding -->
         <!-- defaults to UTF-8 -->
@@ -14,7 +14,7 @@
         <protocol>https</protocol>
         
         <!-- title of the document -->
-        <documentTitle>Extent</documentTitle>
+        <documentTitle>TTC</documentTitle>
 		
 		<chartVisibilityOnOpen>true</chartVisibilityOnOpen>
         
@@ -28,9 +28,9 @@
         <!-- custom javascript -->
         <scripts>
             <![CDATA[
-                $(document).ready(function() {
-                    
-                });
+            $(document).ready(function() {
+            $('.brand-logo.blue.darken-3').css('display','none');
+            });
             ]]>
         </scripts>
         
