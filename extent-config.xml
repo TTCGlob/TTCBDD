@@ -14,12 +14,14 @@
         <protocol>https</protocol>
         
         <!-- title of the document -->
-        <documentTitle>Extent</documentTitle>
+        <documentTitle>TTC Test Automation</documentTitle>
 		
-		<chartVisibilityOnOpen>true</chartVisibilityOnOpen>
+		    <chartVisibilityOnOpen>true</chartVisibilityOnOpen>
         
         <!-- report name - displayed at top-nav -->
-        <reportName>Automation Report</reportName>
+        <!-- reportName>Automation Report</reportName -->
+        
+        <reportName>TTC Test Automation</reportName>
         
         <!-- location of charts in the test view -->
         <!-- top, bottom -->
@@ -27,17 +29,16 @@
         
         <!-- custom javascript -->
         <scripts>
-            <![CDATA[
-                $(document).ready(function() {
-                    
-                });
+          <![CDATA[ 
+            $(document).ready(function() { $(".logo-content").hide(); 
+              $(".logo-container").html("<a href="https://www.ttcglobal.com">TTC Global</a>" ); }); 
             ]]>
         </scripts>
         
         <!-- custom styles -->
         <styles>
             <![CDATA[
-                
+
             ]]>
         </styles>
     </configuration>
