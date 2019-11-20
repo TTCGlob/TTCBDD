@@ -1,14 +1,11 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
-using HtmlAgilityPack;
 using log4net;
 using System;
-using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TTCBDD.ComponentHelper;
-using TTCBDD.Public_Var;
 
 namespace TTCBDD.GeneralHook
 {
@@ -17,6 +14,7 @@ namespace TTCBDD.GeneralHook
     {
 
         private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
+        private static ILog StaticLogger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
 
         private static ExtentTest featureName;
         private static ExtentTest scenario;
@@ -35,13 +33,17 @@ namespace TTCBDD.GeneralHook
         {
             string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
             string path = path1 + "Report\\index.html";
-            ReportPath = path;
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
+            StaticLogger.Info(string.Format("Extent Report written to {0}", path));
+
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
-            //htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
-            //htmlReporter.Configuration().DocumentTitle = "A new title";
-            Console.WriteLine($"Before test run");
+            htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
+            htmlReporter.Configuration().DocumentTitle = "TTC Test Automation";
+            htmlReporter.Configuration().ReportName = "TTC Test Automation";
+
+            htmlReporter.Configuration().ChartVisibilityOnOpen = true;
+            StaticLogger.Info($"Before test run");
         }
 
         [BeforeFeature]
@@ -49,23 +51,24 @@ namespace TTCBDD.GeneralHook
         {
             //Create dynamic feature name
             featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title, featureContext.FeatureInfo.Description);
-            Console.WriteLine($"Before Feature {featureContext.FeatureInfo.Title}");
+            StaticLogger.Info($"Before Feature {featureContext.FeatureInfo.Title}");
         }
 
         [BeforeScenario]
         public void BeforeScenario(ScenarioContext scenarioContext)
         {
-            scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
-            Console.WriteLine($"Currently running scenario {scenarioContext.ScenarioInfo.Title} which {scenarioContext.ScenarioInfo.Description}");
+            scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
+            Logger.Info($"Currently running scenario {scenarioContext.ScenarioInfo.Title} which {scenarioContext.ScenarioInfo.Description}");
         }
         [BeforeStep]
         public void BeforeStep(ScenarioContext scenarioContext)
         {
-            Console.WriteLine($"Before running test {scenarioContext.StepContext.StepInfo.Text}");
+            Logger.Info($"Before running test {scenarioContext.StepContext.StepInfo.Text}");
         }
         [AfterStep]
         public void InsertReportingSteps(ScenarioContext scenarioContext)
         {
+
             Console.WriteLine($"This step has error: {scenarioContext.TestError}");
             //    //var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
             var stepInfo = scenarioContext.StepContext.StepInfo;
@@ -86,9 +89,15 @@ namespace TTCBDD.GeneralHook
                     test = scenario.CreateNode("default");
                     break;
             }
+
             if (stepStatus != ScenarioExecutionStatus.OK)
             {
-                test.Fail(scenarioContext.TestError); 
+                test.Fail(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
+                    scenarioContext.TestError.Source, scenarioContext.TestError,
+                    scenarioContext.TestError.StackTrace));
+                Logger.Error(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
+                    scenarioContext.TestError.Source, scenarioContext.TestError,
+                    scenarioContext.TestError.StackTrace));
             }
         }
 
@@ -106,26 +115,14 @@ namespace TTCBDD.GeneralHook
             //    Logger.Error("An error ocurred:" + error.Message);
             //    Logger.Error("It was of type:" + error.GetType().Name);
             //}
-            
-            Console.WriteLine($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error: {scenarioContext.TestError}");
+
+            Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error: {scenarioContext.TestError}");
         }
 
         [AfterTestRun]
         public static void AfterTestRun()
         {
             extent.Flush();
-            var ReportDir = Path.GetDirectoryName(ReportPath);
-            var ScriptPath = Path.Combine(ReportDir, "script.js");
-            var jsString = File.ReadAllText(ScriptPath);
-            var doc = new HtmlDocument();
-            doc.Load(ReportPath);
-            var body = doc.DocumentNode.SelectSingleNode("//body");
-            var script = doc.CreateElement("script");
-            var js = doc.CreateTextNode(jsString);
-            script.AppendChild(js);
-            //script.SetAttributeValue("src", "./script.js");
-            body.AppendChild(script);
-            doc.Save(ReportPath);
         }
 
         public void UnHandleError()
