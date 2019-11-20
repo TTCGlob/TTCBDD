@@ -35,6 +35,7 @@ namespace TTCBDD.GeneralHook
         {
             string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
             string path = path1 + "Report\\index.html";
+            ReportPath = path;
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
             StaticLogger.Info(string.Format("Extent Report written to {0}", path));
 
@@ -137,11 +138,6 @@ namespace TTCBDD.GeneralHook
             //script.SetAttributeValue("src", "./script.js");
             body.AppendChild(script);
             doc.Save(ReportPath);
-        }
-
-        public void UnHandleError()
-        {
-
         }
     }
 }

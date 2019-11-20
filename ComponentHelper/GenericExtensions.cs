@@ -1,21 +1,22 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using RestSharp;
 
 namespace TTCBDD.ComponentHelper
 {
     public static class GenericExtensions
     {
-        public static bool ContentContains<T>(this IRestResponse<T> response, string text)
+        public static T Get<T>(this IDictionary<string, object> dict, string key)
         {
-            return response.Content.Contains(text);
+            //typecast dictionary result to T
+            //and returning it
+            T value = (T) dict[key];
+            return value;
         }
-        public static bool ResponseOK<T>(this IRestResponse<T> response)
+
+        public static void Add<T>(this IDictionary<string, object> dict, string key, T value)
         {
-            return response.StatusCode == HttpStatusCode.OK;
+            dict.Add(key, value);
         }
-        public static bool HasData<T>(this IRestResponse<T> response)
-        {
-            return response.Data != null;
-        } 
     }
 }

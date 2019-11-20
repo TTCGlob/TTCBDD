@@ -32,7 +32,7 @@ namespace TTCBDD.StepDefinition
         [When(@"User accesses products labeled fresh")]
         public void WhenUserAccessesProductsLabeledFresh()
         {
-            var response = new RestCall<List<Product>>(Method.GET, context["url"] as string, "/products")
+            var response = new RestCall<List<Product>>(Method.GET, context.Get<string>("url"), "/products")
                 .Where("product_name like Fresh")
                 .Execute();
             response.IsSuccessful.Should().BeTrue();
@@ -42,7 +42,7 @@ namespace TTCBDD.StepDefinition
         [When(@"Selects product names")]
         public void WhenSelectsProductNames()
         {
-            var results = (List<Product>)context["data"];
+            var results = context.Get<List<Product>>("data");
             var names = results.Select(p => p.product_name);
             context.Add("names", names);
         }
@@ -50,7 +50,7 @@ namespace TTCBDD.StepDefinition
         [Then(@"All the fresh products are displayed")]
         public void ThenAllTheFreshProductsAreDisplayed()
         {
-            var names = context["names"] as IEnumerable<string>;
+            var names = context.Get<IEnumerable<string>>("names");
             names.ForEach(n => Console.WriteLine(n));
             names.Should().NotBeEmpty();
         }
