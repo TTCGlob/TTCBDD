@@ -36,12 +36,13 @@ namespace TTCBDD.StepDefinition
             var words = (List<string>)context["words"];
             var joinedWords = words[0] + " " + words[1];
             context.Add("joinedWords", joinedWords);
+            var nums = new List<string>() { "1", "2", "3" };
         }
 
         [Then(@"I get the string ""(.*)""")]
         public void ThenIGetTheString(string result)
         {
-            var words = context["words"] as string;
+            var words = context["words"] as List<string>;
             var joinedWord = context["joinedWords"] as string;
             joinedWord.Should().Be(result, "the first string is {0} and the second string is {1}", words[0], words[1]);
         }

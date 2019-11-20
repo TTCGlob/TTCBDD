@@ -1,8 +1,10 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using HtmlAgilityPack;
 using log4net;
 using System;
+using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TTCBDD.ComponentHelper;
@@ -33,13 +35,12 @@ namespace TTCBDD.GeneralHook
         {
             string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
             string path = path1 + "Report\\index.html";
+            ReportPath = path;
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
-            
-
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
-            htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
-            htmlReporter.Configuration().DocumentTitle = "A new title";
+            //htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
+            //htmlReporter.Configuration().DocumentTitle = "A new title";
             Console.WriteLine($"Before test run");
         }
 
@@ -113,6 +114,18 @@ namespace TTCBDD.GeneralHook
         public static void AfterTestRun()
         {
             extent.Flush();
+            var ReportDir = Path.GetDirectoryName(ReportPath);
+            var ScriptPath = Path.Combine(ReportDir, "script.js");
+            var jsString = File.ReadAllText(ScriptPath);
+            var doc = new HtmlDocument();
+            doc.Load(ReportPath);
+            var body = doc.DocumentNode.SelectSingleNode("//body");
+            var script = doc.CreateElement("script");
+            var js = doc.CreateTextNode(jsString);
+            script.AppendChild(js);
+            //script.SetAttributeValue("src", "./script.js");
+            body.AppendChild(script);
+            doc.Save(ReportPath);
         }
 
         public void UnHandleError()
