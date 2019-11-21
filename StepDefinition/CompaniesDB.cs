@@ -30,6 +30,13 @@ namespace TTCBDD.StepDefinition
                 id = new Random().Next(999),
                 companyName = "Sodor Transport",
                 netWorth = 1444444,
+                address = new Address()
+                {
+                    number = 12,
+                    street = "Tompham Way",
+                    city = "Sodor Island"
+                    
+                },
                 employees = new List<Employee>()
                 {
                     new Employee()
@@ -67,6 +74,15 @@ namespace TTCBDD.StepDefinition
             context["company"] = company;
         }
 
+        [Given(@"User accesses a company at ""(.*)""")]
+        public void GivenUserAccessesACompanyAt(string resource)
+        {
+            var company = new RestCall<List<Company>>(Method.GET, context.Get<string>("url"), resource)
+                .Data()
+                .First();
+            context["company"] = company;
+        }
+
 
         [When(@"user accesses endpoint ""(.*)""")]
         public void WhenUserAccessesEndpoint(string resource)
@@ -81,10 +97,24 @@ namespace TTCBDD.StepDefinition
         {
             var company = context.Get<Company>("company");
             var response = new RestCall<Company>(Method.POST, context.Get<string>("url"), resource)
+                .AddUrlParameter("id", company.id.ToString())
                 .AddPayload(company)
                 .Execute();
             response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
+
+        [When(@"User sets company value to (.*)")]
+        public void WhenUserSetsCompanyValueTo(int newValue)
+        {
+            var company = context.Get<Company>("company");
+            company.netWorth = newValue;
+            context["company"] = company;
+             var response = new RestCall<Company>(Method.PUT, context.Get<string>("url"), "companies/{id}")
+                .AddUrlParameter("id", company.id.ToString())
+                .AddPayload(company)
+                .Execute();
+        }
+
 
         [Then(@"a list of companies is returned")]
         public void ThenAListOfCompaniesIsReturned()
@@ -103,6 +133,14 @@ namespace TTCBDD.StepDefinition
             retrievedCompany.companyName.Should().Be(storedCompany.companyName);
         }
 
-
+        [Then(@"The change is reflected at ""(.*)""")]
+        public void ThenTheChangeIsReflectedAt(string resource)
+        {
+            var storedCompany = context.Get<Company>("company");
+            var retrievedCompany = new RestCall<Company>(Method.GET, context.Get<string>("url"), resource)
+                .AddUrlParameter("id", storedCompany.id.ToString())
+                .Data();
+            storedCompany.netWorth.Should().Be(retrievedCompany.netWorth);
+        }
     }
 }

@@ -1279,6 +1279,7 @@
     <None Include="CustomDB\node_modules\yargs\README.md" />
     <None Include="CustomDB\package-lock.json" />
     <None Include="CustomDB\package.json" />
+    <None Include="CustomDB\run.bat" />
     <None Include="FeatureFile\CompaniesDB.feature" />
     <None Include="FeatureFile\Feature2.feature" />
     <None Include="FeatureFile\LoggingExample.feature" />

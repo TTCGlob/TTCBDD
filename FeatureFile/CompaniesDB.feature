@@ -13,3 +13,8 @@ Scenario: Create a new company
 	Given User creates a new company record
 	When User submits this to the endpoint "/companies"
 	Then the company is displayed in the database at "/companies/{id}"
+
+Scenario: Increase a company's value
+	Given User accesses a company at "/companies"
+	When User sets company value to 500000
+	Then The change is reflected at "/companies/{id}"
