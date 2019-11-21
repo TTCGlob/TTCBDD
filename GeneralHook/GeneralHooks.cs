@@ -54,26 +54,24 @@ namespace TTCBDD.GeneralHook
         {
             //Create dynamic feature name
             featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title, featureContext.FeatureInfo.Description);
-            StaticLogger.Info($"Before Feature {featureContext.FeatureInfo.Title}");
+            StaticLogger.Info($"Feature: {featureContext.FeatureInfo.Title}");
         }
 
         [BeforeScenario]
         public void BeforeScenario(ScenarioContext scenarioContext)
         {
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
-            Logger.Info($"Currently running scenario {scenarioContext.ScenarioInfo.Title} which {scenarioContext.ScenarioInfo.Description}");
+            Logger.Info($"Scenario: {scenarioContext.ScenarioInfo.Title}");
         }
         [BeforeStep]
         public void BeforeStep(ScenarioContext scenarioContext)
         {
-            Logger.Info($"Before running test {scenarioContext.StepContext.StepInfo.Text}");
+            Logger.Info($"Step: {scenarioContext.StepContext.StepInfo.StepDefinitionType}: {scenarioContext.StepContext.StepInfo.Text}");
         }
         [AfterStep]
         public void InsertReportingSteps(ScenarioContext scenarioContext)
         {
 
-            Console.WriteLine($"This step has error: {scenarioContext.TestError}");
-            //    //var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
             var stepInfo = scenarioContext.StepContext.StepInfo;
             var stepStatus = scenarioContext.ScenarioExecutionStatus;
             ExtentTest test;
@@ -119,7 +117,10 @@ namespace TTCBDD.GeneralHook
             //    Logger.Error("It was of type:" + error.GetType().Name);
             //}
 
-            Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error: {scenarioContext.TestError}");
+            if (scenarioContext.TestError != null)
+            {
+                Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error(s): {scenarioContext.TestError}");
+            }
         }
 
         [AfterTestRun]

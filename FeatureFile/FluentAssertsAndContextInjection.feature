@@ -6,6 +6,6 @@
 @mytag
 Scenario: Concatenate Two Words
 	Given I have a word "All"
-		And I have a word "Blacks"
+	And I have a word "Blacks"
 	When I join the words with a space
 	Then I get the string "All Blacks"
