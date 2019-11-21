@@ -25,7 +25,7 @@ namespace TTCBDD
         //public string JsonHelper { get; private set; }
 
         [Test]
-        
+
         public void TestRestGet()
         {
             var call = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
@@ -141,7 +141,7 @@ namespace TTCBDD
 
         }
 
-       // [Test]
+        // [Test]
         public void TestGet()
         {
             string response = "";
@@ -170,7 +170,7 @@ namespace TTCBDD
             Console.WriteLine("Post Response is " + response);
         }
 
-       // [Test]
+        // [Test]
         [Obsolete]
         public void TestPut()
         {
