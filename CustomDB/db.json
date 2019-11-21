@@ -1,0 +1,81 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "companyName": "Geordie, Inc.",
+      "netWorth": 5540023,
+      "address": {
+        "number": 22,
+        "street": "Jump Street",
+        "city": "Coolton"
+      },
+      "employees": [
+        {
+          "id": "12",
+          "name": "Steev",
+          "age": "12",
+          "salary": "4440404"
+        },
+        {
+          "id": "141",
+          "name": "Dr Mister Cody",
+          "age": "90",
+          "salary": "4123444"
+        }
+      ],
+      "shareholders": [
+        {
+          "id": "1414",
+          "name": "Professor Cool",
+          "stake": 44
+        },
+        {
+          "id": "3434",
+          "name": "Mr Biggs",
+          "stake": 44
+        },
+        {
+          "id": "75567",
+          "name": "Ronald Donald Duck",
+          "stake": 12
+        }
+      ]
+    },
+    {
+      "id": 521,
+      "companyName": "Sodor Transport",
+      "netWorth": 1444444,
+      "address": null,
+      "employees": [
+        {
+          "id": "1",
+          "name": "Thomas",
+          "salary": "180",
+          "age": "111",
+          "profile_image": null
+        },
+        {
+          "id": "3",
+          "name": "Henry",
+          "salary": "13340405",
+          "age": "33",
+          "profile_image": null
+        },
+        {
+          "id": "5",
+          "name": "Gordon",
+          "salary": "13131",
+          "age": "12",
+          "profile_image": null
+        }
+      ],
+      "shareholders": [
+        {
+          "id": "565",
+          "name": "Sir Tomham Hat",
+          "stake": 100
+        }
+      ]
+    }
+  ]
+}

@@ -36,5 +36,16 @@ namespace TTCBDD.ComponentHelper
             s1 = strings[1];
             s2 = strings[2];
         }
+
+        public static Func<string, string> RaiseBy(int raise)
+        {
+            return (string oldSalary) =>
+            {
+                int intSalary = int.Parse(oldSalary);
+                intSalary += intSalary * raise;
+                string newSalary = intSalary.ToString();
+                return newSalary;
+            };
+        }
     }
 }

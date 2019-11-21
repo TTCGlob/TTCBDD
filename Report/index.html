@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>21/11/2019 2:10:02 PM New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>22/11/2019 09:51:07 New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -172,35 +172,35 @@
 
                     <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>Scenarios for tesing the products database</span>
-                            <span class='test-time'>21/11/2019 2:10:02 PM</span>
+                            <span class='test-name'>CompaniesDB</span>
+                            <span class='test-time'>22/11/2019 09:51:07</span>
                             <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                     <div class='scenario node' test-id='2' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:00.4657962</span>
+                                        <span class='scenario-duration right label'>00:00:56.4537185</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
-                                            Find all fresh produce
+                                            Create a new company
 
                                             
                                         </div>
                                             <ul class='steps'>
                                                     <li test-id='3' class='node given pass' status='given pass'>
                                                         <b>Given</b>
-                                                        User accesses API at "http://192.168.2.73:3000"
+                                                        User accesses API at "http://192.168.0.114:3000"
                                                                                                                                                                     </li>
-                                                    <li test-id='4' class='node when pass' status='when pass'>
-                                                        <b>When</b>
-                                                        User accesses products labeled fresh
+                                                    <li test-id='4' class='node given pass' status='given pass'>
+                                                        <b>Given</b>
+                                                        User creates a new company record
                                                                                                                                                                     </li>
                                                     <li test-id='5' class='node when pass' status='when pass'>
                                                         <b>When</b>
-                                                        Selects product names
+                                                        User submits this to the endpoint "/companies"
                                                                                                                                                                     </li>
                                                     <li test-id='6' class='node then pass' status='then pass'>
                                                         <b>Then</b>
-                                                        All the fresh products are displayed
+                                                        the company is displayed in the database at "/companies/{id}"
                                                                                                                                                                     </li>
                                             </ul>
                                     </div>
@@ -288,19 +288,19 @@
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>21/11/2019 2:10:02 PM</div>
+                    <div class='panel-lead'>22/11/2019 09:51:07</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>21/11/2019 2:10:05 PM</div>
+                    <div class='panel-lead'>22/11/2019 09:52:08</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:02.3544821</div>
+                    <div class='panel-lead'>00:01:00.7593446</div>
                 </div>
             </div>
 

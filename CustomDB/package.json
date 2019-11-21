@@ -1,0 +1,17 @@
+{
+  "name": "custom-db",
+  "version": "0.0.1",
+  "description": "Custom DB to act as REST server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Geordie Winlove",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.15.1"
+  },
+  "devDependencies": {
+    "@types/json-server": "^0.14.2"
+  }
+}
