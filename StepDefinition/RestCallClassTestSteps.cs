@@ -88,7 +88,7 @@ namespace TTCBDD.StepDefinition
         public void WhenUserRaisesAllTheirSalariesBy(int raiseBy)
         {
             var employees = context.Get<IEnumerable<Employee>>("employees");
-            var raiseBy15Percent = BasicHelperMethods.IncreaseSalary(15);
+            var raiseBy15Percent = BasicHelperMethods.RaiseBy(15);
             employees = employees.Select(e => new Employee()
             {
                 id = e.id,

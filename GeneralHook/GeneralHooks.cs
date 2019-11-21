@@ -58,10 +58,10 @@ namespace TTCBDD.GeneralHook
         }
 
         [BeforeScenario]
-        public void BeforeScenario(ScenarioContext scenarioContext)
+        public static void BeforeScenario(ScenarioContext scenarioContext)
         {
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
-            Logger.Info($"Scenario: {scenarioContext.ScenarioInfo.Title}");
+            StaticLogger.Info($"Scenario: {scenarioContext.ScenarioInfo.Title}");
         }
         [BeforeStep]
         public void BeforeStep(ScenarioContext scenarioContext)
@@ -69,7 +69,7 @@ namespace TTCBDD.GeneralHook
             Logger.Info($"Step: {scenarioContext.StepContext.StepInfo.StepDefinitionType}: {scenarioContext.StepContext.StepInfo.Text}");
         }
         [AfterStep]
-        public void InsertReportingSteps(ScenarioContext scenarioContext)
+        public static void InsertReportingSteps(ScenarioContext scenarioContext)
         {
 
             var stepInfo = scenarioContext.StepContext.StepInfo;
@@ -96,14 +96,14 @@ namespace TTCBDD.GeneralHook
                 test.Fail(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
                     scenarioContext.TestError.Source, scenarioContext.TestError,
                     scenarioContext.TestError.StackTrace));
-                Logger.Error(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
+                StaticLogger.Error(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
                     scenarioContext.TestError.Source, scenarioContext.TestError,
                     scenarioContext.TestError.StackTrace));
             }
         }
 
         [AfterScenario]
-        public void AfterScenario(ScenarioContext scenarioContext)
+        public static void AfterScenario(ScenarioContext scenarioContext)
         {
             //var scenario = ScenarioContext.Current;
             //string name = scenario.ScenarioInfo.Title;
@@ -119,7 +119,7 @@ namespace TTCBDD.GeneralHook
 
             if (scenarioContext.TestError != null)
             {
-                Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error(s): {scenarioContext.TestError}");
+                StaticLogger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error(s): {scenarioContext.TestError}");
             }
         }
 

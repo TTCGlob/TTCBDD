@@ -190,6 +190,7 @@
     <Compile Include="Reporter\Feature.cs" />
     <Compile Include="Reporter\Reporter.cs" />
     <Compile Include="Reporter\Scenario.cs" />
+    <Compile Include="Reporter\Step.cs" />
     <Compile Include="StepDefinition\FluentAssertsAndContextInjection.cs" />
     <Compile Include="StepDefinition\LoggingExampleSteps.cs" />
     <Compile Include="StepDefinition\productsdb.cs" />

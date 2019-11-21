@@ -158,8 +158,8 @@ this.FeatureBackground();
         [NUnit.Framework.DescriptionAttribute("Updating employee salary")]
         [NUnit.Framework.CategoryAttribute("Read")]
         [NUnit.Framework.CategoryAttribute("Update")]
-        [NUnit.Framework.TestCaseAttribute("1", "420", null)]
-        [NUnit.Framework.TestCaseAttribute("98370", "420", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "999", null)]
+        [NUnit.Framework.TestCaseAttribute("98370", "999", null)]
         public virtual void UpdatingEmployeeSalary(string id, string salary, string[] exampleTags)
         {
             string[] @__tags = new string[] {

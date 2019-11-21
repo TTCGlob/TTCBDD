@@ -25,6 +25,7 @@ namespace TTCBDD.Reporter
         public Feature AddScenario(Scenario scenario)
         {
             Scenarios.Add(scenario);
+            return this;
         }
 
     }

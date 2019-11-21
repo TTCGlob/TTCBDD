@@ -22,6 +22,10 @@ namespace TTCBDD.Reporter
             this.Tags = Tags;
         }
 
-        public Scenario AddStep(Step step) => Steps.Add(step);
+        public Scenario AddStep(Step step)
+        {
+            Steps.Add(step);
+            return this;
+        }
     }
 }
