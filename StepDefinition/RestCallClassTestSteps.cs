@@ -154,7 +154,7 @@ namespace TTCBDD.StepDefinition
         public void ThenThisChangeIsReflectedInTheDatabase()
         {
             var employees = context.Get<IEnumerable<Employee>>("employees");
-            var raiseBy15Percent = BasicHelperMethods.IncreaseSalary(15);
+            var raiseBy15Percent = BasicHelperMethods.RaiseBy(15);
             var raiseReflected = employees.Select(employee =>
             {
                 var retrievedEmployee = new RestCall<Employee>(Method.GET, context.Get<string>("url"), "/employee/{id}")
