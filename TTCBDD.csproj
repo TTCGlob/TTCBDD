@@ -187,6 +187,9 @@
     <Compile Include="PageObject\RestActions.cs" />
     <Compile Include="APIObjects\RestCall.cs" />
     <Compile Include="PublicVar\PublicVar.cs" />
+    <Compile Include="Reporter\Feature.cs" />
+    <Compile Include="Reporter\Reporter.cs" />
+    <Compile Include="Reporter\Scenario.cs" />
     <Compile Include="StepDefinition\FluentAssertsAndContextInjection.cs" />
     <Compile Include="StepDefinition\LoggingExampleSteps.cs" />
     <Compile Include="StepDefinition\productsdb.cs" />
@@ -213,6 +216,8 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="GeneralHook\extent-config.xml" />
+    <Content Include="Reporter\index.html" />
+    <Content Include="Reporter\index.ts" />
     <Content Include="Report\script.js" />
     <Content Include="Resources\chromedriver.exe" />
     <Content Include="Resources\FileUpload.exe" />
