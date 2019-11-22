@@ -4,10 +4,12 @@ using AventStack.ExtentReports.Reporter;
 using HtmlAgilityPack;
 using log4net;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TTCBDD.ComponentHelper;
+using TTCBDD.CustomReporter;
 
 namespace TTCBDD.GeneralHook
 {
@@ -17,7 +19,7 @@ namespace TTCBDD.GeneralHook
 
         private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
         private static ILog StaticLogger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
-
+        private static Reporter Reporter;
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
@@ -38,7 +40,9 @@ namespace TTCBDD.GeneralHook
             ReportPath = path;
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
             StaticLogger.Info(string.Format("Extent Report written to {0}", path));
-
+            var ReportDir = Path.GetDirectoryName(ReportPath);
+            var JsonPath = Path.Combine(ReportDir, "report.json");
+            Reporter = new Reporter(JsonPath);
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
             htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
@@ -46,6 +50,7 @@ namespace TTCBDD.GeneralHook
             htmlReporter.Configuration().ReportName = "TTC Test Automation";
 
             htmlReporter.Configuration().ChartVisibilityOnOpen = true;
+
             StaticLogger.Info($"Before test run");
         }
 
@@ -54,6 +59,7 @@ namespace TTCBDD.GeneralHook
         {
             //Create dynamic feature name
             featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title, featureContext.FeatureInfo.Description);
+            Reporter.AddFeature(featureContext.FeatureInfo);
             StaticLogger.Info($"Feature: {featureContext.FeatureInfo.Title}");
         }
 
@@ -61,6 +67,7 @@ namespace TTCBDD.GeneralHook
         public static void BeforeScenario(ScenarioContext scenarioContext)
         {
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
+            Reporter.AddScenario(scenarioContext.ScenarioInfo);
             StaticLogger.Info($"Scenario: {scenarioContext.ScenarioInfo.Title}");
         }
         [BeforeStep]
@@ -74,6 +81,7 @@ namespace TTCBDD.GeneralHook
 
             var stepInfo = scenarioContext.StepContext.StepInfo;
             var stepStatus = scenarioContext.ScenarioExecutionStatus;
+            Reporter.AddStep(stepInfo, stepStatus);
             ExtentTest test;
             switch (stepInfo.StepDefinitionType)
             {
@@ -93,6 +101,7 @@ namespace TTCBDD.GeneralHook
 
             if (stepStatus != ScenarioExecutionStatus.OK)
             {
+                Reporter.Fail(new ReportStepError(scenarioContext.TestError.Source, scenarioContext.TestError.Message, scenarioContext.TestError.StackTrace));
                 test.Fail(string.Format("Error from: {0}\nError Details: {1}\nStacktrace: {2}",
                     scenarioContext.TestError.Source, scenarioContext.TestError,
                     scenarioContext.TestError.StackTrace));
@@ -127,6 +136,7 @@ namespace TTCBDD.GeneralHook
         public static void AfterTestRun()
         {
             extent.Flush();
+            Reporter.Serialize();
             var ReportDir = Path.GetDirectoryName(ReportPath);
             var ScriptPath = Path.Combine(ReportDir, "script.js");
             var jsString = File.ReadAllText(ScriptPath);
