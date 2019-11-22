@@ -18,3 +18,8 @@ Scenario: Increase a company's value
 	Given User accesses a company at "/companies"
 	When User sets company value to 500000
 	Then The change is reflected at "/companies/{id}"
+
+Scenario: Company changes address
+	Given User accesses company with ID 1 at "/companies/{id}"
+	When User changes the company 1 address and submits it to "/companies/{id}"
+	Then The company 1 should have a new address

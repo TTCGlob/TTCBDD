@@ -74,6 +74,15 @@ namespace TTCBDD.StepDefinition
             context["company"] = company;
         }
 
+        [Given(@"User accesses company with ID (.*) at ""(.*)""")]
+        public void GivenUserAccessesCompanyWithIDAt(int id, string resource)
+        {
+            var company = new RestCall<Company>(Method.GET, context.Get<string>("url"), resource)
+                .AddUrlParameter("id", id.ToString())
+                .Data();
+            context["company"] = company;
+        }
+
         [Given(@"User accesses a company at ""(.*)""")]
         public void GivenUserAccessesACompanyAt(string resource)
         {
@@ -115,6 +124,24 @@ namespace TTCBDD.StepDefinition
                 .Execute();
         }
 
+        [When(@"User changes the company (.*) address and submits it to ""(.*)""")]
+        public void WhenUserChangesTheCompanyAddressAndSubmitsItTo(int id, string resource)
+        {
+            var company = context.Get<Company>("company");
+            company.address = new Address()
+            {
+                number = 55,
+                street = "Yeet Street",
+                city = "Falcon City"
+            };
+            var response = new RestCall<object>(Method.PUT, context.Get<string>("url"), resource)
+                .AddUrlParameter("id", id.ToString())
+                .AddPayload(company)
+                .Execute();
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+
 
         [Then(@"a list of companies is returned")]
         public void ThenAListOfCompaniesIsReturned()
@@ -142,5 +169,17 @@ namespace TTCBDD.StepDefinition
                 .Data();
             storedCompany.netWorth.Should().Be(retrievedCompany.netWorth);
         }
+        [Then(@"The company (.*) should have a new address")]
+        public void ThenTheCompanyShouldHaveANewAddress(int id)
+        {
+            var storedCompany = context.Get<Company>("company");
+            var retrievedCompany = new RestCall<Company>(Method.GET, context.Get<string>("url"), "/companies/{id}")
+                .AddUrlParameter("id", id.ToString())
+                .Data();
+            (storedCompany.address.street == retrievedCompany.address.street && storedCompany.address.number == retrievedCompany.address.number && storedCompany.address.city == retrievedCompany.address.city)
+                .Should().BeTrue();
+        }
+
+
     }
 }

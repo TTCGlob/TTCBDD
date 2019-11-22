@@ -3,24 +3,26 @@
     {
       "id": 1,
       "companyName": "Geordie, Inc.",
-      "netWorth": 5540023,
+      "netWorth": 500000,
       "address": {
-        "number": 22,
-        "street": "Jump Street",
-        "city": "Coolton"
+        "number": 55,
+        "street": "Yeet Street",
+        "city": "Falcon City"
       },
       "employees": [
         {
           "id": "12",
           "name": "Steev",
+          "salary": "4440404",
           "age": "12",
-          "salary": "4440404"
+          "profile_image": null
         },
         {
           "id": "141",
           "name": "Dr Mister Cody",
+          "salary": "4123444",
           "age": "90",
-          "salary": "4123444"
+          "profile_image": null
         }
       ],
       "shareholders": [
@@ -42,33 +44,14 @@
       ]
     },
     {
-      "id": 521,
+      "id": 415,
       "companyName": "Sodor Transport",
       "netWorth": 1444444,
-      "address": null,
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
+      "address": {
+        "number": 12,
+        "street": "Tompham Way",
+        "city": "Sodor Island"
+      },
       "shareholders": [
         {
           "id": "565",
@@ -76,6 +59,32 @@
           "stake": 100
         }
       ]
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "name": "Thomas",
+      "salary": "180",
+      "age": "111",
+      "profile_image": null,
+      "companyId": 415
+    },
+    {
+      "id": "3",
+      "name": "Henry",
+      "salary": "13340405",
+      "age": "33",
+      "profile_image": null,
+      "companyId": 415
+    },
+    {
+      "id": "5",
+      "name": "Gordon",
+      "salary": "13131",
+      "age": "12",
+      "profile_image": null,
+      "companyId": 415
     }
   ]
 }
