@@ -11,12 +11,14 @@ namespace TTCBDD.CustomReporter
     {
         public string Name { get; }
         public string Description { get; }
-        public List<ReportScenario> Scenarios { get; } = new List<ReportScenario>();
-        public bool Pass
-        {
-            get => Scenarios.All(s => s.Pass);
-        }
+        public bool Pass => Scenarios.All(s => s.Pass);
 
+        public int scenariosPassed => Scenarios.Where(s => s.Pass).Count();
+        public int scenariosFailed => Scenarios.Where(s => !s.Pass).Count();
+        public int stepsPassed => Scenarios.Sum(s => s.stepsPassed);
+        public int stepsFailed => Scenarios.Sum(s => s.stepsFailed);
+
+        public List<ReportScenario> Scenarios { get; } = new List<ReportScenario>();
         public ReportFeature(string Name, string Description)
         {
             this.Name = Name;

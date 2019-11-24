@@ -12,7 +12,9 @@ namespace TTCBDD.CustomReporter
         public string StepType { get; }
         public string Name { get; }
         public bool Pass { get => _stepError == null;  }
+
         private ReportStepError _stepError;
+
         public ReportStepError StepError { get => _stepError; }
         public ReportStep(StepInfo stepInfo)
         {

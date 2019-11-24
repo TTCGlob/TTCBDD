@@ -12,10 +12,12 @@ namespace TTCBDD.CustomReporter
         public string Name { get; }
         public string Description { get; }
         public string[] Tags { get; }
+        public bool Pass => Steps.All(s => s.Pass);
+        public int stepsPassed => Steps.Where(s => s.Pass).Count();
+        public int stepsFailed => Steps.Where(s => !s.Pass).Count();
         public List<ReportStep> Steps { get; }
         private Exception TestException;
-        public bool Pass => Steps.All(s => s.Pass);
-
+       
         public ReportScenario(string Name, string Description, string[] Tags)
         {
             this.Name = Name;
