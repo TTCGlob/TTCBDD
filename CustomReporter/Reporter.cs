@@ -18,7 +18,7 @@ namespace TTCBDD.CustomReporter
         public int scenariosPassed => Features.Sum(f => f.scenariosPassed);
         public int scenariosFailed => Features.Sum(f => f.scenariosFailed);
         public int stepsPassed => Features.Sum(f => f.stepsPassed);
-        public int stepssFailed => Features.Sum(f => f.stepsFailed);
+        public int stepsFailed => Features.Sum(f => f.stepsFailed);
 
         public List<ReportFeature> Features { get; }
         public Reporter(string OutputPath)
