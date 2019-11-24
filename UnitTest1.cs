@@ -98,6 +98,15 @@ namespace TTCBDD
                 .Execute(res => braeburn.id = res.Data.id);
             Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
         }
+        [Test]
+        public void TestEmptyResult()
+        {
+            var response = new RestCall<List<Company>>(Method.GET, "http://192.168.2.73:3000/", "/companies")
+                .Where("id >= 2")
+                .Where("id <= 4")
+                .Execute();
+
+        }
         //[Test]
         [Obsolete]
         public void TestRestFlow()

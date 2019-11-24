@@ -172,6 +172,7 @@
     <Compile Include="ComponentHelper\WindowHelper.cs" />
     <Compile Include="Configuration\AppConfigReader.cs" />
     <Compile Include="Configuration\BrowserType.cs" />
+    <Compile Include="CustomException\NoDataParsedException.cs" />
     <Compile Include="CustomException\NoKeyWordFoundException.cs" />
     <Compile Include="CustomException\NoSuitableDriverFound.cs" />
     <Compile Include="ExcelReader\ExcelReaderHelper.cs" />

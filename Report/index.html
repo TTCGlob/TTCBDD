@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>22/11/2019 14:51:41 New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>25/11/2019 10:41:24 AM New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -123,10 +123,10 @@
                     <canvas id='parent-analysis' width='100' height='80'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span><span class='strong'>1</span> test(s) passed</span>
+                    <span><span class='strong'>0</span> test(s) passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong'>0</span> test(s) failed, <span class='strong'>0</span> others
+                    <span class='strong'>1</span> test(s) failed, <span class='strong'>0</span> others
                 </div>
             </div>
         </div>
@@ -138,10 +138,10 @@
                         <canvas id='child-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>1</span> step(s) passed</span>
+                        <span><span class='strong'>0</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
-                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
+                        <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
                     </div>
                 </div>
             </div>
@@ -153,10 +153,10 @@
                         <canvas id='grandchild-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>4</span> step(s) passed</span>
+                        <span><span class='strong'>1</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
-                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
+                        <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
                     </div>
                 </div>
             </div>
@@ -170,38 +170,46 @@
             <ul id='test-collection' class='test-collection'>
 
 
-                    <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='1'>
+                    <li class='test displayed active has-leaf fail' status='fail' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>CompaniesDB</span>
-                            <span class='test-time'>22/11/2019 14:51:41</span>
-                            <span class='test-status right pass'>Pass</span>
+                            <span class='test-name'>Rest Call Class Test</span>
+                            <span class='test-time'>25/11/2019 10:41:24 AM</span>
+                            <span class='test-status right fail'>Fail</span>
                         </div>
                         <div class='test-content hide'>
-                                    <div class='scenario node' test-id='2' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:00.6221401</span>
+                                    <div class='scenario node' test-id='2' status='fail'>
+                                        <span class='scenario-duration right label'>00:00:01.5332308</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
-                                            Company changes address
+                                            Updating employee salary
 
                                             
                                         </div>
                                             <ul class='steps'>
                                                     <li test-id='3' class='node given pass' status='given pass'>
                                                         <b>Given</b>
-                                                        User accesses API at "http://192.168.0.114:3000"
+                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
                                                                                                                                                                     </li>
-                                                    <li test-id='4' class='node given pass' status='given pass'>
-                                                        <b>Given</b>
-                                                        User accesses company with ID 1 at "/companies/{id}"
-                                                                                                                                                                    </li>
-                                                    <li test-id='5' class='node when pass' status='when pass'>
+                                                    <li test-id='4' class='node when fail' status='when fail'>
                                                         <b>When</b>
-                                                        User changes the company 1 address and submits it to "/companies/{id}"
-                                                                                                                                                                    </li>
-                                                    <li test-id='6' class='node then pass' status='then pass'>
-                                                        <b>Then</b>
-                                                        The company 1 should have a new address
-                                                                                                                                                                    </li>
+                                                        User accesses employee "98370"
+                                                                                                                                                                            <div class='pre'>Error from: TechTalk.SpecFlow
+Error Details: TTCBDD.CustomException.NoDataParsedException: The request for http://dummy.restapiexample.com/api/v1/employee/98370 has returned data that has not been deserialized into TTCBDD.PageObject.Employee
+   at TTCBDD.APIObjects.RestCall`1.Execute() in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\APIObjects\RestCall.cs:line 91
+   at TTCBDD.APIObjects.RestCall`1.Data() in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\APIObjects\RestCall.cs:line 107
+   at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserAccessesEmployee(String id) in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\StepDefinition\RestCallClassTestSteps.cs:line 48
+   at lambda_method(Closure , IContextManager , String )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 69
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 411
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 316
+Stacktrace:    at TTCBDD.APIObjects.RestCall`1.Execute() in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\APIObjects\RestCall.cs:line 91
+   at TTCBDD.APIObjects.RestCall`1.Data() in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\APIObjects\RestCall.cs:line 107
+   at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserAccessesEmployee(String id) in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\StepDefinition\RestCallClassTestSteps.cs:line 48
+   at lambda_method(Closure , IContextManager , String )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 69
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 411
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 316</div>
+                                                    </li>
                                             </ul>
                                     </div>
 
@@ -282,25 +290,25 @@
                 <div class='col s2'>
                     <div class='card-panel r'>
                         Steps
-                        <div class='panel-lead'>4</div>
+                        <div class='panel-lead'>2</div>
                     </div>
                 </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>22/11/2019 14:51:41</div>
+                    <div class='panel-lead'>25/11/2019 10:41:24 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>22/11/2019 14:51:45</div>
+                    <div class='panel-lead'>25/11/2019 10:41:28 AM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:03.4918747</div>
+                    <div class='panel-lead'>00:00:03.4491123</div>
                 </div>
             </div>
 
@@ -319,23 +327,23 @@
 
 		<script>
 			var statusGroup = {
-			    passParent: 1,
-			    failParent: 0,
+			    passParent: 0,
+			    failParent: 1,
 			    fatalParent: 0,
 			    errorParent: 0,
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 1,
-			    failChild: 0,
+			    passChild: 0,
+			    failChild: 1,
 			    fatalChild: 0,
 			    errorChild: 0,
 			    warningChild: 0,
 			    skipChild: 0,
 			    infoChild: 0,
 				
-			    passGrandChild: 4,
-			    failGrandChild: 0,
+			    passGrandChild: 1,
+			    failGrandChild: 1,
 			    fatalGrandChild: 0,
 			    errorGrandChild: 0,
 			    warningGrandChild: 0,
