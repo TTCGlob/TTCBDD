@@ -10,7 +10,7 @@ Scenario: Get an employee
 @Read
 Scenario: Add a new random employee
 	Given User accesses employees API at "http://dummy.restapiexample.com/api/v1"
-		And User creates a new employee
+	And User creates a new employee
 	When User adds the employee to the database
 	Then The employee is present in the employees list
 

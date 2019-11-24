@@ -104,7 +104,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.Given("User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
-  testRunner.And("User creates a new employee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User creates a new employee", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.When("User adds the employee to the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15

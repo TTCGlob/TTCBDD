@@ -72,7 +72,7 @@ namespace TTCBDD.GeneralHook
         public void InsertReportingSteps(ScenarioContext scenarioContext)
         {
 
-            Console.WriteLine($"This step has error: {scenarioContext.TestError}");
+            //Console.WriteLine($"This step has error: {scenarioContext.TestError}");
             //    //var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
             var stepInfo = scenarioContext.StepContext.StepInfo;
             var stepStatus = scenarioContext.ScenarioExecutionStatus;
@@ -119,7 +119,7 @@ namespace TTCBDD.GeneralHook
             //    Logger.Error("It was of type:" + error.GetType().Name);
             //}
 
-            Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error: {scenarioContext.TestError}");
+            //Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error: {scenarioContext.TestError}");
         }
 
         [AfterTestRun]
