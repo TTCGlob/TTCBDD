@@ -9,45 +9,47 @@ namespace TTCBDD.CustomReporter
 {
     public class ReportFeature
     {
-        public string Name { get; }
-        public string Description { get; }
-        public bool Pass => Scenarios.All(s => s.Pass);
+        public string name { get; }
+        public string description { get; }
+        
+        private DateTime start;
+        private DateTime end;
+        public TimeSpan duration { get => end.Subtract(start); }
 
-        public int scenariosPassed => Scenarios.Where(s => s.Pass).Count();
-        public int scenariosFailed => Scenarios.Where(s => !s.Pass).Count();
-        public int stepsPassed => Scenarios.Sum(s => s.stepsPassed);
-        public int stepsFailed => Scenarios.Sum(s => s.stepsFailed);
+        public int scenariosPassed => scenarios.Where(s => s.Pass).Count();
+        public int scenariosFailed => scenarios.Where(s => !s.Pass).Count();
+        public int stepsPassed => scenarios.Sum(s => s.stepsPassed);
+        public int stepsFailed => scenarios.Sum(s => s.stepsFailed);
+        public bool passed => scenarios.All(s => s.Pass);
 
-        public List<ReportScenario> Scenarios { get; } = new List<ReportScenario>();
-        public ReportFeature(string Name, string Description)
+        public List<ReportScenario> scenarios { get; } = new List<ReportScenario>();
+
+        public ReportFeature(FeatureContext featureContext)
         {
-            this.Name = Name;
-            this.Description = Description;
-        }
-        public ReportFeature(FeatureInfo featureInfo)
-        {
-            Name = featureInfo.Title;
-            Description = featureInfo.Description;
+            name = featureContext.FeatureInfo.Title;
+            start = featureContext.Get<DateTime>("featureStart");
+            description = featureContext.FeatureInfo.Description;
         }
 
         public ReportFeature AddScenario(ReportScenario scenario)
         {
-            Scenarios.Add(scenario);
+            scenarios.Add(scenario);
             return this;
         }
-        public ReportFeature AddScenario(ScenarioInfo scenarioInfo)
+
+        public ReportFeature AddStep(ReportStep reportStep)
         {
-            Scenarios.Add(new ReportScenario(scenarioInfo));
-            return this;
-        }
-        public ReportFeature AddStep(ReportStep step)
-        {
-            Scenarios.Last().AddStep(step);
+            scenarios.Last().AddStep(reportStep);
             return this;
         }
         public ReportFeature Fail(ReportStepError stepError)
         {
-            Scenarios.Last().Fail(stepError);
+            scenarios.Last().Fail(stepError);
+            return this;
+        }
+        public ReportFeature End()
+        {
+            end = DateTime.Now;
             return this;
         }
     }

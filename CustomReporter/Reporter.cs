@@ -13,41 +13,52 @@ namespace TTCBDD.CustomReporter
     public class Reporter
     {
         private string OutputPath;
-        public int featuresPassed => Features.Where(f => f.Pass).Count();
-        public int featuresFailed => Features.Where(f => !f.Pass).Count();
-        public int scenariosPassed => Features.Sum(f => f.scenariosPassed);
-        public int scenariosFailed => Features.Sum(f => f.scenariosFailed);
-        public int stepsPassed => Features.Sum(f => f.stepsPassed);
-        public int stepsFailed => Features.Sum(f => f.stepsFailed);
+        public int featuresPassed => features.Where(f => f.passed).Count();
+        public int featuresFailed => features.Where(f => !f.passed).Count();
+        public int scenariosPassed => features.Sum(f => f.scenariosPassed);
+        public int scenariosFailed => features.Sum(f => f.scenariosFailed);
+        public int stepsPassed => features.Sum(f => f.stepsPassed);
+        public int stepsFailed => features.Sum(f => f.stepsFailed);
 
-        public List<ReportFeature> Features { get; }
+        public List<ReportFeature> features { get; } = new List<ReportFeature>();
         public Reporter(string OutputPath)
         {
             this.OutputPath = OutputPath;
-            Features = new List<ReportFeature>();
         }
-        public Reporter AddFeature(FeatureInfo featureInfo)
+        public Reporter AddFeature(ReportFeature reportFeature)
         {
-            Features.Add(new ReportFeature(featureInfo));
+            features.Add(reportFeature);
             return this;
         }
 
-        public Reporter AddScenario(ScenarioInfo scenarioInfo)
+        public Reporter AddScenario(ReportScenario reportScenario)
         {
-            Features.Last().AddScenario(scenarioInfo);
+            features.Last().AddScenario(reportScenario);
             return this;
         }
-        public Reporter AddStep(StepInfo stepInfo, ScenarioExecutionStatus status)
+        public Reporter AddStep(ScenarioContext scenarioContext)
         {
-            var step = new ReportStep(stepInfo);
-            Features.Last().AddStep(step);
+            features.Last().AddStep(new ReportStep(scenarioContext));
             return this;
         }
         public Reporter Fail(ReportStepError stepError)
         {
-            Features.Last().Fail(stepError);
+            features.Last().Fail(stepError);
             return this;
         }
+
+        public Reporter EndFeature()
+        {
+            features.Last().End();
+            return this;
+        }
+
+        public Reporter EndScenario()
+        {
+            features.Last().scenarios.Last().End();
+            return this;
+        }
+
         public void Serialize()
         {
             var serializer = new JsonSerializer();

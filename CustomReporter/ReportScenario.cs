@@ -9,37 +9,39 @@ namespace TTCBDD.CustomReporter
 {
     public class ReportScenario
     {
-        public string Name { get; }
-        public string Description { get; }
+        public string name { get; }
+        public string description { get; }
         public string[] Tags { get; }
-        public bool Pass => Steps.All(s => s.Pass);
-        public int stepsPassed => Steps.Where(s => s.Pass).Count();
-        public int stepsFailed => Steps.Where(s => !s.Pass).Count();
-        public List<ReportStep> Steps { get; }
-        private Exception TestException;
-       
-        public ReportScenario(string Name, string Description, string[] Tags)
+        private DateTime start;
+        private DateTime end;
+        public TimeSpan duration { get => end.Subtract(start); }
+        public bool Pass => steps.All(s => s.pass);
+        public int stepsPassed => steps.Where(s => s.pass).Count();
+        public int stepsFailed => steps.Where(s => !s.pass).Count();
+        public List<ReportStep> steps { get; } = new List<ReportStep>();
+        private Exception testException;
+
+        public ReportScenario(ScenarioContext scenarioContext)
         {
-            this.Name = Name;
-            this.Description = Description;
-            this.Tags = Tags;
-        }
-        public ReportScenario(ScenarioInfo scenarioInfo)
-        {
-            Name = scenarioInfo.Title;
-            Description = scenarioInfo.Description;
-            Tags = scenarioInfo.Tags;
-            Steps = new List<ReportStep>();
+            name = scenarioContext.ScenarioInfo.Title;
+            description = scenarioContext.ScenarioInfo.Description;
+            Tags = scenarioContext.ScenarioInfo.Tags;
+            start = scenarioContext.Get<DateTime>("scenarioStart");
         }
 
-        public ReportScenario AddStep(ReportStep step)
+        public ReportScenario AddStep(ReportStep reportStep)
         {
-            Steps.Add(step);
+            steps.Add(reportStep);
             return this;
         }
         public ReportScenario Fail(ReportStepError stepError)
         {
-            Steps.Last().Fail(stepError);
+            steps.Last().Fail(stepError);
+            return this;
+        }
+        public ReportScenario End()
+        {
+            end = DateTime.Now;
             return this;
         }
     }

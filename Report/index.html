@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>25/11/2019 10:22:07 AM New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>25/11/2019 2:00:55 PM New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -138,7 +138,7 @@
                         <canvas id='child-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>6</span> step(s) passed</span>
+                        <span><span class='strong'>5</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
                         <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
@@ -153,7 +153,7 @@
                         <canvas id='grandchild-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>25</span> step(s) passed</span>
+                        <span><span class='strong'>21</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
                         <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
@@ -173,12 +173,12 @@
                     <li class='test displayed active has-leaf fail' status='fail' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
                             <span class='test-name'>Rest Call Class Test</span>
-                            <span class='test-time'>25/11/2019 10:22:07 AM</span>
+                            <span class='test-time'>25/11/2019 2:00:55 PM</span>
                             <span class='test-status right fail'>Fail</span>
                         </div>
                         <div class='test-content hide'>
                                     <div class='scenario node' test-id='2' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:02.9372439</span>
+                                        <span class='scenario-duration right label'>00:00:03.1379457</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             Add a new random employee
@@ -205,7 +205,7 @@
                                             </ul>
                                     </div>
                                     <div class='scenario node' test-id='7' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:02.5543410</span>
+                                        <span class='scenario-duration right label'>00:00:04.8512785</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             Add new employee and then delete them
@@ -232,7 +232,7 @@
                                             </ul>
                                     </div>
                                     <div class='scenario node' test-id='12' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:02.5782494</span>
+                                        <span class='scenario-duration right label'>00:00:03.4171927</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             Add new employee and then delete them
@@ -259,7 +259,7 @@
                                             </ul>
                                     </div>
                                     <div class='scenario node' test-id='17' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:00.6110993</span>
+                                        <span class='scenario-duration right label'>00:00:00.6897100</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             Get an employee
@@ -282,10 +282,10 @@
                                             </ul>
                                     </div>
                                     <div class='scenario node' test-id='21' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:25.9625989</span>
+                                        <span class='scenario-duration right label'>00:00:06.6086472</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
-                                            Giving employees a percentage raise
+                                            Updating employee salary
 
                                             
                                         </div>
@@ -296,20 +296,20 @@
                                                                                                                                                                     </li>
                                                     <li test-id='23' class='node when pass' status='when pass'>
                                                         <b>When</b>
-                                                        User retrieves 15 employees
+                                                        User accesses employee "1"
                                                                                                                                                                     </li>
                                                     <li test-id='24' class='node when pass' status='when pass'>
                                                         <b>When</b>
-                                                        User raises all their salaries by 15%
+                                                        User updates employee "1" with new salary "999"
                                                                                                                                                                     </li>
                                                     <li test-id='25' class='node then pass' status='then pass'>
                                                         <b>Then</b>
-                                                        This change is reflected in the database
+                                                        The new salary "999" is reflected in the database
                                                                                                                                                                     </li>
                                             </ul>
                                     </div>
-                                    <div class='scenario node' test-id='26' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:01.2717679</span>
+                                    <div class='scenario node' test-id='26' status='fail'>
+                                        <span class='scenario-duration right label'>00:00:00.9254422</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             Updating employee salary
@@ -323,36 +323,9 @@
                                                                                                                                                                     </li>
                                                     <li test-id='28' class='node when pass' status='when pass'>
                                                         <b>When</b>
-                                                        User accesses employee "1"
-                                                                                                                                                                    </li>
-                                                    <li test-id='29' class='node when pass' status='when pass'>
-                                                        <b>When</b>
-                                                        User updates employee "1" with new salary "999"
-                                                                                                                                                                    </li>
-                                                    <li test-id='30' class='node then pass' status='then pass'>
-                                                        <b>Then</b>
-                                                        The new salary "999" is reflected in the database
-                                                                                                                                                                    </li>
-                                            </ul>
-                                    </div>
-                                    <div class='scenario node' test-id='31' status='fail'>
-                                        <span class='scenario-duration right label'>00:00:00.7339864</span>
-                                        <div class='scenario-desc'>
-                                            <b>Scenario</b>
-                                            Updating employee salary
-
-                                            
-                                        </div>
-                                            <ul class='steps'>
-                                                    <li test-id='32' class='node given pass' status='given pass'>
-                                                        <b>Given</b>
-                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
-                                                                                                                                                                    </li>
-                                                    <li test-id='33' class='node when pass' status='when pass'>
-                                                        <b>When</b>
                                                         User accesses employee "98370"
                                                                                                                                                                     </li>
-                                                    <li test-id='34' class='node when fail' status='when fail'>
+                                                    <li test-id='29' class='node when fail' status='when fail'>
                                                         <b>When</b>
                                                         User updates employee "98370" with new salary "999"
                                                                                                                                                                             <div class='pre'>Error from: TechTalk.SpecFlow
@@ -442,31 +415,31 @@ Stacktrace:    at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEm
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Scenarios</span>                     <div class='panel-lead'>7</div>
+ <span>Scenarios</span>                     <div class='panel-lead'>6</div>
                 </div>
             </div>
                 <div class='col s2'>
                     <div class='card-panel r'>
                         Steps
-                        <div class='panel-lead'>26</div>
+                        <div class='panel-lead'>22</div>
                     </div>
                 </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>25/11/2019 10:22:07 AM</div>
+                    <div class='panel-lead'>25/11/2019 2:00:55 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>25/11/2019 10:22:46 AM</div>
+                    <div class='panel-lead'>25/11/2019 2:01:16 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:38.5724099</div>
+                    <div class='panel-lead'>00:00:21.5391873</div>
                 </div>
             </div>
 
@@ -492,7 +465,7 @@ Stacktrace:    at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEm
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 6,
+			    passChild: 5,
 			    failChild: 1,
 			    fatalChild: 0,
 			    errorChild: 0,
@@ -500,7 +473,7 @@ Stacktrace:    at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEm
 			    skipChild: 0,
 			    infoChild: 0,
 				
-			    passGrandChild: 25,
+			    passGrandChild: 21,
 			    failGrandChild: 1,
 			    fatalGrandChild: 0,
 			    errorGrandChild: 0,

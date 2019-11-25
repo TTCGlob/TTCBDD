@@ -9,18 +9,24 @@ namespace TTCBDD.CustomReporter
 {
     public class ReportStep
     {
-        public string StepType { get; }
-        public string Name { get; }
-        public bool Pass { get => _stepError == null;  }
+        public string stepType { get; }
+        public string name { get; }
+        public bool pass { get => _stepError == null;  }
+        private DateTime start;
+        private DateTime end;
+        public TimeSpan duration { get => end.Subtract(start); }
 
         private ReportStepError _stepError;
-
         public ReportStepError StepError { get => _stepError; }
-        public ReportStep(StepInfo stepInfo)
+
+        public ReportStep(ScenarioContext scenarioContext)
         {
-            StepType = stepInfo.StepDefinitionType.ToString();
-            Name = stepInfo.Text;
+            stepType = scenarioContext.StepContext.StepInfo.StepDefinitionType.ToString();
+            name = scenarioContext.StepContext.StepInfo.Text;
+            start = scenarioContext.Get<DateTime>("stepStart");
+            end = scenarioContext.Get<DateTime>("stepEnd");
         }
+
         public ReportStep Fail(ReportStepError stepError)
         {
             _stepError = stepError;

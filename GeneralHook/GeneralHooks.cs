@@ -59,7 +59,8 @@ namespace TTCBDD.GeneralHook
         {
             //Create dynamic feature name
             featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title, featureContext.FeatureInfo.Description);
-            Reporter.AddFeature(featureContext.FeatureInfo);
+            featureContext["featureStart"] = DateTime.Now;
+            Reporter.AddFeature(new ReportFeature(featureContext));
             StaticLogger.Info($"Feature: {featureContext.FeatureInfo.Title}");
         }
 
@@ -67,13 +68,15 @@ namespace TTCBDD.GeneralHook
         public static void BeforeScenario(ScenarioContext scenarioContext)
         {
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
-            Reporter.AddScenario(scenarioContext.ScenarioInfo);
+            scenarioContext["scenarioStart"] = DateTime.Now;
+            Reporter.AddScenario(new ReportScenario(scenarioContext));
             StaticLogger.Info($"Scenario: {scenarioContext.ScenarioInfo.Title}");
         }
         [BeforeStep]
         public void BeforeStep(ScenarioContext scenarioContext)
         {
             Logger.Info($"Step: {scenarioContext.StepContext.StepInfo.StepDefinitionType}: {scenarioContext.StepContext.StepInfo.Text}");
+            scenarioContext["stepStart"] = DateTime.Now;
         }
         [AfterStep]
         public static void InsertReportingSteps(ScenarioContext scenarioContext)
@@ -81,7 +84,8 @@ namespace TTCBDD.GeneralHook
 
             var stepInfo = scenarioContext.StepContext.StepInfo;
             var stepStatus = scenarioContext.ScenarioExecutionStatus;
-            Reporter.AddStep(stepInfo, stepStatus);
+            scenarioContext["stepEnd"] = DateTime.Now;
+            Reporter.AddStep(scenarioContext);
             ExtentTest test;
             switch (stepInfo.StepDefinitionType)
             {
@@ -125,13 +129,17 @@ namespace TTCBDD.GeneralHook
             //    Logger.Error("An error ocurred:" + error.Message);
             //    Logger.Error("It was of type:" + error.GetType().Name);
             //}
-
+            Reporter.EndScenario();
             if (scenarioContext.TestError != null)
             {
                 StaticLogger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error(s): {scenarioContext.TestError}");
             }
         }
-
+        [AfterFeature]
+        public static void AfterFeature(FeatureContext featureContext)
+        {
+            Reporter.EndFeature();
+        }
         [AfterTestRun]
         public static void AfterTestRun()
         {

@@ -12,7 +12,7 @@ namespace TTCBDD.PageObject
         public string companyName { get; set; }
         public decimal netWorth { get; set; }
         public Address address { get; set; }
-        public List<Employee> employees { get; set; }
-        public List<Shareholder> shareholders { get; set; }
+        public List<Employee> employees { get; set; } = new List<Employee>();
+        public List<Shareholder> shareholders { get; set; } = new List<Shareholder>();
     }
 }
