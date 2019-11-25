@@ -154,6 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIObjects\RestExtensions.cs" />
     <Compile Include="BaseClasses\BaseClass.cs" />
     <Compile Include="BaseClasses\PageBase.cs" />
     <Compile Include="ComponentHelper\AssertHelper.cs" />
