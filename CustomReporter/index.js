@@ -16,6 +16,7 @@ Vue.component("scenario-container", {
                 v-for="step in scenario.steps"
                 v-bind:key="step.key"
                 v-bind:step="step"
+                v-bind:class="[{passed: step.pass}, {failed: !step.pass}]"
             ></step-container>
         </div>
     </div>`,
@@ -33,7 +34,7 @@ Vue.component("step-container", {
     props: ["step"],
     template:
     `<div class="step-container" v-on:click.stop="stepClick()">
-        <p><b>{{step.stepType}}</b> {{step.name}}</p>
+        <b>{{step.stepType}}</b> {{step.name}}
         <ul v-if="active">
             <li>Passed: {{step.pass}}</li>
             <li>Duration: {{step.duration}}</li>

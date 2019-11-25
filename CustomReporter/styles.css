@@ -1,4 +1,20 @@
 .scenario-container {
-    border-bottom: 2px solid black;
+    border-bottom: 5px solid black;
     border-collapse: collapse;
+}
+
+.passed {
+    background-color: lightgreen;
+    color: darkgreen;
+    border-bottom: 2px solid darkgreen;
+}
+
+.failed {
+    background-color: tomato;
+    color: darkred;
+    border-bottom: 2px solid darkred;
+}
+.step-container {
+    margin-bottom: 0px;
+    padding: 5px;
 }
