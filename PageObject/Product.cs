@@ -13,5 +13,13 @@ namespace TTCBDD.PageObject
         public string product_name { get; set; }
         public int stock_level { get; set; }
         public DateTime last_restocked { get; set; }
+
+        public bool Equals(Product other)
+        {
+            return id == other.id
+                   && product_name.Equals(other.product_name)
+                   && stock_level == other.stock_level
+                   && last_restocked.CompareTo(other.last_restocked) == 0;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using FluentAssertions;
 using RestSharp;
@@ -29,6 +30,19 @@ namespace TTCBDD.StepDefinition
             context.Add("url", url);
         }
 
+        [Given(@"User creates new product")]
+        public void GivenUserCreatesNewProduct()
+        {
+            var product = new Product()
+            {
+                product_name = "Eggs Size 8",
+                stock_level = 3500,
+                last_restocked = DateTime.UtcNow
+            };
+            context.Add("product", product);
+        }
+
+
         [When(@"User accesses products labeled fresh")]
         public void WhenUserAccessesProductsLabeledFresh()
         {
@@ -47,12 +61,34 @@ namespace TTCBDD.StepDefinition
             context.Add("names", names);
         }
 
+        [When(@"User posts this to ""(.*)""")]
+        public void WhenUserPostsThisTo(string resource)
+        {
+            var product = context.Get<Product>("product");
+            context["resource"] = resource;
+            var response = new RestCall<Product>(Method.POST, context.GetUrl(), resource)
+                .AddPayload(product)
+                .Execute(res => product.id = res.Data.id)
+                .StatusCode.Should().Be(HttpStatusCode.Created);
+            context["product"] = product;
+        }
+
+
         [Then(@"All the fresh products are displayed")]
         public void ThenAllTheFreshProductsAreDisplayed()
         {
             var names = context.Get<IEnumerable<string>>("names");
             names.ForEach(n => Console.WriteLine(n));
             names.Should().NotBeEmpty();
+        }
+
+        [Then(@"The product is visible in the database")]
+        public void ThenTheProductIsVisibleInTheDatabase()
+        {
+            var storedProduct = context.Get<Product>("product");
+            var retrievedProduct = new RestCall<Product>(Method.GET, context.GetUrl(), "products/{id}")
+                .AddUrlParameter("id", storedProduct.id.ToString())
+                .Data().Equals(storedProduct).Should().BeTrue();
         }
 
     }

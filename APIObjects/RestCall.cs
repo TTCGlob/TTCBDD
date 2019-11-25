@@ -45,6 +45,11 @@ namespace TTCBDD.APIObjects
             request.AddUrlSegment(name, segment);
             return this;
         }
+        public RestCall<T> AddUrlParameter(string name, int segment)
+        {
+            request.AddUrlSegment(name, segment.ToString());
+            return this;
+        }
 
         public RestCall<T> AddPayload(T payload)
         {
