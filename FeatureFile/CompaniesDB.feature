@@ -1,8 +1,11 @@
 ﻿Feature: CompaniesDB
 	Access the companies database
 
+	# CJ - http://192.168.2.74:3000
+	# GW - http://192.168.0.114:3000
+
 Background:
-	Given User accesses API at "http://192.168.0.114:3000"
+	Given User accesses API at "http://192.168.2.74:3000"
 
 @mytag
 Scenario: Retrieve a company
