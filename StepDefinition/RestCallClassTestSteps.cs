@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using log4net;
 using RestSharp;
 using TechTalk.SpecFlow;
 using TTCBDD.APIObjects;
@@ -15,6 +16,7 @@ namespace TTCBDD.StepDefinition
     public class RestCallClassTestSteps
     {
         ScenarioContext context;
+        private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(RestCallClassTestSteps));
         public RestCallClassTestSteps(ScenarioContext _context)
         {
             context = _context;
@@ -36,7 +38,9 @@ namespace TTCBDD.StepDefinition
                 salary = rand.Next(500, 500000).ToString(),
                 age = rand.Next(20, 100).ToString()
             };
+            
             context.Add("employee", employee);
+            Logger.Debug($"Created employee {employee.name} [id: {employee.id}]");
         }
 
         #endregion
@@ -49,6 +53,7 @@ namespace TTCBDD.StepDefinition
                 .AddUrlParameter("id", id)
                 .Data();
             context.Add("employee", employee);
+            Logger.Debug($"Accessed employee {employee.name} [id: {employee.id}]");
         }
 
         [When(@"User creates new employee with name: ""(.*)"", age: ""(.*)"", and salary ""(.*)""")]
@@ -64,16 +69,19 @@ namespace TTCBDD.StepDefinition
                 .AddPayload(employee)
                 .Data().id;
             context.Add("employee", employee);
+            Logger.Debug($"Created employee {employee.name} [id: {employee.id}]");
         }
         [When(@"User updates employee ""(.*)"" with new salary ""(.*)""")]
         public void WhenUserUpdatesEmployeeWithNewSalary(string id, string salary)
         {
-            context.Get<Employee>("employee").salary = salary;
+            var employee = context.Get<Employee>("employee");
+            employee.salary = salary;
             _ = new RestCall<Employee>(Method.PUT, context.Get<string>("url"), "update/{id}")
                 .AddUrlParameter("id", id)
-                .AddPayload(context.Get<Employee>("employee"))
+                .AddPayload(employee)
                 .Execute()
                 .Data;
+            Logger.Debug($"Updated employee {employee.name} [id: {employee.id}] with new salary {salary}");
         }
         [When(@"User retrieves (.*) employees")]
         public void WhenUserRetrievesEmployees(int numEmployees)
@@ -83,6 +91,7 @@ namespace TTCBDD.StepDefinition
                 .Data
                 .Take(numEmployees);
             context.Add("employees", employees);
+            Logger.Debug($"Retrieved {numEmployees} employees");
         }
         [When(@"User raises all their salaries by (.*)%")]
         public void WhenUserRaisesAllTheirSalariesBy(int raiseBy)
