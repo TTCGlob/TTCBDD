@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serialization;
 using TTCBDD.ComponentHelper;
+using TTCBDD.CustomException;
 
 namespace TTCBDD.APIObjects
 {
@@ -42,6 +43,11 @@ namespace TTCBDD.APIObjects
         public RestCall<T> AddUrlParameter(string name, string segment)
         {
             request.AddUrlSegment(name, segment);
+            return this;
+        }
+        public RestCall<T> AddUrlParameter(string name, int segment)
+        {
+            request.AddUrlSegment(name, segment.ToString());
             return this;
         }
 
@@ -91,7 +97,7 @@ namespace TTCBDD.APIObjects
         }
         public IRestResponse<T> Execute(Action<IRestResponse<T>> action)
         {
-            response = client.Execute<T>(request);
+            Execute();
             action(response);
             return response;
         }
@@ -102,7 +108,8 @@ namespace TTCBDD.APIObjects
         }
         public T Data()
         {
-            response = client.Execute<T>(request);
+            Execute();
+            if (response.Data == null) throw new NoDataParsedException($"The request for {response.ResponseUri} has returned data that has not been deserialized into {typeof(T)}");
             return response.Data;
         }
     }

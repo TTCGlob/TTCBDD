@@ -82,7 +82,10 @@ namespace TTCBDD
                 .Execute()
                 .Data;
             products.ForEach(product => Console.WriteLine($"Name: {product.product_name} - Stock level: {product.stock_level}"));
-            products.ForEach(p => p.Should());
+            products.ForEach(p => {
+                p.product_name.Should().Contain("Fresh");
+                p.stock_level.Should().Be(0);
+            });
         }
         [Test]
         public void TestProductPost()
@@ -97,6 +100,23 @@ namespace TTCBDD
                 .AddPayload(braeburn)
                 .Execute(res => braeburn.id = res.Data.id);
             Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
+        }
+        [Test]
+        public void TestEmptyResult()
+        {
+            var response = new RestCall<List<Company>>(Method.GET, "http://192.168.2.73:3000/", "/companies")
+                .Where("id >= 2")
+                .Where("id <= 4")
+                .Execute();
+        }
+
+        [Test]
+        public void TestDictDeserialize()
+        {
+            var data = new RestCall<Dictionary<string, object>>(Method.GET, "http://192.168.2.73:3000", "/products/{id}")
+                .AddUrlParameter("id", 1)
+                .Data();
+            data.Should().NotBeEmpty();
         }
         //[Test]
         [Obsolete]

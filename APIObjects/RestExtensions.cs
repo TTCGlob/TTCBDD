@@ -15,9 +15,15 @@ namespace TTCBDD.ComponentHelper
             return value;
         }
 
-        public static void Add<T>(this IDictionary<string, object> dict, string key, T value)
+        public static void StoreUrl(this IDictionary<string, object> dict, string url)
         {
-            dict.Add(key, value);
+            dict["url"] = url;
+        }
+
+        public static string GetUrl(this IDictionary<string, object> dict)
+        {
+            string url = (string)dict["url"];
+            return url;
         }
     }
 }
