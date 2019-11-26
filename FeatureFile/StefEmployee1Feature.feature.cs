@@ -18,20 +18,20 @@ namespace TTCBDD.FeatureFile
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Scenarios for tesing the products database")]
-    public partial class ScenariosForTesingTheProductsDatabaseFeature
+    [NUnit.Framework.DescriptionAttribute("StefEmployee1Feature")]
+    public partial class StefEmployee1FeatureFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "productsdb.feature"
+#line 1 "StefEmployee1Feature.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Scenarios for tesing the products database", "\tUsing dummy rest api running on the local network we can test query strings", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "StefEmployee1Feature", "\tTest RESTAPI using example website and targetting employee 1", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,43 +70,21 @@ namespace TTCBDD.FeatureFile
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Find all fresh produce")]
+        [NUnit.Framework.DescriptionAttribute("Confirm name of employee 1")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void FindAllFreshProduce()
+        public virtual void ConfirmNameOfEmployee1()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Find all fresh produce", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Confirm name of employee 1", null, new string[] {
                         "mytag"});
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("User accesses API at \"http://192.168.2.73:3000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have reached the endpoint: \"api/v1/employee\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("User accesses products labeled fresh", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
-  testRunner.And("Selects product names", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I call get method to get user information using id 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("All the fresh products are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create new product")]
-        public virtual void CreateNewProduct()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create new product", null, ((string[])(null)));
-#line 11
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line 12
- testRunner.Given("User accesses API at \"http://192.168.2.73:3000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 13
-  testRunner.And("User creates new product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
- testRunner.When("User posts this to \"/products\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
- testRunner.Then("The product is visible in the database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can confirm name is \"Scott\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
