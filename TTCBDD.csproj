@@ -198,6 +198,7 @@
     <Compile Include="PublicVar\PublicVar.cs" />
     <Compile Include="StepDefinition\CompaniesDB.cs" />
     <Compile Include="StepDefinition\CompaniesDB_Companies_CJSteps.cs" />
+    <Compile Include="StepDefinition\CompaniesDB_Reed.cs" />
     <Compile Include="StepDefinition\FluentAssertsAndContextInjection.cs" />
     <Compile Include="StepDefinition\LoggingExampleSteps.cs" />
     <Compile Include="StepDefinition\productsdb.cs" />
@@ -1291,6 +1292,7 @@
     <None Include="CustomDB\run.bat" />
     <None Include="FeatureFile\CompaniesDB.feature" />
     <None Include="FeatureFile\CompaniesDB_Companies_CJ.feature" />
+    <None Include="FeatureFile\CompaniesDB_Reed.feature" />
     <None Include="FeatureFile\Feature2.feature" />
     <None Include="FeatureFile\LoggingExample.feature" />
     <None Include="FeatureFile\productsdb.feature" />

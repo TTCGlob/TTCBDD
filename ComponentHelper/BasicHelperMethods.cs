@@ -47,5 +47,17 @@ namespace TTCBDD.ComponentHelper
                 return newSalary;
             };
         }
+
+        public static string RaiseSalary(string oldSalary, double raise)
+        {
+            double salary = double.Parse(oldSalary);
+            salary += salary * (raise / 100);
+            return Math.Round(salary, 2).ToString();
+        }
+
+        public static string RandomNumber(int high, int low = 0)
+        {
+            return new Random().Next(low, high).ToString();
+        }
     }
 }
