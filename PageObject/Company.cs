@@ -14,5 +14,33 @@ namespace TTCBDD.PageObject
         public Address address { get; set; }
         public List<Employee> employees { get; set; } = new List<Employee>();
         public List<Shareholder> shareholders { get; set; } = new List<Shareholder>();
+        public DateTime creationDate { get; set; }
+
+        public Company()
+        {
+            this.creationDate = DateTime.UtcNow;
+        }
+        public Company(string company_name = "", int company_id = 0)
+        {
+            this.id = company_id;
+            this.companyName = company_name;
+            this.creationDate = DateTime.UtcNow;
+        }
+        public bool Equals(Company other)
+        {
+            return this.id.Equals(other.id)
+                && this.companyName.Equals(other.companyName)
+                && this.netWorth.Equals(other.netWorth)
+                && this.address.Equals(other.address)
+                && this.employees.Equals(other.employees)
+                && this.shareholders.Equals(other.shareholders)
+                && this.creationDate.Equals(other.creationDate);
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {this.id} Name: {this.companyName} Net Worth: {this.netWorth} " +
+                $"Address: {this.address} Num Employees: {this.employees.Count}  Num Shareholders: {this.shareholders.Count} Creation Date: {creationDate}";
+        }
     }
 }

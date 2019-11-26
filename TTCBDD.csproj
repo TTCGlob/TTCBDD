@@ -1290,6 +1290,7 @@
     <None Include="FeatureFile\ReportingExample.feature" />
     <None Include="FeatureFile\RestCallFeature.feature" />
     <None Include="FeatureFile\RestFeature.feature" />
+    <None Include="FeatureFile\CompaniesDB_Products_CJ.feature" />
     <None Include="license" />
     <None Include="packages.config" />
     <None Include="Resources\ReadData.xls" />
