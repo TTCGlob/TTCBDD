@@ -3198,8 +3198,9 @@
     <Content Include="CustomDB\node_modules\yargs\lib\validation.js" />
     <Content Include="CustomDB\node_modules\yargs\lib\yerror.js" />
     <Content Include="CustomDB\node_modules\yargs\yargs.js" />
+    <Content Include="CustomReporter\index.js" />
     <Content Include="GeneralHook\extent-config.xml" />
-    <Content Include="CustomReporter\index.html" />
+    <Content Include="CustomReporter\template.html" />
     <Content Include="CustomReporter\index.ts" />
     <Content Include="CustomReporter\node_modules\typescript\CopyrightNotice.txt" />
     <Content Include="CustomReporter\node_modules\typescript\lib\cancellationToken.js" />

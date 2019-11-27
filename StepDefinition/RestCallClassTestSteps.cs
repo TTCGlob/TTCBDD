@@ -17,9 +17,9 @@ namespace TTCBDD.StepDefinition
     {
         ScenarioContext context;
         private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(RestCallClassTestSteps));
-        public RestCallClassTestSteps(ScenarioContext _context)
+        public RestCallClassTestSteps(ScenarioContext context)
         {
-            context = _context;
+            this.context = context;
         }
 
         #region Given

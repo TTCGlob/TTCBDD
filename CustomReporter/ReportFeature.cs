@@ -21,7 +21,7 @@ namespace TTCBDD.CustomReporter
         public int stepsPassed => scenarios.Sum(s => s.stepsPassed);
         public int stepsFailed => scenarios.Sum(s => s.stepsFailed);
         public bool passed => scenarios.All(s => s.Pass);
-
+        public int key { get; set; }
         public List<ReportScenario> scenarios { get; } = new List<ReportScenario>();
 
         public ReportFeature(FeatureContext featureContext)
@@ -33,6 +33,7 @@ namespace TTCBDD.CustomReporter
 
         public ReportFeature AddScenario(ReportScenario scenario)
         {
+            scenario.key = scenarios.Count();
             scenarios.Add(scenario);
             return this;
         }

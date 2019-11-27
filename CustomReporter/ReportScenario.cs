@@ -20,7 +20,7 @@ namespace TTCBDD.CustomReporter
         public int stepsFailed => steps.Where(s => !s.pass).Count();
         public List<ReportStep> steps { get; } = new List<ReportStep>();
         private Exception testException;
-
+        public int key { get; set; }
         public ReportScenario(ScenarioContext scenarioContext)
         {
             name = scenarioContext.ScenarioInfo.Title;
@@ -31,6 +31,7 @@ namespace TTCBDD.CustomReporter
 
         public ReportScenario AddStep(ReportStep reportStep)
         {
+            reportStep.key = steps.Count();
             steps.Add(reportStep);
             return this;
         }

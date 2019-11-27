@@ -33,16 +33,24 @@ namespace TTCBDD.GeneralHook
         }
 
         [BeforeTestRun]
+        public static void ConfigureCustomReporter()
+        {
+            var SolutionDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
+            var TemplatePath = Path.Combine(SolutionDirectory, @"CustomReporter");
+            ReportPath = Path.Combine(SolutionDirectory, @"Report");
+            Reporter = new Reporter(TemplatePath, ReportPath);
+        }
+
+        [BeforeTestRun]
         public static void BeforeTestRun()
         {
             string path1 = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
             string path = path1 + "Report\\index.html";
-            ReportPath = path;
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
             StaticLogger.Info(string.Format("Extent Report written to {0}", path));
+            var templatePath = Path.Combine(path1, "/CustomReporter/index.html");
             var ReportDir = Path.GetDirectoryName(ReportPath);
-            var JsonPath = Path.Combine(ReportDir, "report.json");
-            Reporter = new Reporter(JsonPath);
+
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
             htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
@@ -144,9 +152,9 @@ namespace TTCBDD.GeneralHook
         public static void AfterTestRun()
         {
             extent.Flush();
-            Reporter.Serialize();
-            var ReportDir = Path.GetDirectoryName(ReportPath);
-            var ScriptPath = Path.Combine(ReportDir, "script.js");
+            Reporter.WriteReport();
+            //Reporter.Serialize();
+            var ScriptPath = Path.Combine(ReportPath, "script.js");
             var jsString = File.ReadAllText(ScriptPath);
             var doc = new HtmlDocument();
             doc.Load(ReportPath);

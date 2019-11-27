@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TTC Global Report</title>
+		<link rel="stylesheet" type="text/css" href="./styles.css">
+	</head>
+	<body>
+		<div id="app">
+			<div id="feature-table">
+				<div id="feature-list">
+					<feature-row v-for="feature in features" v-bind:key="feature.key" v-bind:feature="feature" v-on:select="featureClick($event)"></feature-row>
+				</div>
+				<div id="scenario-list">
+					<scenario-container v-for="scenario in scenarios" v-bind:key="scenario.key" v-bind:scenario="scenario" v-bind:class="[{passed: scenario.Pass}, {failed: !scenario.Pass}]"></scenario-container>
+				</div>
+				<div id="feature-table-padding">
+					
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script id="script-data">const data = {"featuresPassed":2,"featuresFailed":0,"scenariosPassed":2,"scenariosFailed":0,"stepsPassed":7,"stepsFailed":0,"features":[{"name":"ReportingExample","description":"\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be able to make various calculations","duration":"00:00:00.0747640","scenariosPassed":1,"scenariosFailed":0,"stepsPassed":4,"stepsFailed":0,"passed":true,"key":0,"scenarios":[{"name":"Multiply two numbers","description":"\tIn order to check the multiplication function works","Tags":[],"duration":"00:00:00.0588409","Pass":true,"stepsPassed":4,"stepsFailed":0,"steps":[{"stepType":"Given","name":"I have entered 50 into my calculator","pass":true,"duration":"00:00:00.0039648","key":0,"StepError":null},{"stepType":"Given","name":"I have also entered 70 into my calculator","pass":true,"duration":"00:00:00.0009872","key":1,"StepError":null},{"stepType":"When","name":"I press the multiply key","pass":true,"duration":"00:00:00.0009977","key":2,"StepError":null},{"stepType":"Then","name":"the displayed result should be 3500","pass":true,"duration":"00:00:00.0110040","key":3,"StepError":null}],"key":0}]},{"name":"Rest Call Class Test","description":null,"duration":"00:00:01.1427044","scenariosPassed":1,"scenariosFailed":0,"stepsPassed":3,"stepsFailed":0,"passed":true,"key":1,"scenarios":[{"name":"Get an employee","description":null,"Tags":["Read"],"duration":"00:00:01.1417071","Pass":true,"stepsPassed":3,"stepsFailed":0,"steps":[{"stepType":"Given","name":"User accesses employees API at \"http://dummy.restapiexample.com/api/v1\"","pass":true,"duration":"00:00:00.0009973","key":0,"StepError":null},{"stepType":"When","name":"User accesses employee \"1\"","pass":true,"duration":"00:00:01.1357237","key":1,"StepError":null},{"stepType":"Then","name":"The employee record is displayed","pass":true,"duration":"00:00:00.0039890","key":2,"StepError":null}],"key":0}]}]}</script>
+		<script src="./index.js"></script>
+	</body>
+</html>

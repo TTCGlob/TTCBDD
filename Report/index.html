@@ -3,14 +3,14 @@
 <html>
 
     <head>
-    <meta charset='utf-8'>
-    <meta name='description' content=''>
-    <meta name='robots' content='noodp, noydir'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset='utf-8' />
+    <meta name='description' content='' />
+    <meta name='robots' content='noodp, noydir' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
 
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href='https://cdn.rawgit.com/anshooarora/extentreports-csharp/3b6cc04fd241b9782606e57fc5e84f0e42172c08/dist/css/extent.css' type='text/css' rel='stylesheet'>
+    <link href='https://cdn.rawgit.com/anshooarora/extentreports-csharp/3b6cc04fd241b9782606e57fc5e84f0e42172c08/dist/css/extent.css' type='text/css' rel='stylesheet' />
 
     <title>TTC Test Automation</title>
 
@@ -30,7 +30,7 @@
         <!-- slideout menu -->
         <ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
             <li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
-                        <li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
+                        <li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></i></a></li>
         </ul>
 
         <!-- report name -->
@@ -43,7 +43,7 @@
         <ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 
             <a>
-                <span class='suite-start-time label blue darken-3'>25/11/2019 2:00:55 PM New Zealand Standard Time</span>
+                <span class='suite-start-time label blue darken-3'>27/11/2019 1:38:36 PM New Zealand Standard Time</span>
             </a>
             <a>
                 <span class="label blue darken-3">3.1.0</span>
@@ -123,10 +123,10 @@
                     <canvas id='parent-analysis' width='100' height='80'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span><span class='strong'>0</span> test(s) passed</span>
+                    <span><span class='strong'>2</span> test(s) passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong'>1</span> test(s) failed, <span class='strong'>0</span> others
+                    <span class='strong'>0</span> test(s) failed, <span class='strong'>0</span> others
                 </div>
             </div>
         </div>
@@ -138,10 +138,10 @@
                         <canvas id='child-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>5</span> step(s) passed</span>
+                        <span><span class='strong'>2</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
-                        <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
+                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
                     </div>
                 </div>
             </div>
@@ -153,10 +153,10 @@
                         <canvas id='grandchild-analysis' width='100' height='80'></canvas>
                     </div>
                     <div class='block text-small'>
-                        <span><span class='strong'>21</span> step(s) passed</span>
+                        <span><span class='strong'>7</span> step(s) passed</span>
                     </div>
                     <div class='block text-small'>
-                        <span class='strong'>1</span> step(s) failed, <span class='strong'>0</span> others
+                        <span class='strong'>0</span> step(s) failed, <span class='strong'>0</span> others
                     </div>
                 </div>
             </div>
@@ -170,96 +170,53 @@
             <ul id='test-collection' class='test-collection'>
 
 
-                    <li class='test displayed active has-leaf fail' status='fail' bdd='bdd' test-id='1'>
+                    <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='1'>
                         <div class='test-heading'>
-                            <span class='test-name'>Rest Call Class Test</span>
-                            <span class='test-time'>25/11/2019 2:00:55 PM</span>
-                            <span class='test-status right fail'>Fail</span>
+                            <span class='test-name'>ReportingExample</span>
+                            <span class='test-time'>27/11/2019 1:38:36 PM</span>
+                            <span class='test-status right pass'>Pass</span>
                         </div>
                         <div class='test-content hide'>
                                     <div class='scenario node' test-id='2' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:03.1379457</span>
+                                        <span class='scenario-duration right label'>00:00:00.0568555</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
-                                            Add a new random employee
+                                            Multiply two numbers
 
                                             
+                                                <div class='pre'>	In order to check the multiplication function works</div>
                                         </div>
                                             <ul class='steps'>
                                                     <li test-id='3' class='node given pass' status='given pass'>
                                                         <b>Given</b>
-                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
+                                                        I have entered 50 into my calculator
                                                                                                                                                                     </li>
                                                     <li test-id='4' class='node given pass' status='given pass'>
                                                         <b>Given</b>
-                                                        User creates a new employee
+                                                        I have also entered 70 into my calculator
                                                                                                                                                                     </li>
                                                     <li test-id='5' class='node when pass' status='when pass'>
                                                         <b>When</b>
-                                                        User adds the employee to the database
+                                                        I press the multiply key
                                                                                                                                                                     </li>
                                                     <li test-id='6' class='node then pass' status='then pass'>
                                                         <b>Then</b>
-                                                        The employee is present in the employees list
+                                                        the displayed result should be 3500
                                                                                                                                                                     </li>
                                             </ul>
                                     </div>
-                                    <div class='scenario node' test-id='7' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:04.8512785</span>
-                                        <div class='scenario-desc'>
-                                            <b>Scenario</b>
-                                            Add new employee and then delete them
 
-                                            
-                                        </div>
-                                            <ul class='steps'>
-                                                    <li test-id='8' class='node given pass' status='given pass'>
-                                                        <b>Given</b>
-                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
-                                                                                                                                                                    </li>
-                                                    <li test-id='9' class='node when pass' status='when pass'>
-                                                        <b>When</b>
-                                                        User creates new employee with name: "stovetop", age: "69", and salary "300"
-                                                                                                                                                                    </li>
-                                                    <li test-id='10' class='node then pass' status='then pass'>
-                                                        <b>Then</b>
-                                                        The employee is present in the employees list
-                                                                                                                                                                    </li>
-                                                    <li test-id='11' class='node then pass' status='then pass'>
-                                                        <b>Then</b>
-                                                        The new employee is successfully deleted from the database
-                                                                                                                                                                    </li>
-                                            </ul>
-                                    </div>
-                                    <div class='scenario node' test-id='12' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:03.4171927</span>
-                                        <div class='scenario-desc'>
-                                            <b>Scenario</b>
-                                            Add new employee and then delete them
-
-                                            
-                                        </div>
-                                            <ul class='steps'>
-                                                    <li test-id='13' class='node given pass' status='given pass'>
-                                                        <b>Given</b>
-                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
-                                                                                                                                                                    </li>
-                                                    <li test-id='14' class='node when pass' status='when pass'>
-                                                        <b>When</b>
-                                                        User creates new employee with name: "stovetop", age: "12", and salary "500000"
-                                                                                                                                                                    </li>
-                                                    <li test-id='15' class='node then pass' status='then pass'>
-                                                        <b>Then</b>
-                                                        The employee is present in the employees list
-                                                                                                                                                                    </li>
-                                                    <li test-id='16' class='node then pass' status='then pass'>
-                                                        <b>Then</b>
-                                                        The new employee is successfully deleted from the database
-                                                                                                                                                                    </li>
-                                            </ul>
-                                    </div>
-                                    <div class='scenario node' test-id='17' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:00.6897100</span>
+                        </div>
+                    </li>
+                    <li class='test displayed active has-leaf pass' status='pass' bdd='bdd' test-id='7'>
+                        <div class='test-heading'>
+                            <span class='test-name'>Rest Call Class Test</span>
+                            <span class='test-time'>27/11/2019 1:38:36 PM</span>
+                            <span class='test-status right pass'>Pass</span>
+                        </div>
+                        <div class='test-content hide'>
+                                    <div class='scenario node' test-id='8' status='pass'>
+                                        <span class='scenario-duration right label'>00:00:01.1417071</span>
                                         <div class='scenario-desc'>
                                             <b>Scenario</b>
                                             Get an employee
@@ -267,80 +224,18 @@
                                             
                                         </div>
                                             <ul class='steps'>
-                                                    <li test-id='18' class='node given pass' status='given pass'>
+                                                    <li test-id='9' class='node given pass' status='given pass'>
                                                         <b>Given</b>
                                                         User accesses employees API at "http://dummy.restapiexample.com/api/v1"
                                                                                                                                                                     </li>
-                                                    <li test-id='19' class='node when pass' status='when pass'>
+                                                    <li test-id='10' class='node when pass' status='when pass'>
                                                         <b>When</b>
                                                         User accesses employee "1"
                                                                                                                                                                     </li>
-                                                    <li test-id='20' class='node then pass' status='then pass'>
+                                                    <li test-id='11' class='node then pass' status='then pass'>
                                                         <b>Then</b>
                                                         The employee record is displayed
                                                                                                                                                                     </li>
-                                            </ul>
-                                    </div>
-                                    <div class='scenario node' test-id='21' status='pass'>
-                                        <span class='scenario-duration right label'>00:00:06.6086472</span>
-                                        <div class='scenario-desc'>
-                                            <b>Scenario</b>
-                                            Updating employee salary
-
-                                            
-                                        </div>
-                                            <ul class='steps'>
-                                                    <li test-id='22' class='node given pass' status='given pass'>
-                                                        <b>Given</b>
-                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
-                                                                                                                                                                    </li>
-                                                    <li test-id='23' class='node when pass' status='when pass'>
-                                                        <b>When</b>
-                                                        User accesses employee "1"
-                                                                                                                                                                    </li>
-                                                    <li test-id='24' class='node when pass' status='when pass'>
-                                                        <b>When</b>
-                                                        User updates employee "1" with new salary "999"
-                                                                                                                                                                    </li>
-                                                    <li test-id='25' class='node then pass' status='then pass'>
-                                                        <b>Then</b>
-                                                        The new salary "999" is reflected in the database
-                                                                                                                                                                    </li>
-                                            </ul>
-                                    </div>
-                                    <div class='scenario node' test-id='26' status='fail'>
-                                        <span class='scenario-duration right label'>00:00:00.9254422</span>
-                                        <div class='scenario-desc'>
-                                            <b>Scenario</b>
-                                            Updating employee salary
-
-                                            
-                                        </div>
-                                            <ul class='steps'>
-                                                    <li test-id='27' class='node given pass' status='given pass'>
-                                                        <b>Given</b>
-                                                        User accesses employees API at "http://dummy.restapiexample.com/api/v1"
-                                                                                                                                                                    </li>
-                                                    <li test-id='28' class='node when pass' status='when pass'>
-                                                        <b>When</b>
-                                                        User accesses employee "98370"
-                                                                                                                                                                    </li>
-                                                    <li test-id='29' class='node when fail' status='when fail'>
-                                                        <b>When</b>
-                                                        User updates employee "98370" with new salary "999"
-                                                                                                                                                                            <div class='pre'>Error from: TechTalk.SpecFlow
-Error Details: System.NullReferenceException: Object reference not set to an instance of an object.
-   at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEmployeeWithNewSalary(String id, String salary) in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\StepDefinition\RestCallClassTestSteps.cs:line 71
-   at lambda_method(Closure , IContextManager , String , String )
-   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 69
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 411
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 316
-Stacktrace:    at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEmployeeWithNewSalary(String id, String salary) in C:\Users\Geordie Winlove\source\repos\TTCGlob\TTCBDD\StepDefinition\RestCallClassTestSteps.cs:line 71
-   at lambda_method(Closure , IContextManager , String , String )
-   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 69
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 411
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 316</div>
-                                                    </li>
                                             </ul>
                                     </div>
 
@@ -410,36 +305,36 @@ Stacktrace:    at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEm
         <div class='row'>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Features</span>                     <div class='panel-lead'>1</div>
+ <span>Features</span>                     <div class='panel-lead'>2</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
- <span>Scenarios</span>                     <div class='panel-lead'>6</div>
+ <span>Scenarios</span>                     <div class='panel-lead'>2</div>
                 </div>
             </div>
                 <div class='col s2'>
                     <div class='card-panel r'>
                         Steps
-                        <div class='panel-lead'>22</div>
+                        <div class='panel-lead'>7</div>
                     </div>
                 </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Start
-                    <div class='panel-lead'>25/11/2019 2:00:55 PM</div>
+                    <div class='panel-lead'>27/11/2019 1:38:36 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     End
-                    <div class='panel-lead'>25/11/2019 2:01:16 PM</div>
+                    <div class='panel-lead'>27/11/2019 1:38:39 PM</div>
                 </div>
             </div>
             <div class='col s2'>
                 <div class='card-panel r'>
                     Time Taken
-                    <div class='panel-lead'>00:00:21.5391873</div>
+                    <div class='panel-lead'>00:00:03.1184495</div>
                 </div>
             </div>
 
@@ -458,23 +353,23 @@ Stacktrace:    at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEm
 
 		<script>
 			var statusGroup = {
-			    passParent: 0,
-			    failParent: 1,
+			    passParent: 2,
+			    failParent: 0,
 			    fatalParent: 0,
 			    errorParent: 0,
 			    warningParent: 0,
 			    skipParent: 0,
 				
-			    passChild: 5,
-			    failChild: 1,
+			    passChild: 2,
+			    failChild: 0,
 			    fatalChild: 0,
 			    errorChild: 0,
 			    warningChild: 0,
 			    skipChild: 0,
 			    infoChild: 0,
 				
-			    passGrandChild: 21,
-			    failGrandChild: 1,
+			    passGrandChild: 7,
+			    failGrandChild: 0,
 			    fatalGrandChild: 0,
 			    errorGrandChild: 0,
 			    warningGrandChild: 0,
@@ -486,18 +381,6 @@ Stacktrace:    at TTCBDD.StepDefinition.RestCallClassTestSteps.WhenUserUpdatesEm
 		<script src='https://cdn.rawgit.com/anshooarora/extentreports-csharp/e468054d67d93c2fd9c8f0f60e31a7ea09fa3bf6/dist/js/extent.js' type='text/javascript'></script>
 		
 		
-	<script>window.onload = function () {
-    const navBar = document.getElementsByClassName("nav-wrapper")[0]
-    document.getElementsByClassName("brand-logo blue darken-3")[0].remove()
-
-    const imageNode = document.createElement("img")
-    imageNode.setAttribute("src", "https://pbs.twimg.com/profile_images/973012399363014656/lUZD5ZKJ_400x400.jpg")
-    imageNode.classList += " brand-logo";
-    imageNode.style.height = "50px";
-    imageNode.style.width = "50px";
-    imageNode.style.padding = "0px";
-    imageNode.style.borderRadius = "25px";
-    navBar.insertBefore(imageNode, navBar.childNodes[0])
-}</script></body>
+	</body>
 	
 </html>

@@ -17,6 +17,9 @@ namespace TTCBDD.CustomReporter
         public TimeSpan duration { get => end.Subtract(start); }
 
         private ReportStepError _stepError;
+
+        public int key { get; set; }
+
         public ReportStepError StepError { get => _stepError; }
 
         public ReportStep(ScenarioContext scenarioContext)

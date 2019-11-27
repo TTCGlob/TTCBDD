@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>TTC Global Report</title>
+		<link rel="stylesheet" type="text/css" href="./styles.css">
+	</head>
+	<body>
+		<div id="app">
+			<div id="feature-table">
+				<div id="feature-list">
+					<feature-row
+						v-for="feature in features"
+						v-bind:key="feature.key"
+						v-bind:feature="feature"
+						v-on:select="featureClick($event)"
+					></feature-row>
+				</div>
+				<div id="scenario-list">
+					<scenario-container
+						v-for="scenario in scenarios"
+						v-bind:key="scenario.key"
+						v-bind:scenario="scenario"
+						v-bind:class="[{passed: scenario.Pass}, {failed: !scenario.Pass}]"
+					></scenario-container>
+				</div>
+				<div id="feature-table-padding">
+					
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script id="script-data"></script>
+		<script src="./index.js"></script>
+	</body>
+</html>
