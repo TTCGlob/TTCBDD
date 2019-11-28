@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Serialization;
 using TTCBDD.ComponentHelper;
@@ -20,6 +21,7 @@ namespace TTCBDD.APIObjects
         private IRestRequest request;
         private IRestResponse<T> response;
         private DataFormat dataFormat;
+        private List<object> propertyPath = new List<object>();
 
         public RestCall(Method method, string url, string resource, DataFormat dataFormat = DataFormat.Json)
         {
@@ -59,6 +61,18 @@ namespace TTCBDD.APIObjects
                 AddHeader("Content-Type", "application/json");
             return this;
         }
+
+        public RestCall<T> Select(string property)
+        {
+            propertyPath.Add(property);
+            return this;
+        }
+        public RestCall<T> Select(int index)
+        {
+            propertyPath.Add(index);
+            return this;
+        }
+
         public RestCall<T> Where(string field, string value)
         {
             request.AddQueryParameter(field, value);
@@ -93,7 +107,28 @@ namespace TTCBDD.APIObjects
         public IRestResponse<T> Execute()
         {
             response = client.Execute<T>(request);
+            //If deserializing top level property return immediately
+            if (propertyPath.Count() == 0)
+                return response;
+            //Parse content as a JObject which has properties accessed by strings like a dictionary
+            JToken content = JObject.Parse(response.Content);
+            //Traverse the object structure using each element in propertyPath
+            //It interprets an integer segment as an array accessor and a string as an object accessor
+            foreach (var segment in propertyPath)
+            {
+                if (segment is int index)
+                {
+                    content = content.ToObject<JArray>()[index];
+                }
+                else if (segment is string property)
+                {
+                    content = content.ToObject<JObject>()[property];
+                }
+            };
+            //converts the desired field to the given type
+            response.Data = content.ToObject<T>();
             return response;
+
         }
         public IRestResponse<T> Execute(Action<IRestResponse<T>> action)
         {

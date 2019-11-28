@@ -37,7 +37,6 @@ namespace TTCBDD.StepDefinition
             {
                 product_name = "Eggs Size 8",
                 stock_level = 3500,
-                last_restocked = DateTime.UtcNow
             };
             context.Add("product", product);
         }

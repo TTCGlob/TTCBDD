@@ -93,7 +93,6 @@ namespace TTCBDD
             Product braeburn = new Product()
             {
                 product_name = "Apple - Braeburn",
-                last_restocked = DateTime.Now,
                 stock_level = 500
             };
             var post = new RestCall<Product>(Method.POST, "http://192.168.2.73:3000", "/products")
@@ -117,6 +116,12 @@ namespace TTCBDD
                 .AddUrlParameter("id", 1)
                 .Data();
             data.Should().NotBeEmpty();
+        }
+        [Test]
+        public void TestGetRandomUser()
+        {
+            var user = RandomUser.NewRandomUser();
+
         }
         //[Test]
         [Obsolete]

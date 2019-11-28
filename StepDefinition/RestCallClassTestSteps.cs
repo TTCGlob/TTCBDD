@@ -31,14 +31,7 @@ namespace TTCBDD.StepDefinition
         [Given(@"User creates a new employee")]
         public void GivenUserCreatesANewEmployee()
         {
-            var rand = new Random();
-            var employee = new Employee()
-            {
-                name = BasicHelperMethods.RandomString(5, 12),
-                salary = rand.Next(500, 500000).ToString(),
-                age = rand.Next(20, 100).ToString()
-            };
-            
+            var employee = Employee.Random();
             context.Add("employee", employee);
             Logger.Debug($"Created employee {employee.name} [id: {employee.id}]");
         }
@@ -79,8 +72,7 @@ namespace TTCBDD.StepDefinition
             _ = new RestCall<Employee>(Method.PUT, context.Get<string>("url"), "update/{id}")
                 .AddUrlParameter("id", id)
                 .AddPayload(employee)
-                .Execute()
-                .Data;
+                .Data();
             Logger.Debug($"Updated employee {employee.name} [id: {employee.id}] with new salary {salary}");
         }
         [When(@"User retrieves (.*) employees")]

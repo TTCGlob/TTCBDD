@@ -42,5 +42,6 @@ namespace TTCBDD.PageObject
             return $"ID: {this.id} Name: {this.companyName} Net Worth: {this.netWorth} " +
                 $"Address: {this.address} Num Employees: {this.employees.Count}  Num Shareholders: {this.shareholders.Count} Creation Date: {creationDate}";
         }
+
     }
 }
