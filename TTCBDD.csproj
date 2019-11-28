@@ -192,6 +192,7 @@
     <Compile Include="PageObject\Company.cs" />
     <Compile Include="PageObject\Employee.cs" />
     <Compile Include="PageObject\Product.cs" />
+    <Compile Include="PageObject\RandomUser.cs" />
     <Compile Include="PageObject\RestActions.cs" />
     <Compile Include="APIObjects\RestCall.cs" />
     <Compile Include="PageObject\Shareholder.cs" />
@@ -1302,6 +1303,7 @@
     <None Include="FeatureFile\StefEmployee1Feature.feature" />
     <None Include="license" />
     <None Include="packages.config" />
+    <None Include="README.md" />
     <None Include="Resources\ReadData.xls" />
   </ItemGroup>
   <ItemGroup>
