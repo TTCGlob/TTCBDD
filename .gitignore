@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/FeatureFile/CompaniesDB_Products_CJ.feature.cs
+/FeatureFile/CompaniesDB_Reed.feature.cs

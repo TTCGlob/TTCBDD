@@ -13,19 +13,46 @@ namespace TTCBDD.PageObject
 {
     public class RandomUser
     {
+        private static readonly string url = "https://randomuser.me/api/";
         public string gender { get; set; }
         public Name name { get; set; }
+        public string fullName { get => name.first + " " + name.last; }
         public Location location { get; set; }
         public string email { get; set; }
-        public static RandomUser NewRandomUser()
+        public Dob dob { get; set; }
+        public static RandomUser Random()
         {
-            var content = new RestCall<RandomUser>(Method.GET, RandomUserHelper.url, "")
+            var content = new RestCall<RandomUser>(Method.GET, url, "")
                 .Select("results")
                 .Select(0)
                 .Data();
-            //JObject o = JObject.Parse(content);
             return content;
         }
+
+        public static List<RandomUser> RandomUsers(int num)
+        {
+            return new RestCall<List<RandomUser>>(Method.GET, url, "")
+                .Where($"results == {num}")
+                .Select("results")
+                .Data();
+        }
+
+        public static string RandomName()
+        {
+            var user = Random();
+            return user.name.first + " " + user.name.last;
+        }
+
+        public static Location RandomLocation()
+        {
+            return Random().location;
+        }
+    }
+
+    public class Dob
+    {
+        public DateTime date { get; set; }
+        public int age { get; set; }
     }
 
     public class Name

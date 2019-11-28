@@ -81,7 +81,6 @@ namespace TTCBDD.APIObjects
         public RestCall<T> Where(string constraint)
         {
             var strings = constraint.Split(' ');
-            Console.WriteLine(strings);
             (string property, string _relation, string value) = strings;
             switch (_relation)
             {
@@ -111,7 +110,7 @@ namespace TTCBDD.APIObjects
             if (propertyPath.Count() == 0)
                 return response;
             //Parse content as a JObject which has properties accessed by strings like a dictionary
-            JToken content = JObject.Parse(response.Content);
+            JToken content = JToken.Parse(response.Content);
             //Traverse the object structure using each element in propertyPath
             //It interprets an integer segment as an array accessor and a string as an object accessor
             foreach (var segment in propertyPath)

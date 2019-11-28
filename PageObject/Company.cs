@@ -8,6 +8,15 @@ namespace TTCBDD.PageObject
 {
     public class Company
     {
+        private static readonly string[] companyTypes = { "Inc.", "Co.", "Ltd", "GmBH", "Group" };
+        private static string companyType
+        {
+            get
+            {
+                var index = new Random().Next(0, companyTypes.Length);
+                return companyTypes[index];
+            }
+        }
         public int id { get; set; }
         public string companyName { get; set; }
         public decimal netWorth { get; set; }
@@ -43,5 +52,37 @@ namespace TTCBDD.PageObject
                 $"Address: {this.address} Num Employees: {this.employees.Count}  Num Shareholders: {this.shareholders.Count} Creation Date: {creationDate}";
         }
 
+        public static Company Random()
+        {
+            var rand = new Random();
+            var numEmployees = rand.Next(1, 100);
+            var people = RandomUser.RandomUsers(numEmployees + 2);
+            var person = people.First();
+            people = people.Skip(1).Take(people.Count - 2).ToList();
+            var company = new Company()
+            {
+                companyName = person.fullName + companyType,
+
+                netWorth = rand.Next(1000, 1000000),
+                address = new Address()
+                {
+                    number = person.location.street.number,
+                    street = person.location.street.name,
+                    city = person.location.city
+                },
+                shareholders = Shareholder.Randoms(),
+                employees = new List<Employee>()
+            };
+            
+            for (var i = 0; i < numEmployees; i++)
+            {
+                company.employees.Add(new Employee()
+                {
+                    name = people[i].fullName,
+                    age = people[i].dob.age.ToString()
+                });
+            }
+            return company;
+        }
     }
 }
