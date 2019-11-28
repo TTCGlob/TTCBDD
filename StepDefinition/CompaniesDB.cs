@@ -157,7 +157,7 @@ namespace TTCBDD.StepDefinition
             var retrievedCompany = new RestCall<Company>(Method.GET, context.Get<string>("url"), resource)
                 .AddUrlParameter("id", storedCompany.id.ToString())
                 .Data();
-            retrievedCompany.companyName.Should().Be(storedCompany.companyName);
+            retrievedCompany.Should().BeEquivalentTo(storedCompany, $"Company {storedCompany} is not the same as {retrievedCompany}");
         }
 
         [Then(@"The change is reflected at ""(.*)""")]

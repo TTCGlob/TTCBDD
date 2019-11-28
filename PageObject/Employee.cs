@@ -13,7 +13,7 @@ namespace TTCBDD.PageObject
         public string name { get; set; }
         public string salary { get; set; }
         public string age { get; set; }
-        public string profile_image { get; set; }
+        public string profile_image { get; set; } = "";
         public DateTime creationDate { get; set; }
 
         public Employee() {
@@ -21,22 +21,24 @@ namespace TTCBDD.PageObject
         }
 
         [JsonConstructor]
-        public Employee(string employee_name, string employee_salary, string employee_age, string id = "")
+        public Employee(string employee_name, string employee_salary, string employee_age, string id = "", string profile_image = "")
         {
             this.id = id;
             this.name = employee_name;
             this.salary = employee_salary;
             this.age = employee_age;
             this.creationDate = DateTime.UtcNow;
+            this.profile_image = profile_image;
         }
 
-        public bool Equals(Employee other)
+        public override bool Equals(Object _other)
         {
-            return this.id.Equals(other.id)
-                && this.name.Equals(other.name)
-                && this.salary.Equals(other.salary)
-                && this.age.Equals(other.age)
-                && this.creationDate.Date.CompareTo(other.creationDate.Date) == 0;            
+            return _other is Employee other
+                && id.Equals(other.id)
+                && name.Equals(other.name)
+                && salary.Equals(other.salary)
+                && age.Equals(other.age);
+                //&& this.creationDate.Date.CompareTo(other.creationDate.Date) == 0;
         }
         public override string ToString()
         {

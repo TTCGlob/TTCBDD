@@ -26,8 +26,15 @@ namespace TTCBDD.PageObject
             this.companyName = company_name;
             this.creationDate = DateTime.UtcNow;
         }
-        public bool Equals(Company other)
+        public override bool Equals(Object _other)
         {
+            if (_other == null)
+                return false;
+
+            if (!this.GetType().Equals(_other.GetType()))
+                return false;
+            var other = (Company)_other;
+
             return this.id.Equals(other.id)
                 && this.companyName.Equals(other.companyName)
                 && this.netWorth.Equals(other.netWorth)
@@ -36,7 +43,10 @@ namespace TTCBDD.PageObject
                 && this.shareholders.Equals(other.shareholders)
                 && this.creationDate.Equals(other.creationDate);
         }
-
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         public override string ToString()
         {
             return $"ID: {this.id} Name: {this.companyName} Net Worth: {this.netWorth} " +

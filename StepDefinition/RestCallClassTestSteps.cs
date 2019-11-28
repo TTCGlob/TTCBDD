@@ -144,7 +144,7 @@ namespace TTCBDD.StepDefinition
                 .First();
             Console.WriteLine($"Created employee: {storedEmployee.ToString()}");
             Console.WriteLine($"Retrieved employee: {retrievedEmployee.ToString()}");
-            retrievedEmployee.Equals(storedEmployee).Should().BeTrue();
+            retrievedEmployee.Should().BeEquivalentTo(storedEmployee);
         }
         [Then(@"The new employee is successfully deleted from the database")]
         public void ThenTheNewEmployeeIsSuccessfullyDeletedFromTheDatabase()
