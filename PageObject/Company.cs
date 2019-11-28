@@ -68,7 +68,7 @@ namespace TTCBDD.PageObject
             var numEmployees = rand.Next(1, 100);
             var people = RandomUser.RandomUsers(numEmployees + 2);
             var person = people.First();
-            people = people.Skip(1).Take(people.Count - 2).ToList();
+            people = people.Skip(1);
             var company = new Company()
             {
                 companyName = person.fullName + companyType,
@@ -81,17 +81,9 @@ namespace TTCBDD.PageObject
                     city = person.location.city
                 },
                 shareholders = Shareholder.Randoms(),
-                employees = new List<Employee>()
+                employees = people.Select(p => new Employee() { name = p.fullName, age = p.dob.age.ToString() }).ToList()
             };
             
-            for (var i = 0; i < numEmployees; i++)
-            {
-                company.employees.Add(new Employee()
-                {
-                    name = people[i].fullName,
-                    age = people[i].dob.age.ToString()
-                });
-            }
             return company;
         }
     }

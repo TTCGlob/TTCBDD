@@ -36,10 +36,10 @@ These methods modify the request before we send them. As all these methods retur
   * Adds a query string to the request.
   * Support depends on the REST API implementation.
   * See documentation for [json-server](https://github.com/typicode/json-server)
-* `Select(<int/string> parameter)`
+* `Traverse(<int/string> parameter)`
   * Allows the traversal of the JSON object before deserializing.
-  * In instances where there is JSON where you only want to deserialize some part of it as your given object, passing the object parameters and/or array indices to Select will cause RestCall to traverse the response before deserializing.
-  * Repeated calls to `Select()` add the parameters to a list which is accessed in the order submitted.
+  * In instances where there is JSON where you only want to deserialize some part of it as your given object, passing the object parameters and/or array indices to Traverse will cause RestCall to traverse the response before deserializing.
+  * Repeated calls to `Traverse()` add the parameters to a list which is accessed in the order submitted.
   * Example where you only want the one element in the `"results"` array:
     ```JSON
     {
@@ -104,11 +104,11 @@ These methods modify the request before we send them. As all these methods retur
         "version": "1.3"
       }
     }
-  * You would call `Select()` twice:
+  * You would call `Traverse()` twice:
     ```C#
     var content = new RestCall<RandomUser>(Method.GET, RandomUserHelper.url, "")
-        .Select("results")
-        .Select(0)
+        .Traverse("results")
+        .Traverse(0)
         .Data();
     ```
 * `Where(string parameter)`

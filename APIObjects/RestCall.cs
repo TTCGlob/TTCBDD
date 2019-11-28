@@ -62,12 +62,12 @@ namespace TTCBDD.APIObjects
             return this;
         }
 
-        public RestCall<T> Select(string property)
+        public RestCall<T> Traverse(string property)
         {
             propertyPath.Add(property);
             return this;
         }
-        public RestCall<T> Select(int index)
+        public RestCall<T> Traverse(int index)
         {
             propertyPath.Add(index);
             return this;
@@ -109,22 +109,18 @@ namespace TTCBDD.APIObjects
             //If deserializing top level property return immediately
             if (propertyPath.Count() == 0)
                 return response;
-            //Parse content as a JObject which has properties accessed by strings like a dictionary
+            //Parse content as a JToken the parent class of JArray and JObject
             JToken content = JToken.Parse(response.Content);
             //Traverse the object structure using each element in propertyPath
             //It interprets an integer segment as an array accessor and a string as an object accessor
-            foreach (var segment in propertyPath)
+            content = propertyPath.Aggregate(content, (obj, segment) =>
             {
                 if (segment is int index)
-                {
-                    content = content.ToObject<JArray>()[index];
-                }
-                else if (segment is string property)
-                {
-                    content = content.ToObject<JObject>()[property];
-                }
-            };
-            //converts the desired field to the given type
+                    return obj.ToObject<JArray>()[index];
+                if (segment is string property)
+                    return obj.ToObject<JObject>()[property];
+                return obj;
+            });
             response.Data = content.ToObject<T>();
             return response;
 

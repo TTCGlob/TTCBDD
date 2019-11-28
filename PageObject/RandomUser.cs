@@ -23,17 +23,17 @@ namespace TTCBDD.PageObject
         public static RandomUser Random()
         {
             var content = new RestCall<RandomUser>(Method.GET, url, "")
-                .Select("results")
-                .Select(0)
+                .Traverse("results")
+                .Traverse(0)
                 .Data();
             return content;
         }
 
-        public static List<RandomUser> RandomUsers(int num)
+        public static IEnumerable<RandomUser> RandomUsers(int num)
         {
             return new RestCall<List<RandomUser>>(Method.GET, url, "")
                 .Where($"results == {num}")
-                .Select("results")
+                .Traverse("results")
                 .Data();
         }
 
