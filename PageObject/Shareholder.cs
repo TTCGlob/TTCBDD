@@ -47,10 +47,9 @@ namespace TTCBDD.PageObject
             var random = new Random();
             var i = 0;
             while (remainingStake > 0)
-            {
-                
+            {           
                 var stake = random.Next(1, remainingStake + 1);
-                var shareholder = new Shareholder(people[i++].fullName, stake);
+                var shareholder = new Shareholder(people.ElementAt(i++).fullName, stake);
                 remainingStake -= stake;
                 shareholders.Add(shareholder);
             }
