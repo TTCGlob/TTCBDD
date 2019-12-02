@@ -12,6 +12,14 @@ Vue.component("feature-row", {
     }
 })
 
+Vue.component("feature-scenarios", {
+    props: ["feature"],
+    template:
+    `<div class="feature-scenarios">
+        
+    </div>`
+})
+
 Vue.component("scenario-container", {
     props: ["scenario"],
     template:
