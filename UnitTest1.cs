@@ -93,7 +93,6 @@ namespace TTCBDD
             Product braeburn = new Product()
             {
                 product_name = "Apple - Braeburn",
-                last_restocked = DateTime.Now,
                 stock_level = 500
             };
             var post = new RestCall<Product>(Method.POST, "http://192.168.2.73:3000", "/products")
@@ -101,22 +100,26 @@ namespace TTCBDD
                 .Execute(res => braeburn.id = res.Data.id);
             Console.WriteLine($"Name: {braeburn.product_name} ID: {braeburn.id}");
         }
-        [Test]
-        public void TestEmptyResult()
-        {
-            var response = new RestCall<List<Company>>(Method.GET, "http://192.168.2.73:3000/", "/companies")
-                .Where("id >= 2")
-                .Where("id <= 4")
-                .Execute();
-        }
 
         [Test]
-        public void TestDictDeserialize()
+        public void TestGetRandomCompany()
         {
-            var data = new RestCall<Dictionary<string, object>>(Method.GET, "http://192.168.2.73:3000", "/products/{id}")
+            JToken j = JToken.Parse(@"['a','b']");
+            Console.WriteLine(j);
+            var jArray = j as JArray;
+            var jobj = j as JObject;
+        }
+        [Test]
+        public void CompareEmployees()
+        {
+            var e1 = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
                 .AddUrlParameter("id", 1)
                 .Data();
-            data.Should().NotBeEmpty();
+            var e2 = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
+                .AddUrlParameter("id", 1)
+                .Data();
+            var dict = new Dictionary<string, string>();
+            e1.Should().Be(e2);
         }
         //[Test]
         [Obsolete]

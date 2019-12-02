@@ -4,6 +4,7 @@
       "id": 1,
       "companyName": "Geordie, Inc.",
       "netWorth": 500000,
+      "creationDate": "2019-11-25T23:03:55.4566579Z",
       "address": {
         "number": 55,
         "street": "Yeet Street",
@@ -47,6 +48,7 @@
       "id": 415,
       "companyName": "Sodor Transport",
       "netWorth": 1444444,
+      "creationDate": "2019-11-25T23:03:57.4566579Z",
       "address": {
         "number": 12,
         "street": "Tompham Way",
@@ -61,723 +63,123 @@
       ]
     },
     {
-      "id": 997,
-      "companyName": "Sodor Transport",
-      "netWorth": 1444444,
+      "id": 60305,
+      "companyName": "Gpqlk Tapui (Limited)",
+      "netWorth": 0,
+      "creationDate": "2019-11-25T23:03:59.4566579Z",
       "address": {
-        "number": 12,
-        "street": "Tompham Way",
-        "city": "Sodor Island"
+        "number": 106,
+        "street": "Mbxnjfs Qwrekk",
+        "city": "Zelnzo"
       },
       "employees": [
         {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
+          "id": "E31070",
+          "name": "Lghadfs Adfsgdfs",
+          "salary": "351274",
+          "age": "41",
+          "profile_image": "WhxtrcxRowkmp",
+          "creationDate": "2019-11-25T23:31:05.1256231Z"
         },
         {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
-      "shareholders": [
-        {
-          "id": "565",
-          "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    },
-    {
-      "id": 350,
-      "companyName": "Sodor Transport",
-      "netWorth": 1444444,
-      "address": {
-        "number": 12,
-        "street": "Tompham Way",
-        "city": "Sodor Island"
-      },
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
-      "shareholders": [
-        {
-          "id": "565",
-          "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    },
-    {
-      "id": 761,
-      "companyName": "Sodor Transport",
-      "netWorth": 1444444,
-      "address": {
-        "number": 12,
-        "street": "Tompham Way",
-        "city": "Sodor Island"
-      },
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
-      "shareholders": [
-        {
-          "id": "565",
-          "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    },
-    {
-      "id": 476,
-      "companyName": "Sodor Transport",
-      "netWorth": 1444444,
-      "address": {
-        "number": 12,
-        "street": "Tompham Way",
-        "city": "Sodor Island"
-      },
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
-      "shareholders": [
-        {
-          "id": "565",
-          "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    },
-    {
-      "id": 245,
-      "companyName": "Sodor Transport",
-      "netWorth": 1444444,
-      "address": {
-        "number": 12,
-        "street": "Tompham Way",
-        "city": "Sodor Island"
-      },
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
-      "shareholders": [
-        {
-          "id": "565",
-          "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    },
-    {
-      "id": 803,
-      "companyName": "Sodor Transport",
-      "netWorth": 1444444,
-      "address": {
-        "number": 12,
-        "street": "Tompham Way",
-        "city": "Sodor Island"
-      },
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
-      "shareholders": [
-        {
-          "id": "565",
-          "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    },
-    {
-      "id": 796,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 814,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 469,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 128,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 71948,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 21453,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 22872,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 35417,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 68160,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 44825,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 56694,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": null,
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 19074,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 27213,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": {
-        "number": 567,
-        "street": "Fantasy Avenue",
-        "city": "Auckland"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 98624,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 13521,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 66424,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 71230,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 80091,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 6592,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": {
-        "number": 567,
-        "street": "Fantasy Avenue",
-        "city": "Auckland"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 85095,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 75714,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": {
-        "number": 567,
-        "street": "Fantasy Avenue",
-        "city": "Auckland"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 60407,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 71722,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 4152,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 65480,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 79844,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 42386,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": null,
-      "shareholders": null
-    },
-    {
-      "id": 23102,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": [
-        {
-          "id": "E80248",
-          "name": "Jeremy Corbin",
-          "salary": "100000",
-          "age": "47",
-          "profile_image": "hjf89y7r498343lh89"
-        }
-      ],
-      "shareholders": []
-    },
-    {
-      "id": 38860,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": [
-        {
-          "id": "E24365",
-          "name": "Jeremy Corbin",
-          "salary": "100000",
-          "age": "47",
-          "profile_image": "hjf89y7r498343lh89"
-        }
-      ],
-      "shareholders": []
-    },
-    {
-      "id": 44728,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": [
-        {
-          "id": "E1875",
-          "name": "Jeremy Corbin",
-          "salary": "100000",
-          "age": "47",
-          "profile_image": "hjf89y7r498343lh89"
-        }
-      ],
-      "shareholders": []
-    },
-    {
-      "id": 1203,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": [
-        {
-          "id": "E13748",
-          "name": "Jeremy Corbin",
-          "salary": "100000",
-          "age": "47",
-          "profile_image": "hjf89y7r498343lh89"
-        }
-      ],
-      "shareholders": []
-    },
-    {
-      "id": 63583,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": {
-        "number": 567,
-        "street": "Fantasy Avenue",
-        "city": "Auckland"
-      },
-      "employees": [
-        {
-          "id": "E58019",
-          "name": "Boris Johnson",
-          "salary": "127000",
+          "id": "E45637",
+          "name": "Katxwyhi Hcbypgq",
+          "salary": "255369",
           "age": "38",
-          "profile_image": "kljdhfas89yt34nkjt"
-        }
-      ],
-      "shareholders": []
-    },
-    {
-      "id": 40966,
-      "companyName": "Empire Stores",
-      "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": [
+          "profile_image": "OphuyyXqs",
+          "creationDate": "2019-11-25T23:33:05.2251178Z"
+        },
         {
-          "id": "E8910",
-          "name": "Jeremy Corbin",
-          "salary": "100000",
-          "age": "47",
-          "profile_image": "hjf89y7r498343lh89"
+          "id": "E96308",
+          "name": "Unvabww Aoclso",
+          "salary": "483391",
+          "age": "62",
+          "profile_image": "MikjwylhJqcwlruh",
+          "creationDate": "2019-11-26T00:53:59.4692431Z"
         }
       ],
       "shareholders": []
     },
     {
-      "id": 79061,
-      "companyName": "Empire Stores",
+      "id": 48707,
+      "companyName": "Nsrfy Limited",
       "netWorth": 0,
-      "address": {
-        "number": 1,
-        "street": "Fictional Street",
-        "city": "Berlin"
-      },
-      "employees": [
-        {
-          "id": "E36208",
-          "name": "Jeremy Corbin",
-          "salary": "100000",
-          "age": "47",
-          "profile_image": "hjf89y7r498343lh89"
-        }
-      ],
-      "shareholders": []
-    },
-    {
-      "id": 21923,
-      "companyName": "New Co Inc",
-      "netWorth": 0,
-      "address": {
-        "number": 567,
-        "street": "Fantasy Avenue",
-        "city": "Auckland"
-      },
-      "employees": [
-        {
-          "id": "E52239",
-          "name": "Boris Johnson",
-          "salary": "127000",
-          "age": "38",
-          "profile_image": "kljdhfas89yt34nkjt"
-        }
-      ],
-      "shareholders": []
-    },
-    {
-      "id": 37116,
-      "companyName": "0Z25crvzN1z Ltd",
-      "netWorth": 0,
+      "creationDate": "2019-11-25T23:04:01.4566579Z",
       "address": null,
       "employees": [],
       "shareholders": []
     },
     {
-      "id": 18005,
-      "companyName": "E4usxxjrTmg Inc",
-      "netWorth": 0,
-      "address": null,
-      "employees": [],
-      "shareholders": []
-    },
-    {
-      "id": 11349,
-      "companyName": "Jjkbquv Ltd",
+      "id": 74422,
+      "companyName": "Noxyid Inc",
       "netWorth": 0,
       "address": {
-        "number": 571,
-        "street": "Vhbuw Njvdoj",
-        "city": "Nweyc"
+        "number": 699,
+        "street": "Crjmm Thetxxyj",
+        "city": "Zfjnugb"
       },
       "employees": [
         {
-          "id": "E56138",
-          "name": "Bgluzg Ejjanrvn",
-          "salary": "302627",
+          "id": "E82951",
+          "name": "Pupqzuay Bd",
+          "salary": "423284",
+          "age": "56",
+          "profile_image": "RxajvwmxZwqquq",
+          "creationDate": "2019-11-26T03:08:09.4069936Z"
+        },
+        {
+          "id": "E29630",
+          "name": "Kktmph Qljlif",
+          "salary": "183337",
+          "age": "31",
+          "profile_image": "YbkahNxzicqg",
+          "creationDate": "2019-11-26T03:08:09.5199897Z"
+        },
+        {
+          "id": "E88185",
+          "name": "Avhurkt Msxhpm",
+          "salary": "446836",
+          "age": "58",
+          "profile_image": "OvwdhntGkbupy",
+          "creationDate": "2019-11-26T03:08:09.6057931Z"
+        },
+        {
+          "id": "E55681",
+          "name": "Byxssx Veeffqs",
+          "salary": "300571",
           "age": "43",
-          "profile_image": "XdqxzogxTxofor"
+          "profile_image": "HqnwdrvPddvrgf",
+          "creationDate": "2019-11-26T21:51:36.2790261Z"
+        },
+        {
+          "id": "E55351",
+          "name": "Dwhwgah Icpnoq",
+          "salary": "299085",
+          "age": "43",
+          "profile_image": "KvobijaLhmmxxta",
+          "creationDate": "2019-11-26T21:51:36.5910352Z"
+        },
+        {
+          "id": "E57429",
+          "name": "Inykjvr Wxqs",
+          "salary": "308433",
+          "age": "44",
+          "profile_image": "ZoraystRmmcllwo",
+          "creationDate": "2019-11-26T21:51:36.7359942Z"
         }
       ],
-      "shareholders": []
+      "shareholders": [
+        {
+          "id": "S85998",
+          "name": "Jjttibq Vvexfjw",
+          "stake": 86,
+          "creationDate": "2019-11-26T21:51:36.4039157Z"
+        }
+      ],
+      "creationDate": "2019-11-25T23:04:03.4566579Z"
     },
     {
-      "id": 362,
+      "id": 181,
       "companyName": "Sodor Transport",
       "netWorth": 1444444,
       "address": {
@@ -785,102 +187,43 @@
         "street": "Tompham Way",
         "city": "Sodor Island"
       },
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
-        }
-      ],
+      "employees": [],
       "shareholders": [
         {
           "id": "565",
           "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    },
-    {
-      "id": 520,
-      "companyName": "Sodor Transport",
-      "netWorth": 1444444,
-      "address": {
-        "number": 12,
-        "street": "Tompham Way",
-        "city": "Sodor Island"
-      },
-      "employees": [
-        {
-          "id": "1",
-          "name": "Thomas",
-          "salary": "180",
-          "age": "111",
-          "profile_image": null
-        },
-        {
-          "id": "3",
-          "name": "Henry",
-          "salary": "13340405",
-          "age": "33",
-          "profile_image": null
-        },
-        {
-          "id": "5",
-          "name": "Gordon",
-          "salary": "13131",
-          "age": "12",
-          "profile_image": null
+          "stake": 100,
+          "creationDate": "0001-01-01T00:00:00"
         }
       ],
-      "shareholders": [
-        {
-          "id": "565",
-          "name": "Sir Tomham Hat",
-          "stake": 100
-        }
-      ]
-    }
-  ],
-  "employees": [
-    {
-      "id": "1",
-      "name": "Thomas",
-      "salary": "180",
-      "age": "111",
-      "profile_image": null,
-      "companyId": 415
+      "creationDate": "2019-11-25T23:04:05.4566579Z"
     },
     {
-      "id": "3",
-      "name": "Henry",
-      "salary": "13340405",
-      "age": "33",
-      "profile_image": null,
-      "companyId": 415
+      "id": 58270,
+      "companyName": "Fujigjp Tapui (Limited)",
+      "netWorth": 0,
+      "address": null,
+      "employees": [],
+      "shareholders": [],
+      "creationDate": "2019-11-26T03:06:40.4544912Z"
     },
     {
-      "id": "5",
-      "name": "Gordon",
-      "salary": "13131",
-      "age": "12",
-      "profile_image": null,
-      "companyId": 415
+      "id": 49852,
+      "companyName": "Feei Limited",
+      "netWorth": 0,
+      "address": null,
+      "employees": [],
+      "shareholders": [],
+      "creationDate": "2019-11-26T03:08:09.6536309Z"
+    },
+    {
+      "id": 57213,
+      "companyName": "Inxtuo Tapui (Limited)",
+      "netWorth": 0,
+      "address": null,
+      "employees": [],
+      "shareholders": [],
+      "creationDate": "2019-11-26T21:51:36.8509882Z"
     }
   ],
   "products": [

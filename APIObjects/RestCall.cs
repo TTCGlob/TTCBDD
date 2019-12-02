@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Serialization;
 using TTCBDD.ComponentHelper;
@@ -20,6 +21,7 @@ namespace TTCBDD.APIObjects
         private IRestRequest request;
         private IRestResponse<T> response;
         private DataFormat dataFormat;
+        private List<object> propertyPath = new List<object>();
 
         public RestCall(Method method, string url, string resource, DataFormat dataFormat = DataFormat.Json)
         {
@@ -59,6 +61,18 @@ namespace TTCBDD.APIObjects
                 AddHeader("Content-Type", "application/json");
             return this;
         }
+
+        public RestCall<T> Traverse(string property)
+        {
+            propertyPath.Add(property);
+            return this;
+        }
+        public RestCall<T> Traverse(int index)
+        {
+            propertyPath.Add(index);
+            return this;
+        }
+
         public RestCall<T> Where(string field, string value)
         {
             request.AddQueryParameter(field, value);
@@ -67,7 +81,6 @@ namespace TTCBDD.APIObjects
         public RestCall<T> Where(string constraint)
         {
             var strings = constraint.Split(' ');
-            Console.WriteLine(strings);
             (string property, string _relation, string value) = strings;
             switch (_relation)
             {
@@ -93,7 +106,24 @@ namespace TTCBDD.APIObjects
         public IRestResponse<T> Execute()
         {
             response = client.Execute<T>(request);
+            //If deserializing top level property return immediately
+            if (propertyPath.Count() == 0)
+                return response;
+            //Parse content as a JToken the parent class of JArray and JObject
+            JToken content = JToken.Parse(response.Content);
+            //Traverse the object structure using each element in propertyPath
+            //It interprets an integer segment as an array accessor and a string as an object accessor
+            content = propertyPath.Aggregate(content, (obj, segment) =>
+            {
+                if (segment is int index)
+                    return obj.ToObject<JArray>()[index];
+                if (segment is string property)
+                    return obj.ToObject<JObject>()[property];
+                return obj;
+            });
+            response.Data = content.ToObject<T>();
             return response;
+
         }
         public IRestResponse<T> Execute(Action<IRestResponse<T>> action)
         {

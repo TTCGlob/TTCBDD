@@ -22,9 +22,21 @@ Scenario: Add a new employee to a company
 	When I add an employee to the company database
 	Then the company has the new employee
 
-
-Scenario: Remove an employee from a company
+@ignore
+Scenario: Add a second employee to a company
 	Given I have a company I wish to manage
+	When I add an employee to the company database
+	Then the company has the new employee
+
+@ignore
+Scenario: Add a third employee to a company
+	Given I have a company I wish to manage
+	When I add an employee to the company database
+	Then the company has the new employee
+
+@ignore
+Scenario: Remove an employee from a company
+	Given I have a company with at least one employee
 	When I delete an employee from the company database
 	Then the company no longer has the employee
 

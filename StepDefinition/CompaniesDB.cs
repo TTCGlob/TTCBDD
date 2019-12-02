@@ -25,52 +25,7 @@ namespace TTCBDD.StepDefinition
         [Given(@"User creates a new company record")]
         public void GivenUserCreatesANewCompanyRecord()
         {
-            Company company = new Company()
-            {
-                id = new Random().Next(999),
-                companyName = "Sodor Transport",
-                netWorth = 1444444,
-                address = new Address()
-                {
-                    number = 12,
-                    street = "Tompham Way",
-                    city = "Sodor Island"
-                    
-                },
-                employees = new List<Employee>()
-                {
-                    new Employee()
-                    {
-                        id = "1",
-                        name = "Thomas",
-                        salary = "180",
-                        age = "111"
-                    },
-                    new Employee()
-                    {
-                        id = "3",
-                        name = "Henry",
-                        salary = "13340405",
-                        age = "33"
-                    },
-                    new Employee()
-                    {
-                        id = "5",
-                        name = "Gordon",
-                        salary = "13131",
-                        age = "12"
-                    },
-                },
-                shareholders = new List<Shareholder>()
-                {
-                    new Shareholder()
-                    {
-                        id = "565",
-                        name = "Sir Tomham Hat",
-                        stake = 100
-                    }
-                }
-            };
+            Company company = Company.Random();
             context["company"] = company;
         }
 
@@ -117,7 +72,7 @@ namespace TTCBDD.StepDefinition
         {
             var company = context.Get<Company>("company");
             company.netWorth = newValue;
-            context["company"] = company;
+            //context["company"] = company;
              var response = new RestCall<Company>(Method.PUT, context.Get<string>("url"), "companies/{id}")
                 .AddUrlParameter("id", company.id.ToString())
                 .AddPayload(company)
@@ -157,7 +112,7 @@ namespace TTCBDD.StepDefinition
             var retrievedCompany = new RestCall<Company>(Method.GET, context.Get<string>("url"), resource)
                 .AddUrlParameter("id", storedCompany.id.ToString())
                 .Data();
-            retrievedCompany.companyName.Should().Be(storedCompany.companyName);
+            retrievedCompany.Should().BeEquivalentTo(storedCompany, $"Company {storedCompany} is not the same as {retrievedCompany}");
         }
 
         [Then(@"The change is reflected at ""(.*)""")]
