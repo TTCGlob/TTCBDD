@@ -9,6 +9,8 @@
   "author": "Geordie Winlove",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.17.2",
+    "express": "^4.17.1",
     "json-server": "^0.15.1"
   },
   "devDependencies": {

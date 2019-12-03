@@ -61,10 +61,11 @@ namespace TTCBDD
         [Test]
         public void TestPostThenGet()
         {
-            var employee = new Employee(BasicHelperMethods.RandomString(5, 12), "2333", "33");
+            var employee = Employee.Random();
             var post = new RestCall<Employee>(Method.POST, "http://dummy.restapiexample.com/api/v1", "/create")
                .AddPayload(employee)
                .Execute(res => employee.id = res.Data.id);
+
             var get = new RestCall<Employee>(Method.GET, "http://dummy.restapiexample.com/api/v1", "/employee/{id}")
                 .AddHeader("Accept", "application/json")
                 .AddUrlParameter("id", employee.id)
@@ -120,6 +121,16 @@ namespace TTCBDD
                 .Data();
             var dict = new Dictionary<string, string>();
             e1.Should().Be(e2);
+        }
+
+        [Test]
+        public void TestSerialize()
+        {
+            var employee = Employee.Random();
+            var restCall = new RestCall<Employee>(Method.POST, "http://192.168.2.73:5000", "/employees")
+                .AddPayload(employee)
+                .Execute();
+
         }
         //[Test]
         [Obsolete]
