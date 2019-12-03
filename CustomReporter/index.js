@@ -1,14 +1,13 @@
 Vue.component("feature-row", {
     props: ["feature"],
     template: 
-    `<div class="feature-row" v-on:click="featureClick(feature.key)">
+    `<div class="feature-row" v-on:click="featureClick">
         <b>{{feature.name}}</b>
         <span class="feature-details">Duration: {{feature.duration}} Passed: {{feature.scenariosPassed}} Failed: {{feature.scenariosFailed}} </span>
     </div>`,
     methods: {
-        featureClick : function(key) {
-            console.log("feature click",key)
-            this.$emit("select", key)
+        featureClick : function() {
+            this.$emit("select", this.feature.key)
         }
     }
 })
@@ -87,7 +86,6 @@ const app = new Vue({
     },
     methods : {
         featureClick : function(key) {
-            console.log(key)
             this.featureKey = key;
         }
     }
