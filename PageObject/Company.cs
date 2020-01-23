@@ -37,14 +37,8 @@ namespace TTCBDD.PageObject
         }
         public override bool Equals(Object _other)
         {
-            if (_other == null)
-                return false;
-
-            if (!this.GetType().Equals(_other.GetType()))
-                return false;
-            var other = (Company)_other;
-
-            return this.id.Equals(other.id)
+            return _other is Company other
+                && this.id.Equals(other.id)
                 && this.companyName.Equals(other.companyName)
                 && this.netWorth.Equals(other.netWorth)
                 && this.address.Equals(other.address)
@@ -52,14 +46,11 @@ namespace TTCBDD.PageObject
                 && this.shareholders.Equals(other.shareholders)
                 && this.creationDate.Equals(other.creationDate);
         }
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        public override int GetHashCode() => base.GetHashCode();
         public override string ToString()
         {
-            return $"ID: {this.id} Name: {this.companyName} Net Worth: {this.netWorth} " +
-                $"Address: {this.address} Num Employees: {this.employees.Count}  Num Shareholders: {this.shareholders.Count} Creation Date: {creationDate}";
+            return $"ID: {id} Name: {companyName} Net Worth: {netWorth} " +
+                $"Address: {address} Num Employees: {employees.Count}  Num Shareholders: {shareholders.Count} Creation Date: {creationDate}";
         }
 
         public static Company Random()
@@ -69,7 +60,7 @@ namespace TTCBDD.PageObject
             var people = RandomUser.RandomUsers(numEmployees + 2);
             var person = people.First();
             people = people.Skip(1);
-            var company = new Company()
+            return new Company()
             {
                 companyName = person.fullName + companyType,
 
@@ -83,8 +74,6 @@ namespace TTCBDD.PageObject
                 shareholders = Shareholder.Randoms(),
                 employees = people.Select(p => new Employee() { name = p.fullName, age = p.dob.age.ToString() }).ToList()
             };
-            
-            return company;
         }
     }
 }

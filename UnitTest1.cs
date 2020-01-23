@@ -102,12 +102,15 @@ namespace TTCBDD
         }
 
         [Test]
-        public void TestGetRandomCompany()
+        public void TestOData()
         {
-            JToken j = JToken.Parse(@"['a','b']");
-            Console.WriteLine(j);
-            var jArray = j as JArray;
-            var jobj = j as JObject;
+            var data = new RestCall<int>(Method.GET, "http://services.odata.org/V4/Northwind/Northwind.svc/", "/Employees")
+                .Equals("TitleOfCourtesy", "'Mr.'")
+                .Select("LastName", "FirstName", "Title")
+                //.Traverse("d")
+                //.Traverse("results")
+                .Count();
+
         }
         [Test]
         public void CompareEmployees()

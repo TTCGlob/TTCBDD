@@ -27,13 +27,15 @@ namespace TTCBDD.PageObject
             this.creationDate = DateTime.UtcNow;
         }
 
-        public bool Equals(Shareholder other)
+        public override bool Equals(Object _other)
         {
-            return this.id.Equals(other.id)
+            return _other is Shareholder other
+                && this.id.Equals(other.id)
                 && this.name.Equals(other.name)
                 && this.stake.Equals(other.stake)
                 && this.creationDate.Date.CompareTo(other.creationDate.Date) == 0;
         }
+        public override int GetHashCode() => base.GetHashCode();
         public override string ToString()
         {
             return $"ID: {this.id} Name: {this.name} Stake: {this.stake} Creation Date: {creationDate}";
@@ -45,11 +47,11 @@ namespace TTCBDD.PageObject
             var remainingStake = 100;
             var people = RandomUser.RandomUsers(100);
             var random = new Random();
-            var i = 0;
             while (remainingStake > 0)
             {           
                 var stake = random.Next(1, remainingStake + 1);
-                var shareholder = new Shareholder(people.ElementAt(i++).fullName, stake);
+                var shareholder = new Shareholder(people.First().fullName, stake);
+                people = people.Skip(1);
                 remainingStake -= stake;
                 shareholders.Add(shareholder);
             }
