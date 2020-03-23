@@ -17,8 +17,8 @@ namespace TTCBDD.APIObjects
     {
         private readonly Method method;
         private T payload;
-        private IRestClient client;
-        private IRestRequest request;
+        public IRestClient client { get; }
+        public IRestRequest request { get; }
         private IRestResponse<T> response;
         private DataFormat dataFormat;
         private List<object> propertyPath = new List<object>();
@@ -113,15 +113,14 @@ namespace TTCBDD.APIObjects
             JToken content = JToken.Parse(response.Content);
             //Traverse the object structure using each element in propertyPath
             //It interprets an integer segment as an array accessor and a string as an object accessor
-            content = propertyPath.Aggregate(content, (obj, segment) =>
-            {
-                if (segment is int index)
-                    return obj.ToObject<JArray>()[index];
-                if (segment is string property)
-                    return obj.ToObject<JObject>()[property];
-                return obj;
-            });
-            response.Data = content.ToObject<T>();
+            response.Data = propertyPath.Aggregate(content, (obj, segment) =>
+                {
+                    if (segment is int index)
+                        return obj.ToObject<JArray>()[index];
+                    if (segment is string property)
+                        return obj.ToObject<JObject>()[property];
+                    return null;
+                }).ToObject<T>();
             return response;
 
         }

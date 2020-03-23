@@ -157,6 +157,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIObjects\ODataExtensions.cs" />
     <Compile Include="APIObjects\RestExtensions.cs" />
     <Compile Include="BaseClasses\BaseClass.cs" />
     <Compile Include="BaseClasses\PageBase.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="PageObject\Address.cs" />
     <Compile Include="PageObject\Company.cs" />
     <Compile Include="PageObject\Employee.cs" />
+    <Compile Include="PageObject\Order.cs" />
     <Compile Include="PageObject\Product.cs" />
     <Compile Include="PageObject\RandomUser.cs" />
     <Compile Include="PageObject\RestActions.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="StepDefinition\CompaniesDB_Reed.cs" />
     <Compile Include="StepDefinition\FluentAssertsAndContextInjection.cs" />
     <Compile Include="StepDefinition\LoggingExampleSteps.cs" />
+    <Compile Include="StepDefinition\NorthwindSteps.cs" />
     <Compile Include="StepDefinition\productsdb.cs" />
     <Compile Include="StepDefinition\ReportingExampleSteps.cs" />
     <Compile Include="StepDefinition\RestCallClassTestSteps.cs" />
@@ -1300,6 +1303,7 @@
     <None Include="FeatureFile\ReportingExample.feature" />
     <None Include="FeatureFile\RestCallFeature.feature" />
     <None Include="FeatureFile\RestFeature.feature" />
+    <None Include="FeatureFile\NorthwindFeature.feature" />
     <None Include="FeatureFile\StefEmployee1Feature.feature" />
     <None Include="license" />
     <None Include="packages.config" />
