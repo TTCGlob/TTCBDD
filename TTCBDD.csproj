@@ -3087,7 +3087,10 @@
     <Content Include="CustomDB\node_modules\yargs\lib\yerror.js" />
     <Content Include="CustomDB\node_modules\yargs\yargs.js" />
     <Content Include="GeneralHook\extent-config.xml" />
+    <Content Include="Report\index.js" />
     <Content Include="Report\script.js" />
+    <Content Include="Report\ttc_logo.png" />
+    <Content Include="Report\vuereport.html" />
     <Content Include="Resources\chromedriver.exe" />
     <Content Include="Resources\FileUpload.exe" />
     <Content Include="Resources\geckodriver.exe" />
