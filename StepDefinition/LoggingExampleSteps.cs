@@ -1,5 +1,4 @@
 ﻿using log4net;
-using System;
 using TechTalk.SpecFlow;
 using TTCBDD.ComponentHelper;
 

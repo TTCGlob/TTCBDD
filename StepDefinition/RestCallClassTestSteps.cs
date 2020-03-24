@@ -8,7 +8,6 @@ using TechTalk.SpecFlow;
 using TTCBDD.APIObjects;
 using TTCBDD.ComponentHelper;
 using TTCBDD.PageObject;
-using TTCBDD.Public_Var;
 
 namespace TTCBDD.StepDefinition
 {

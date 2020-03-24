@@ -2,17 +2,13 @@
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Net;
-using System.Net.Http;
 using TTCBDD.ComponentHelper;
-using TTCBDD.Settings;
 using NUnit.Framework;
 using AventStack.ExtentReports.Reporter;
 using System.Collections.Generic;
 using System.Linq;
 using TTCBDD.PageObject;
 using TTCBDD.APIObjects;
-using TTCBDD.Public_Var;
-using System.Linq.Expressions;
 using FluentAssertions;
 
 namespace TTCBDD
