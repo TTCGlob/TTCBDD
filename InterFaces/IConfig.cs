@@ -1,4 +1,4 @@
-﻿using TTCBDD.Configuration;
+﻿using TTCBDD.Constants;
 
 namespace TTCBDD.Interfaces
 {
