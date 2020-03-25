@@ -1298,6 +1298,7 @@
     <None Include="FeatureFile\REST\RestFeature.feature" />
     <None Include="FeatureFile\REST\NorthwindFeature.feature" />
     <None Include="FeatureFile\REST\StefEmployee1Feature.feature" />
+    <None Include="FeatureFile\WebShop\LoginDemoWebShop.feature" />
     <None Include="license" />
     <None Include="packages.config" />
     <None Include="README.md" />
@@ -3094,7 +3095,6 @@
   <ItemGroup>
     <Folder Include="BaseClass\PageObject\" />
     <Folder Include="FeatureFile\API\" />
-    <Folder Include="FeatureFile\WebShop\" />
     <Folder Include="Helpers\API\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
