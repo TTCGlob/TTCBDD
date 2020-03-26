@@ -3089,6 +3089,7 @@
     <Content Include="Resources\geckodriver.exe" />
     <Content Include="Resources\IEDriverServer.exe" />
     <Content Include="Resources\ttc_logo.png" />
+    <Content Include="00CodingStandard.txt" />
     <Content Include="ttc_logo.png" />
   </ItemGroup>
   <ItemGroup>
