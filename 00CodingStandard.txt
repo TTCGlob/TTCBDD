@@ -1,0 +1,16 @@
+﻿Base Class - Will contains all class required for execution for RestObjects/PageObject
+Configuration- Will contains class for basic framework configuration
+Contants- Will contain class for contants used across project
+Context- Will contain class object to be pass across multiple bindings
+Custom DB- don't know why it is used 
+Custom Expection- Custom expection handler
+Extension- Extension class
+Feature File - All feature file to be saved here
+Helpers- All helping class and general
+Hooks- General hooks and other hooks handling
+Interface- All interface 
+Report- all report stuff
+Resources- All resources required for project 
+Settings- 
+StepDefinition- Binding files for Feature files
+UtilityClasses- 
