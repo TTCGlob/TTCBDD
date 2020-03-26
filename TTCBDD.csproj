@@ -182,7 +182,7 @@
     <Compile Include="Helpers\ExcelReader\ExcelReaderHelper.cs" />
     <Compile Include="Helpers\ExcelReader\TestExcelData.cs" />
     <Compile Include="Hooks\GeneralHook\GeneralHooks.cs" />
-    <Compile Include="GeneralHook\WebDriverHelper.cs" />
+    <Compile Include="Hooks\GeneralHook\WebDriverHelper.cs" />
     <Compile Include="InterFaces\IConfig.cs" />
     <Compile Include="BaseClass\RestObjects\Address.cs" />
     <Compile Include="BaseClass\RestObjects\Company.cs" />
@@ -207,7 +207,7 @@
     <Compile Include="Settings\ObjectRepository.cs" />
     <Compile Include="StepDefinition\Rest\RestSteps.cs" />
     <Compile Include="StepDefinition\Rest\StefEmployee1Feature.cs" />
-    <Compile Include="StepDefinition\TricentisWebShopSteps.cs" />
+    <Compile Include="StepDefinition\UI\TricentisWebShopSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilityClasses\IWebDriverExtensions.cs" />
     <Compile Include="UtilityClasses\ScenarioContextExtensions.cs" />
@@ -1302,7 +1302,7 @@
     <None Include="FeatureFile\REST\RestFeature.feature" />
     <None Include="FeatureFile\REST\NorthwindFeature.feature" />
     <None Include="FeatureFile\REST\StefEmployee1Feature.feature" />
-    <None Include="FeatureFile\TricentisWebShop.feature" />
+    <None Include="FeatureFile\WebShop\TricentisWebShop.feature" />
     <None Include="license" />
     <None Include="packages.config" />
     <None Include="README.md" />
@@ -3100,7 +3100,6 @@
   <ItemGroup>
     <Folder Include="BaseClass\PageObject\" />
     <Folder Include="FeatureFile\API\" />
-    <Folder Include="FeatureFile\WebShop\" />
     <Folder Include="Helpers\API\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

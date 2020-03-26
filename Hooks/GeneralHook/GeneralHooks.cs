@@ -1,20 +1,25 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using BoDi;
 using HtmlAgilityPack;
 using log4net;
+using OpenQA.Selenium;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
+using TTCBDD.GeneralHook;
 using TTCBDD.Helpers.Generic;
+using TTCBDD.UtilityClasses;
 
 namespace TTCBDD.Hooks.GeneralHook
 {
     [Binding]
     public sealed class GeneralHooks
     {
-
+        private IWebDriver driver;
+        private IObjectContainer container;
         private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
         private static ILog StaticLogger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
 
@@ -25,9 +30,10 @@ namespace TTCBDD.Hooks.GeneralHook
 
         public FeatureContext featureContext;
 
-        public GeneralHooks(FeatureContext featureContext)
+        public GeneralHooks(FeatureContext featureContext, IObjectContainer container)
         {
             this.featureContext = featureContext;
+            this.container = container;
         }
 
         [BeforeTestRun]
@@ -57,12 +63,21 @@ namespace TTCBDD.Hooks.GeneralHook
             StaticLogger.Info($"Feature: {featureContext.FeatureInfo.Title}");
         }
 
-        [BeforeScenario]
+        [BeforeScenario(Order = 0)]
         public void BeforeScenario(ScenarioContext scenarioContext)
         {
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
             Logger.Info($"Scenario: {scenarioContext.ScenarioInfo.Title}");
         }
+
+        [BeforeScenario(Order = 1)]
+        [Scope(Tag = "frontend")]
+        public void BeforeFrontendScenario()
+        {
+            driver = WebDriverHelper.InitialiseDriver();
+            container.RegisterInstanceAs(driver);
+        }
+
         [BeforeStep]
         public void BeforeStep(ScenarioContext scenarioContext)
         {
@@ -121,6 +136,10 @@ namespace TTCBDD.Hooks.GeneralHook
             {
                 Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error(s): {scenarioContext.TestError}");
             }
+
+            driver?.Close();
+            driver?.Quit();
+            driver?.Dispose();
         }
 
         [AfterTestRun]

@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace TTCBDD.FeatureFile
+namespace TTCBDD.FeatureFile.WebShop
 {
     using TechTalk.SpecFlow;
     

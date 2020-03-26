@@ -11,10 +11,10 @@ namespace TTCBDD.StepDefinition
     {
         private readonly ScenarioContext context;
         private readonly IWebDriver driver;
-        public TricentisWebShopSteps(ScenarioContext context)
+        public TricentisWebShopSteps(ScenarioContext context, IWebDriver driver)
         {
             this.context = context;
-            driver = context.GetDriver();
+            this.driver = driver;
         }
 
         [Given(@"I navigate to to the webshop")]

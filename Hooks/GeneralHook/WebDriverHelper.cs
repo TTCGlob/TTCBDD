@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using TTCBDD.Configuration;
+using TTCBDD.Constants;
 using TTCBDD.CustomException;
 
 namespace TTCBDD.GeneralHook
