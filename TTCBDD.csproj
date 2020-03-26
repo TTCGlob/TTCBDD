@@ -190,8 +190,13 @@
     <Compile Include="GeneralHook\GeneralHooks.cs" />
     <Compile Include="InterFaces\IConfig.cs" />
     <Compile Include="PageObject\Address.cs" />
+    <Compile Include="PageObject\BooksPage.cs" />
+    <Compile Include="PageObject\CartPage.cs" />
     <Compile Include="PageObject\Company.cs" />
+    <Compile Include="PageObject\DetailPage.cs" />
     <Compile Include="PageObject\Employee.cs" />
+    <Compile Include="PageObject\HomePage.cs" />
+    <Compile Include="PageObject\LoginPage.cs" />
     <Compile Include="PageObject\Order.cs" />
     <Compile Include="PageObject\Product.cs" />
     <Compile Include="PageObject\RandomUser.cs" />
@@ -202,6 +207,7 @@
     <Compile Include="StepDefinition\CompaniesDB.cs" />
     <Compile Include="StepDefinition\CompaniesDB_Companies_CJSteps.cs" />
     <Compile Include="StepDefinition\CompaniesDB_Reed.cs" />
+    <Compile Include="StepDefinition\DemoWebShopFeatureSteps.cs" />
     <Compile Include="StepDefinition\FluentAssertsAndContextInjection.cs" />
     <Compile Include="StepDefinition\LoggingExampleSteps.cs" />
     <Compile Include="StepDefinition\NorthwindSteps.cs" />
@@ -214,6 +220,7 @@
     <Compile Include="StepDefinition\StefEmployee1Feature.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest2.cs" />
     <Compile Include="UtilityClasses\StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1297,6 +1304,7 @@
     <None Include="FeatureFile\CompaniesDB.feature" />
     <None Include="FeatureFile\CompaniesDB_Companies_CJ.feature" />
     <None Include="FeatureFile\CompaniesDB_Reed.feature" />
+    <None Include="FeatureFile\DemoWebShopFeature.feature" />
     <None Include="FeatureFile\Feature2.feature" />
     <None Include="FeatureFile\LoggingExample.feature" />
     <None Include="FeatureFile\productsdb.feature" />

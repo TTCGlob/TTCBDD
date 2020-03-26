@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Net;
@@ -79,7 +79,8 @@ namespace TTCBDD
                 .Execute()
                 .Data;
             products.ForEach(product => Console.WriteLine($"Name: {product.product_name} - Stock level: {product.stock_level}"));
-            products.ForEach(p => {
+            products.ForEach(p =>
+            {
                 p.product_name.Should().Contain("Fresh");
                 p.stock_level.Should().Be(0);
             });
@@ -239,3 +240,4 @@ namespace TTCBDD
 
     }
 }
+*/

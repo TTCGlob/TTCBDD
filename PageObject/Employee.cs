@@ -44,10 +44,10 @@ namespace TTCBDD.PageObject
         public static Employee Random()
         {
             var rand = new Random();
-            var randomPerson = RandomUser.Random();
+    //        var randomPerson = RandomUser.Random();
             var employee = new Employee()
             {
-                name = randomPerson.fullName,
+ //               name = randomPerson.fullName,
                 salary = rand.Next(32000, 250000).ToString(),
                 age = rand.Next(18, 80).ToString()
             };

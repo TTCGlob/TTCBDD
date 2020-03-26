@@ -33,5 +33,10 @@ namespace TTCBDD.ComponentHelper
             //FileName = FileName + DateTime.Now();
             ObjectRepository.Driver.TakeScreenshot().SaveAsFile(FileName, FormatType);
         }
+
+        public static void WaitForWebElementInPage(By Locator, TimeSpan time)
+        {
+
+        }
     }
 }
