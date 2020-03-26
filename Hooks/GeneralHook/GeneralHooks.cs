@@ -52,6 +52,7 @@ namespace TTCBDD.Hooks.GeneralHook
         [BeforeFeature]
         public static void BeforeFeature(FeatureContext featureContext)
         {
+            //Write code to initilise webbrowser
             //Create dynamic feature name
             featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title, featureContext.FeatureInfo.Description);
             StaticLogger.Info($"Feature: {featureContext.FeatureInfo.Title}");

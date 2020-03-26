@@ -1,11 +1,32 @@
 ﻿Feature: LoginDemoWebShop
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+this feaure will check login functionality
 
-@mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+
+Background: 
+
+	Given I navigate into the DemoWebShop url
+	When I click on the Login link
+
+Scenario: Login into DemoWebShop susccesful
+	And I enter valid login details
+	| Username | Password  |
+	| ketan    | password1 |
+	And I Click Login BUtton
+	Then Login  should be succesful
+
+Scenario: : Login with invalid username
+
+Scenario: Login with invalid password
+
+#Scenario: Login into DemoWebShop
+#	
+#	#When I enter the valid username,password and click on Login button
+#	#Then the user should be logged in successfully
+#	But I enter the Invalid username, password and click on Login button
+#	Then the login page should throw an error message
+#	When I click on the Logout button
+#	Then the user should be logged out successfully
+
+
+
+	
