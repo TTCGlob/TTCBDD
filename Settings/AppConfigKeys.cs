@@ -8,6 +8,5 @@
         public const string WebSite = "WebSite";
         public const string PageLoadTimeOut = "PageLoadTimeOut";
         public const string ElementLoadTimeOut = "ElementLoadTimeOut";
-        public const string Headless = "HeadlessBrowserModeEnabled";
     }
 }

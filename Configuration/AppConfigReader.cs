@@ -45,10 +45,5 @@ namespace TTCBDD.Configuration
         {
             return ConfigurationManager.AppSettings.Get(AppConfigKeys.WebSite);
         }
-
-        public bool GetHeadless()
-        {
-            return bool.Parse(ConfigurationManager.AppSettings.Get(AppConfigKeys.Headless));
-        }
     }
 }
