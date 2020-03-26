@@ -3,18 +3,21 @@ using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using HtmlAgilityPack;
 using log4net;
+using OpenQA.Selenium;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Bindings;
 using TTCBDD.ComponentHelper;
+using TTCBDD.Configuration;
+using TTCBDD.UtilityClasses;
 
 namespace TTCBDD.GeneralHook
 {
     [Binding]
     public sealed class GeneralHooks
     {
-
+        private IWebDriver driver;
         private ILog Logger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
         private static ILog StaticLogger = Log4NetHelper.GetXmlLogger(typeof(GeneralHooks));
 
@@ -57,12 +60,21 @@ namespace TTCBDD.GeneralHook
             StaticLogger.Info($"Feature: {featureContext.FeatureInfo.Title}");
         }
 
-        [BeforeScenario]
+        [BeforeScenario(Order = 0)]
         public void BeforeScenario(ScenarioContext scenarioContext)
         {
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
             Logger.Info($"Scenario: {scenarioContext.ScenarioInfo.Title}");
         }
+
+        [BeforeScenario(Order = 1)]
+        [Scope(Tag = "frontend")]
+        public void BeforeFrontendScenario(ScenarioContext scenarioContext)
+        {
+            driver = WebDriverHelper.InitialiseDriver();
+            scenarioContext.SetDriver(driver);
+        }
+
         [BeforeStep]
         public void BeforeStep(ScenarioContext scenarioContext)
         {
@@ -121,6 +133,10 @@ namespace TTCBDD.GeneralHook
             {
                 Logger.Error($"The scenario {scenarioContext.ScenarioInfo.Title} has finished with test error(s): {scenarioContext.TestError}");
             }
+
+            driver?.Close();
+            driver?.Quit();
+            driver?.Dispose();
         }
 
         [AfterTestRun]
