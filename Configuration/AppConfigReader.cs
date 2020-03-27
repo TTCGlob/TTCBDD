@@ -3,6 +3,7 @@ using TTCBDD.Settings;
 using System;
 using System.Configuration;
 using TTCBDD.Constants;
+using TTCBDD.PageObject;
 
 namespace TTCBDD.Configuration
 {
@@ -46,5 +47,6 @@ namespace TTCBDD.Configuration
         {
             return ConfigurationManager.AppSettings.Get(AppConfigKeys.WebSite);
         }
+
     }
 }

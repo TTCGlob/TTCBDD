@@ -1,37 +1,34 @@
 ﻿using System;
 using TechTalk.SpecFlow;
 using TTCBDD.Configuration;
-using TTCBDD.ComponentHelper;
 using OpenQA.Selenium;
 using TTCBDD.PageObject;
 using TTCBDD.Settings;
 using TTCBDD.BaseClasses;
+using TTCBDD.Helpers.UI;
 
 namespace TTCBDD.StepDefinition
 {
     [Binding]
     public class DemoWebShopFeatureSteps
     {
-        
-        private IWebDriver driver = ObjectRepository.Driver;
-        [Obsolete]
-        private HomePage hPage = new HomePage(driver);
+        IWebDriver driver;
 
-        private LoginPage lPage = new LoginPage(driver);
-
-        [Given(@"I have navigated to the DemoWebShop website")]
-        public void GivenIHaveNavigatedToTheDemoWebShopWebsite()
+        [Given(@"I navigated to the DemoWebShop website")]
+        public void GivenINavigatedToTheDemoWebShopWebsite()
         {
             var navigation = new AppConfigReader();
+            PageBase initHomePage = new PageBase(driver);
             navigation.GetBrowser();
             navigation.GetWebsiteUrl();
+            initHomePage.SetHomePageObject();
         }
-        
+
         [When(@"I click the Log in link")]
         public void WhenIClickTheLogInLink()
-        {
-            hPage = new HomePage();
-            lPage = hPage.NavigateToLogin();
+        {      
+            var hPage = new HomePage(driver);
+            hPage.NavigateToLogin();
         }
 
         [Then(@"the login page displays")]
