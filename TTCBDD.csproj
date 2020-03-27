@@ -157,6 +157,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClass\PageObject\HomePage.cs" />
+    <Compile Include="BaseClass\PageObject\LoginPage.cs" />
+    <Compile Include="BaseClass\PageObject\PageBase.cs" />
     <Compile Include="Extension\ODataExtensions.cs" />
     <Compile Include="Extension\RestExtensions.cs" />
     <Compile Include="Helpers\Verification\AssertHelper.cs" />
@@ -3098,7 +3101,6 @@
     <Content Include="ttc_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BaseClass\PageObject\" />
     <Folder Include="FeatureFile\API\" />
     <Folder Include="Helpers\API\" />
   </ItemGroup>
