@@ -90,6 +90,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add product to cart")]
+        [NUnit.Framework.CategoryAttribute("frontend")]
+        [NUnit.Framework.CategoryAttribute("cart")]
+        public virtual void AddProductToCart()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add product to cart", null, new string[] {
+                        "frontend",
+                        "cart"});
+#line 13
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 14
+ testRunner.Given("I navigate to to the webshop", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.And("I click the log in link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And("I login as \"g@w.yee\", \"NONONO\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And("I navigate to the \"BOOKS\" category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+ testRunner.When("I add \"Computing and Internet\" to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 19
+ testRunner.Then("A \"success\" notification should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
+ testRunner.And("It should say \"The product has been added to your shopping cart\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+ testRunner.And("The shopping cart should indicate it has 1 item in it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

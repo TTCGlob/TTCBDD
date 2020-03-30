@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using System.Text.RegularExpressions;
 
 namespace TTCBDD.BaseClass.PageObject
 {
@@ -12,16 +8,35 @@ namespace TTCBDD.BaseClass.PageObject
         protected IWebDriver driver;
 
         private By LoginBy = By.PartialLinkText("Log in");
-        private IWebElement LoginLink;
+        private IWebElement LoginLink { get => driver.FindElement(LoginBy); }
 
         private By AccountLinkBy = By.ClassName("account");
-        private IWebElement AccountLink;
+        private IWebElement AccountLink { get => driver.FindElement(AccountLinkBy); }
 
-        protected PageBase(IWebDriver driver)
+        private By HeaderMenuBy = By.ClassName("header-menu");
+        private IWebElement HeaderMenu { get => driver.FindElement(HeaderMenuBy); }
+
+        private By ShoppingCartLinkBy = By.PartialLinkText("Shopping cart");
+        private IWebElement ShoppingCartLink { get => driver.FindElement(ShoppingCartLinkBy); }
+
+        private By HeaderCategoryBy(string category) => By.PartialLinkText(category);
+
+        #region Data
+        public string LoggedInUser { get => AccountLink.Text; }
+        public int ProductsInCart
+        {
+            get
+            {
+                var cartLinkText = ShoppingCartLink.Text;
+                string match = Regex.Match(cartLinkText, @"\d+").Value;
+                return int.Parse(match);
+            }
+        }
+        #endregion
+
+        public PageBase(IWebDriver driver)
         {
             this.driver = driver;
-            LoginLink = driver.FindElement(LoginBy);
-            AccountLink = driver.FindElement(AccountLinkBy);
         }
 
         #region Action
@@ -30,10 +45,20 @@ namespace TTCBDD.BaseClass.PageObject
             LoginLink.Click();
             return new LoginPage(driver);
         }
+
+        public ShoppingCartPage NavigateToCart()
+        {
+            ShoppingCartLink.Click();
+            return new ShoppingCartPage(driver);
+        }
+
+        public ProductPage ClickHeaderProductCategory(string category)
+        {
+            HeaderMenu.FindElement(HeaderCategoryBy(category)).Click();
+            return new ProductPage(driver);
+        }
         #endregion
 
-        #region Data
-        public string LoggedInUser() => AccountLink.Text;
-        #endregion
+        
     }
 }
