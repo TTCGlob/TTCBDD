@@ -23,7 +23,7 @@ namespace TTCBDD.PageObject
 
         #region WebElement
 
-        private By pageTitle = By.PartialLinkText("Shopping cart");
+        private By pageTitle = By.XPath("//h1['Shopping cart']");
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace TTCBDD.PageObject
             }
             catch (Exception)
             {
-                clickCart.NavigateToCart();
+               // clickCart.NavigateToCart();
                 return driver.FindElement(pageTitle).Text.Contains(title);
 
             }

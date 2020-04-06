@@ -28,16 +28,31 @@ namespace TTCBDD.PageObject
         private By rememberMe = By.Id("RememberMe");
         private By logInBtn = By.XPath("//div/input[@value='Log in']");
         private By logOutLink = By.XPath("//a[@href='/logout']");
+        private By welcome = By.XPath("//h1");
 
         #endregion
 
         #region Action
-        public DetailPage Login(string username, string pass)
+        
+        public string GetWelcomeMessage()
         {
+            return driver.FindElement(welcome).Text;
+        }
+        
+        public DetailPage Login()
+        {
+            var username = ObjectRepository.Config.GetUsername();
+            var pass = ObjectRepository.Config.GetPassword();
             driver.FindElement(email).SendKeys(username);
             driver.FindElement(password).SendKeys(pass);
             driver.FindElement(logInBtn).Click();
             return new DetailPage(driver);
+        }
+
+        public bool IsDetailPageDisplayed()
+        {
+            return driver.FindElement(By.XPath("//div[@class='header-links']/ul/li/a[@href='/customer/info' and @class='account']")).
+                Text.Equals(ObjectRepository.Config.GetUsername());
         }
 
         #endregion

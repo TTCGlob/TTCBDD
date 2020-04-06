@@ -39,6 +39,12 @@ namespace TTCBDD.PageObject
             return new BooksPage(driver);
         }
 
+        public ComputersPage NavigateToComputers()
+        {
+            driver.FindElement(computersLink).Click();
+            return new ComputersPage(driver);
+        }
+
         #endregion
 
     }

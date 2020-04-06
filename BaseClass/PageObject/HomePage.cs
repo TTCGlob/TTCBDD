@@ -23,13 +23,13 @@ namespace TTCBDD.PageObject
         //Region Navigation: Navigation from current Webpage to other pages e.g. Navigate to Book page, to Login Page, etc...
 
         #region WebElement
-
+       // protected IWebDriver driver;
 
         private By newsLetterEmail = By.Id("newsletter-email");
         private By subscribe = By.Id("newsletter-subscribe-button");
         private By newsLetterResult = By.Id("newsletter-result-block");
 
-        private By login = By.XPath("//a[@href= ' / login']");
+        private By login = By.PartialLinkText("Log in");
 
         #endregion
 
@@ -65,7 +65,5 @@ namespace TTCBDD.PageObject
         }
 
         #endregion
-
-
     }
 }

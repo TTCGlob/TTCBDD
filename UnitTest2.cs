@@ -1,26 +1,24 @@
-﻿using System;
-using Newtonsoft.Json.Linq;
-using RestSharp;
-using System.Net;
-using TTCBDD.ComponentHelper;
-using NUnit.Framework;
-using AventStack.ExtentReports.Reporter;
-using System.Collections.Generic;
-using System.Linq;
-using TTCBDD.PageObject;
-using FluentAssertions;
+﻿using NUnit.Framework;
 using TTCBDD.StepDefinition;
+using TTCBDD.Configuration;
+using TechTalk.SpecFlow;
 
 namespace TTCBDD
 {
+
     [TestFixture]
     public class UnitTest2
     {
-        [Test]
+        [TestCase]
         public void Login()
         {
+            var browserAndUrl = new AppConfigReader();
+            browserAndUrl.GetBrowser();
+            browserAndUrl.GetWebsiteUrl();
+
             var variable = new DemoWebShopFeatureSteps();
-            variable.GivenIHaveNavigatedToTheDemoWebShopWebsite();
+            variable.GivenINavigatedToTheDemoWebShopWebsite();
+            System.Console.WriteLine("Hello Steffie");
         }
     }
 }

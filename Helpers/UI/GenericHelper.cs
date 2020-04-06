@@ -1,11 +1,12 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using TTCBDD.Settings;
 using System;
 
 namespace TTCBDD.Helpers.UI
 {
-    public class GenericHelper
+    public static class GenericHelper
     {
         public static bool IsElementPresent(By Locator)
         {
@@ -37,6 +38,19 @@ namespace TTCBDD.Helpers.UI
         public static void WaitForWebElementInPage(By Locator, TimeSpan time)
         {
 
+        }
+
+        public static void ActualAndExpectedAreEqual(string actual, string expected)
+        {
+            try
+            {
+                Assert.AreEqual(actual, expected);
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+                Console.WriteLine(message);
+            }
         }
     }
 }

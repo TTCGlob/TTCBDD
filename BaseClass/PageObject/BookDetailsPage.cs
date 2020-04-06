@@ -8,22 +8,21 @@ using TTCBDD.Helpers.UI;
 using TTCBDD.Settings;
 using TTCBDD.BaseClasses;
 
+
 namespace TTCBDD.PageObject
 {
-    public class BooksPage : PageBase
+    public class BookDetailsPage : PageBase
     {
-        public BooksPage(IWebDriver _driver) : base(_driver)
+        public BookDetailsPage(IWebDriver _driver) : base(_driver)
         {
 
         }
 
+        private By price = By.XPath("//span[@class='price-value-13']");
 
-        public BookDetailsPage SelectBook(string title)
+        public string BookPricing()
         {
-            driver.FindElement(By.PartialLinkText(title)).Click();
-            return new BookDetailsPage(driver);
+            return driver.FindElement(price).Text;
         }
-
-
     }
 }

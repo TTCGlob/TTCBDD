@@ -36,10 +36,10 @@ namespace TTCBDD.BaseClasses
 
         //  private IWebElement homePageIconField;
 
-        private By wishlistLink = By.PartialLinkText("Wishlist");
+        private By wishListLink = By.PartialLinkText("Wishlist");
         private By cartLink = By.PartialLinkText("Shopping cart");
 
-/*        private By wishlistLink = By.XPath("//a[@href='/wishlist']/span[@class='cart-label']");
+/*        private By wishListLink = By.XPath("//a[@href='/wishlist']/span[@class='cart-label']");
         private By cartLink = By.XPath("//a[@href='/cart']/span[@class='cart-label']");*/
 
 
@@ -50,9 +50,9 @@ namespace TTCBDD.BaseClasses
 
         protected void Logout()
         {
-            if (GenericHelper.IsElementPresent(By.XPath("//a[contains(normalize-space(),'Log out')]")))
+            if (GenericHelper.IsElementPresent(By.PartialLinkText("Log out")))
             {
-                ButtonHelper.ClickButton(By.XPath("//a[contains(normalize-space(),'Log out')]"));
+                ButtonHelper.ClickButton(By.PartialLinkText("Log out"));
             }
         }
 
@@ -82,7 +82,7 @@ namespace TTCBDD.BaseClasses
 
         public void NavigateToWishlist()
         {
-            driver.FindElement(wishlistLink).Click();
+            driver.FindElement(wishListLink).Click();
         }
 
         #endregion

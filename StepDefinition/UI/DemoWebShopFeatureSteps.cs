@@ -6,39 +6,70 @@ using TTCBDD.PageObject;
 using TTCBDD.Settings;
 using TTCBDD.BaseClasses;
 using TTCBDD.Helpers.UI;
+using NUnit.Framework;
 
 namespace TTCBDD.StepDefinition
 {
     [Binding]
     public class DemoWebShopFeatureSteps
     {
-        IWebDriver driver;
+
+        public HomePage hPage;
+        public LoginPage lPage;
+        public DetailPage detailPage;
+        public BooksPage booksPage;
+        public BookDetailsPage bookDetailPage;
 
         [Given(@"I navigated to the DemoWebShop website")]
         public void GivenINavigatedToTheDemoWebShopWebsite()
         {
-            var navigation = new AppConfigReader();
-            PageBase initHomePage = new PageBase(driver);
-            navigation.GetBrowser();
-            navigation.GetWebsiteUrl();
-            initHomePage.SetHomePageObject();
+            PageBase initHomePage = new PageBase(ObjectRepository.Driver);
+            hPage = initHomePage.SetHomePageObject();
         }
 
         [When(@"I click the Log in link")]
         public void WhenIClickTheLogInLink()
-        {      
-            var hPage = new HomePage(driver);
-            hPage.NavigateToLogin();
+        {
+            lPage = hPage.NavigateToLogin();
         }
 
-        [Then(@"the login page displays")]
-        public void ThenTheLoginPageDisplays()
+        [When(@"I submit username and password")]
+        public void WhenISubmitUsernameAndPassword()
         {
-            if (GenericHelper.IsElementPresent(By.XPath("//h1")))
-            {
-                Console.WriteLine("Welcome to your training session");
-            }
-            else WhenIClickTheLogInLink();         
+            detailPage = lPage.Login();
+        }
+
+        [Then(@"the DetailPage displays")]
+        public void ThenTheDetailPageDisplays()
+        {
+            lPage.IsDetailPageDisplayed();
+        }
+
+        [Then(@"the LoginPage displays with title ""(.*)""")]
+        public void ThenTheLoginPageDisplaysWithTitle(string title)
+        {
+            GenericHelper.ActualAndExpectedAreEqual(title, lPage.GetWelcomeMessage());
+        }
+
+
+        //Scenario: navigate to the books page and order a specific book at a specified price
+
+        [Given(@"I navigated to the Books page")]
+        public void GivenINavigatedToTheBooksPage()
+        {
+            booksPage = detailPage.NavigateToBooks();
+        }
+
+        [When(@"I click the ""(.*)"" link")]
+        public void WhenIClickTheLink(string bookTitle)
+        {
+            bookDetailPage = booksPage.SelectBook(bookTitle);
+        }
+
+        [Then(@"I confirm price is ""(.*)""")]
+        public void ThenIConfirmPriceIs(string price)
+        {
+            GenericHelper.ActualAndExpectedAreEqual(price, bookDetailPage.BookPricing());
         }
     }
 }
