@@ -84,11 +84,11 @@ testRunner.Given("I navigated to the DemoWebShop website", ((string)(null)), ((T
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("navigate to url and login")]
+        [NUnit.Framework.DescriptionAttribute("Navigate to url and login")]
         [NUnit.Framework.CategoryAttribute("mytag")]
         public virtual void NavigateToUrlAndLogin()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("navigate to url and login", null, new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to url and login", null, new string[] {
                         "mytag"});
 #line 11
 this.ScenarioInitialize(scenarioInfo);
@@ -106,10 +106,10 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("navigate to the books page and order a specific book at a specified price")]
-        public virtual void NavigateToTheBooksPageAndOrderASpecificBookAtASpecifiedPrice()
+        [NUnit.Framework.DescriptionAttribute("Confirm Price of chosen item")]
+        public virtual void ConfirmPriceOfChosenItem()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("navigate to the books page and order a specific book at a specified price", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Confirm Price of chosen item", null, ((string[])(null)));
 #line 16
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -121,6 +121,53 @@ this.FeatureBackground();
  testRunner.When("I click the \"Computing and Internet\" link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 19
  testRunner.Then("I confirm price is \"10.00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add product to cart failed")]
+        [NUnit.Framework.CategoryAttribute("now")]
+        public virtual void AddProductToCartFailed()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add product to cart failed", null, new string[] {
+                        "now"});
+#line 22
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line 23
+testRunner.Given("I navigated to Computers > \"Accessories\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+testRunner.When("I add \"TCP Coaching day\" to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
+testRunner.Then("the notification bar displays \"This product requires the following product is add" +
+                    "ed to the cart: TCP Instructor Led Training\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+testRunner.And("0 item is visible in the cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add product to cart")]
+        public virtual void AddProductToCart()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add product to cart", null, ((string[])(null)));
+#line 29
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line 30
+testRunner.Given("I navigated to \"Electronics > Cell phones\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 31
+testRunner.When("I add \"Smartphone\" to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+testRunner.Then("the notification bar displays \"This product has been added to the shopping cart\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+testRunner.And("1 item is visible in the cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

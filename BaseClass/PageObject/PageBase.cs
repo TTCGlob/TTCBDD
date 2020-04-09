@@ -28,6 +28,7 @@ namespace TTCBDD.BaseClasses
         protected IWebDriver driver;
 
         private By homePageIconBy = By.PartialLinkText("Demo Web Shop");
+        private By classProductItem = By.ClassName("product-item");
 
         private IWebElement GetHomePageIcon()
         {
@@ -83,6 +84,33 @@ namespace TTCBDD.BaseClasses
         public void NavigateToWishlist()
         {
             driver.FindElement(wishListLink).Click();
+        }
+
+        public void ClickAnyItem(string name)
+        {
+            driver.FindElement(By.PartialLinkText(name)).Click();
+        }
+
+        public IWebElement FindAnyItem(string item)
+        {
+            IWebElement subElement = driver.FindElement(classProductItem);
+            return subElement.FindElement(By.PartialLinkText(item));               
+        }
+
+        public void AddAnyItemToCart (string item)
+        {
+            FindAnyItem(item).FindElement(By.XPath("./div[3]/div[2]/input[@value='Add to cart']")).Click(); 
+            driver.FindElement(By.XPath(""))
+        }
+
+        public void AddToCart()
+        {
+            driver.FindElement(By.PartialLinkText("Add to cart")).Click();
+        }
+
+        public string MessageInNotificationBar()
+        {
+            return driver.FindElement(By.Id("bar-notification")).Text;
         }
 
         #endregion

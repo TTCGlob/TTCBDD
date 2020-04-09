@@ -8,16 +8,28 @@ Given I navigated to the DemoWebShop website
 	Then the DetailPage displays
 
 @mytag
-Scenario: navigate to url and login
+Scenario: Navigate to url and login
 	Given I navigated to the DemoWebShop website
 	When I click the Log in link
 	Then the LoginPage displays with title "Welcome, Please Sign In!"
 
-Scenario: navigate to the books page and order a specific book at a specified price
+Scenario: Confirm Price of chosen item
 	Given I navigated to the Books page
 	When I click the "Computing and Internet" link
 	Then I confirm price is "10.00"
 
+	@now
+Scenario: Add product to cart failed
+Given I navigated to Computers > "Accessories"
+When I add "TCP Coaching day" to my cart
+Then the notification bar displays "This product requires the following product is added to the cart: TCP Instructor Led Training" 
+And 0 item is visible in the cart
 
+
+Scenario: Add product to cart
+Given I navigated to "Electronics > Cell phones"
+When I add "Smartphone" to my cart
+Then the notification bar displays "This product has been added to the shopping cart"
+And 1 item is visible in the cart 
 
 

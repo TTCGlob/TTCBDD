@@ -50,7 +50,9 @@ namespace TTCBDD.Helpers.UI
             {
                 string message = e.Message;
                 Console.WriteLine(message);
+                throw e;
             }
+       
         }
     }
 }

@@ -7,23 +7,28 @@ using TTCBDD.Settings;
 using TTCBDD.BaseClasses;
 using TTCBDD.Helpers.UI;
 using NUnit.Framework;
+using FluentAssertions;
+using TTCBDD.BaseClass.PageObject;
 
 namespace TTCBDD.StepDefinition
 {
     [Binding]
     public class DemoWebShopFeatureSteps
     {
-
+        public PageBase pageBase;
         public HomePage hPage;
         public LoginPage lPage;
         public DetailPage detailPage;
         public BooksPage booksPage;
         public BookDetailsPage bookDetailPage;
+        public ComputersPage computerPage;
+     
 
         [Given(@"I navigated to the DemoWebShop website")]
         public void GivenINavigatedToTheDemoWebShopWebsite()
-        {
+        {          
             PageBase initHomePage = new PageBase(ObjectRepository.Driver);
+            pageBase = initHomePage;
             hPage = initHomePage.SetHomePageObject();
         }
 
@@ -52,7 +57,7 @@ namespace TTCBDD.StepDefinition
         }
 
 
-        //Scenario: navigate to the books page and order a specific book at a specified price
+        //Scenario: Confirm Price of chosen item
 
         [Given(@"I navigated to the Books page")]
         public void GivenINavigatedToTheBooksPage()
@@ -69,7 +74,41 @@ namespace TTCBDD.StepDefinition
         [Then(@"I confirm price is ""(.*)""")]
         public void ThenIConfirmPriceIs(string price)
         {
-            GenericHelper.ActualAndExpectedAreEqual(price, bookDetailPage.BookPricing());
+            GenericHelper.ActualAndExpectedAreEqual(bookDetailPage.BookPricing(), price);
+         //   bookDetailPage.BookPricing().Should().Be(price);
         }
+
+
+
+        // Scenario: Add product to cart failed
+
+        [Given(@"I navigated to Computers > ""(.*)""")]
+        public void GivenINavigatedToComputers(string title)
+        {
+            detailPage.FetchComputerSubMenu();
+            detailPage.ClickComputerSubMenu(title);
+            ComputersAccessoriesDetailsPage computersAccessories = (ComputersAccessoriesDetailsPage)detailPage.CreateAppropriateComputerSubMenuObject(title);
+        }
+
+
+        [When(@"I add ""(.*)"" to my cart")]
+        public void WhenIAddToMyCart(string itemTitle)
+        {
+            pageBase.AddAnyItemToCart(itemTitle);
+            pageBase.AddToCart();
+        }
+
+        [Then(@"the notification bar displays ""(.*)""")]
+        public void ThenTheNotificationBarDisplays(string message)
+        {
+            pageBase.MessageInNotificationBar().Should().Be(message);
+        }
+
+        [Then(@"(.*) item is visible in the cart")]
+        public void ThenItemIsVisibleInTheCart(int numberOfItemInCart)
+        {
+            
+        }
+
     }
 }
